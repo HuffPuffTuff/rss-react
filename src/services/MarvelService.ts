@@ -19,7 +19,7 @@ export default class MarvelService {
     }
   };
 
-  public static getAllComics = async () => {
+  public static getAllComics = async (): Promise<IComic.ComicAdapter[]> => {
     const url = `${this._baseLink}comics?limit=12&offset=${this._baseOffset}&${this._apiKey}`;
     const res = await this.getResponse<IComic.RootObject>(url);
     return res.data.results.map(this._comicAdapter);

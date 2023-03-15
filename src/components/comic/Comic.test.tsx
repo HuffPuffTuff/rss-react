@@ -16,5 +16,5 @@ test('Comic Card render', () => {
 
   render(<Comic comic={data} />);
 
-  expect(screen.getByText('Title')).toBe;
+  expect(screen.getByText(/title/i)).toBe;
 });

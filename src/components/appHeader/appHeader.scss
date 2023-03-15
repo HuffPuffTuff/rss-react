@@ -1,19 +1,16 @@
-// @import '../../style/variables.scss';
-
 .app {
-  .app__header {
+  &__header {
     display: flex;
     justify-content: space-between;
   }
-  .app__title {
+
+  &__title {
     font-weight: bold;
     font-size: 28px;
     line-height: 37px;
-    // span {
-    //   color: black;
-    // }
   }
-  .app__menu {
+
+  &__menu {
     ul {
       display: flex;
       justify-content: space-between;
