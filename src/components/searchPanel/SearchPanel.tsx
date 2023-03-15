@@ -14,7 +14,7 @@ class SearchPanel extends Component {
     const value = this.state.searchValue;
 
     localStorage.setItem('searchValue', value);
-    console.log('Unmount!');  }
+  }
 
   render(): JSX.Element {
     const searchValue = localStorage.getItem('searchValue');

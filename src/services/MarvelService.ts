@@ -1,18 +1,19 @@
 import IComic from 'types/comicsTypes';
 
-export default class MarvelService {
-  private static _baseLink = 'https://gateway.marvel.com:443/v1/public/';
-  private static _apiKey = 'apikey=cee96071cc78ddbef9cb57e14b87768c';
-  private static _baseOffset = 180;
+import { _baseLink, _apiKey, _baseOffset } from '../components/constants';
 
-  private static getResponse = async <T>(url: string): Promise<T> => {
+export default class MarvelService {
+  private static _baseLink = _baseLink;
+  private static _apiKey = _apiKey;
+  private static _baseOffset = _baseOffset;
+
+  private static getResponseData = async <T>(url: string): Promise<T> => {
     try {
       const res = await fetch(url);
 
       if (!res.ok) {
         throw new Error(`Could not fetch ${url}, status: ${res.status}`);
       }
-
       return await res.json();
     } catch (error) {
       throw error;
@@ -20,8 +21,8 @@ export default class MarvelService {
   };
 
   public static getAllComics = async (): Promise<IComic.ComicAdapter[]> => {
-    const url = `${this._baseLink}comics?limit=12&offset=${this._baseOffset}&${this._apiKey}`;
-    const res = await this.getResponse<IComic.RootObject>(url);
+    const url = `${this._baseLink}comics?limit=2&offset=${this._baseOffset}&${this._apiKey}`;
+    const res = await this.getResponseData<IComic.RootObject>(url);
     return res.data.results.map(this._comicAdapter);
   };
 

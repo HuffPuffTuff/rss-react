@@ -2,5 +2,6 @@
   "moduleNameMapper": {
     "^.+\\.(css|less|scss)$": "babel-jest"
   },
+  "collectCoverageFrom": ["src/**/*.tsx", "!**/node_modules/**"],
   "testEnvironment": "jsdom"
 }

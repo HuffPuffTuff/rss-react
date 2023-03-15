@@ -27,6 +27,7 @@ export default class ComicsList extends Component<IProps, IState> {
     MarvelService.getAllComics().then(this.onComicsLoaded);
   }
 
+
   onComicsLoaded = (data: IComic.ComicAdapter[]) => {
     this.setState({ comicsList: data, loading: false });
   };
