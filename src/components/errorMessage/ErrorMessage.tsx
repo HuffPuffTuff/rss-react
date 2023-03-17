@@ -1,5 +1,5 @@
 import gif from './error.gif';
-import React, { Component } from 'react';
+import React from 'react';
 
 const ErrorMessage = () => {
   return (
