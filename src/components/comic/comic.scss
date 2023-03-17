@@ -1,0 +1,72 @@
+.comics__item {
+  position: relative;
+  display: flex;
+  background: linear-gradient(-67deg, rgba(200, 216, 231, 0.7), rgba(255, 255, 255, 0.8));
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
+
+  transition: all 0.35s linear;
+
+  &-img {
+    width: 180px;
+    border-radius: 10px 0 0 10px;
+  }
+
+  &-info {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-title {
+    text-align: center;
+  }
+
+  &-price {
+    font-size: 2.5em;
+    color: green;
+    margin: 0 auto;
+  }
+
+  &-description {
+    position: absolute;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.35s linear;
+
+    z-index: -1;
+    color: aliceblue;
+  }
+
+  &:hover {
+    background: linear-gradient(-67deg, rgba(9, 10, 10, 0.7), rgba(17, 15, 15, 0.8));
+
+    .comics__item-img {
+      opacity: 0;
+    }
+
+    .comics__item-info {
+      opacity: 0;
+    }
+
+    .comics__item-description {
+      color: aliceblue;
+      z-index: 2;
+      opacity: 1;
+    }
+  }
+}
