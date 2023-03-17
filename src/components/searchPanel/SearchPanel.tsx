@@ -30,6 +30,7 @@ class SearchPanel extends Component {
             <div className="input-container">
               <input
                 id="input-search"
+                aria-label="search-input"
                 defaultValue={searchValue ? searchValue : ''}
                 onChange={({ target }) => this.onUpdateSearch(target.value)}
               />

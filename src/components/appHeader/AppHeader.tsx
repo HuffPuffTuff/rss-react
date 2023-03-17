@@ -6,7 +6,7 @@ const AppHeader = () => {
   const linkStyle = ({ isActive }: { isActive: boolean }) => (isActive ? { color: '#9f0013' } : {});
 
   return (
-    <header className="app__header">
+    <header className="app__header" data-testid="header">
       <h1 className="app__title">
         <Link to="/">React App</Link>
       </h1>
