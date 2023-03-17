@@ -3,7 +3,7 @@ import './searchPanel.scss';
 
 class SearchPanel extends Component {
   state = {
-    searchValue: '',
+    searchValue: localStorage.getItem('searchValue') || '',
   };
 
   private onUpdateSearch = (searchValue: string): void => {
@@ -12,13 +12,10 @@ class SearchPanel extends Component {
 
   componentWillUnmount(): void {
     const value = this.state.searchValue;
-
     localStorage.setItem('searchValue', value);
   }
 
   render(): JSX.Element {
-    const searchValue = localStorage.getItem('searchValue');
-
     return (
       <div className="search-panel">
         <div className="search-panel__inner">
@@ -31,7 +28,7 @@ class SearchPanel extends Component {
               <input
                 id="input-search"
                 aria-label="search-input"
-                defaultValue={searchValue ? searchValue : ''}
+                defaultValue={this.state.searchValue}
                 onChange={({ target }) => this.onUpdateSearch(target.value)}
               />
             </div>

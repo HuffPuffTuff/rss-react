@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import App from './App';
+import { comicsResponse } from '../../mocks/mockData';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -9,9 +10,9 @@ jest.mock('react-router-dom', () => ({
   NavLink: jest.fn().mockImplementation(({ children }) => children),
 }));
 
-jest.mock('../pages/MainPage', () => () => {
-  return <div data-testid="main" />;
-});
+global.fetch = jest.fn(() =>
+  Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponse) })
+) as jest.Mock;
 
 describe('App test', () => {
   test('Render App component', async () => {
@@ -22,6 +23,7 @@ describe('App test', () => {
     });
 
     expect(!!queryByTestId('header')).toBe(true);
-    expect(!!queryByTestId('main')).toBe(true);
+    expect(screen.getByText(/hellcat/i)).toBe;
+    expect(screen.getByText(/IN DIAMOND AGE/i)).toBe;
   });
 });

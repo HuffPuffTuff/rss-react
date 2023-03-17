@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import IComic from 'types/comicsTypes';
+import { ComicAdapter } from 'types/comicsTypes';
 import MarvelService from '../../services/MarvelService';
 import Comic from '../comic/Comic';
-
 import Spinner from '../spinner/Spinner';
 
 import './comicsList.scss';
 
-interface IProps {}
-
 interface IState {
-  comicsList: IComic.ComicAdapter[];
+  comicsList: ComicAdapter[];
   loading: boolean;
 }
 
-export default class ComicsList extends Component<IProps, IState> {
-  constructor(props: IProps) {
+export default class ComicsList extends Component<object, IState> {
+  constructor(props: object) {
     super(props);
     this.state = {
       comicsList: [],
@@ -27,12 +24,11 @@ export default class ComicsList extends Component<IProps, IState> {
     MarvelService.getAllComics().then(this.onComicsLoaded);
   }
 
-
-  onComicsLoaded = (data: IComic.ComicAdapter[]) => {
+  onComicsLoaded = (data: ComicAdapter[]) => {
     this.setState({ comicsList: data, loading: false });
   };
 
-  renderItems = (arr: IComic.ComicAdapter[]): JSX.Element => {
+  renderItems = (arr: ComicAdapter[]): JSX.Element => {
     const items = arr.map((item) => {
       return <Comic comic={item} key={item.id} />;
     });

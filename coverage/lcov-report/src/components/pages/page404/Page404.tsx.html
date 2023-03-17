@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/components/comic/Comic.tsx</title>
+    <title>Code coverage report for src/components/pages/page404/Page404.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../../../prettify.css" />
-    <link rel="stylesheet" href="../../../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../../../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../../../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/comic</a> Comic.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/components/pages/page404</a> Page404.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -94,26 +94,15 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,39 +118,44 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react';
-import { ComicAdapter } from 'types/comicsTypes';
-import './comic.scss';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { lazy } from 'react';
+import { Link } from 'react-router-dom';
 &nbsp;
-interface IProps {
-  comic: ComicAdapter;
-}
+// import ErrorMessage from 'components/errorMessage/ErrorMessage';
 &nbsp;
-export default class Comic extends Component&lt;IProps&gt; {
-  constructor(props: IProps) {
-    super(props);
-  }
+const ErrorMessage = lazy(() =&gt; import('../../errorMessage/ErrorMessage'));
 &nbsp;
-  render() {
-    const { thumbnail, title, description, issueNumber, pageCount, price } = this.props.comic;
-    const descr = description.length &lt; 640 ? description : <span class="branch-1 cbranch-no" title="branch not covered" >description.slice(0, 637) + '...';</span>
+const Page404 = () =&gt; {
+  return (
+    &lt;div&gt;
+      &lt;ErrorMessage /&gt;
+      &lt;p style={{ textAlign: 'center', fontWeight: 'bold', fontSize: '24px' }}&gt;
+        Page doesn&amp;apos;t exist
+      &lt;/p&gt;
+      &lt;Link
+        style={{
+          display: 'block',
+          textAlign: 'center',
+          fontWeight: 'bold',
+          fontSize: '24px',
+          marginTop: '30px',
+        }}
+        to="/"
+      &gt;
+        Back to main page
+      &lt;/Link&gt;
+    &lt;/div&gt;
+  );
+};
 &nbsp;
-    return (
-      &lt;li className="comics__item"&gt;
-        &lt;img src={thumbnail} className="comics__item-img" alt="comic image"&gt;&lt;/img&gt;
-        &lt;div className="comics__item-info"&gt;
-          &lt;p className="comics__item-title"&gt;{title}&lt;/p&gt;
-          &lt;p className="comics__item-price"&gt;{price}$&lt;/p&gt;
-          &lt;div style={{ display: 'flex', justifyContent: 'space-between' }}&gt;
-            &lt;p&gt;Issue: {issueNumber}&lt;/p&gt;
-            &lt;p&gt;Pages: {pageCount}&lt;/p&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;p className="comics__item-description"&gt;{descr}&lt;/p&gt;
-      &lt;/li&gt;
-    );
-  }
-}
+export default Page404;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -171,14 +165,14 @@ export default class Comic extends Component&lt;IProps&gt; {
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2023-03-17T16:08:04.420Z
             </div>
-        <script src="../../../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../../../sorter.js"></script>
-        <script src="../../../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     

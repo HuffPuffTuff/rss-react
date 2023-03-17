@@ -4,8 +4,9 @@ import AppHeader from '../appHeader/AppHeader';
 import Spinner from '../spinner/Spinner';
 import './app.scss';
 
-const Page404 = lazy(() => import('../pages/Page404'));
-const MainPage = lazy(() => import('../pages/MainPage'));
+const Page404 = lazy(() => import('../pages/page404/Page404'));
+const MainPage = lazy(() => import('../pages/mainPage/MainPage'));
+const AboutUs = lazy(() => import('../pages/aboutUs/AboutUs'));
 
 const App = () => {
   return (
@@ -16,7 +17,7 @@ const App = () => {
           <Suspense fallback={<Spinner />}>
             <Routes>
               <Route path="/" element={<MainPage />} />
-              <Route path="/about-us" element={<h2>About Us!</h2>} />
+              <Route path="/about-us" element={<AboutUs />} />
               <Route path="*" element={<Page404 />} />
             </Routes>
           </Suspense>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679064084392" clover="3.2.0">
-  <project timestamp="1679064084392" name="All files">
-    <metrics statements="45" coveredstatements="44" conditionals="10" coveredconditionals="7" methods="23" coveredmethods="21" elements="78" coveredelements="72" complexity="0" loc="45" ncloc="45" packages="9" files="10" classes="10"/>
+<coverage generated="1679069284451" clover="3.2.0">
+  <project timestamp="1679069284451" name="All files">
+    <metrics statements="48" coveredstatements="47" conditionals="10" coveredconditionals="7" methods="25" coveredmethods="22" elements="83" coveredelements="76" complexity="0" loc="48" ncloc="48" packages="11" files="11" classes="11"/>
     <package name="src">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="main.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\main.tsx">
@@ -10,13 +10,14 @@
       </file>
     </package>
     <package name="src.components.app">
-      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
       <file name="App.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\app\App.tsx">
-        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.components.appHeader">
@@ -32,30 +33,30 @@
       <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
       <file name="Comic.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\comic\Comic.tsx">
         <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
-        <line num="11" count="3" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="16" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="18" count="3" type="stmt"/>
+        <line num="11" count="7" type="stmt"/>
+        <line num="15" count="7" type="stmt"/>
+        <line num="16" count="7" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="7" type="stmt"/>
       </file>
     </package>
     <package name="src.components.comicsList">
       <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
       <file name="ComicsList.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\comicsList\ComicsList.tsx">
         <metrics statements="14" coveredstatements="14" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="6"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="37" count="2" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="44" count="2" type="stmt"/>
-        <line num="46" count="2" type="stmt"/>
-        <line num="48" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="49" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="51" count="2" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="27" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="31" count="3" type="stmt"/>
+        <line num="32" count="6" type="stmt"/>
+        <line num="33" count="6" type="stmt"/>
+        <line num="36" count="6" type="stmt"/>
+        <line num="40" count="6" type="stmt"/>
+        <line num="42" count="6" type="stmt"/>
+        <line num="44" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="6" type="stmt"/>
       </file>
     </package>
     <package name="src.components.errorMessage">
@@ -66,14 +67,26 @@
         <line num="5" count="2" type="stmt"/>
       </file>
     </package>
-    <package name="src.components.pages">
-      <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
-      <file name="MainPage.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\pages\MainPage.tsx">
-        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="5" count="1" type="stmt"/>
+    <package name="src.components.pages.aboutUs">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="AboutUs.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\pages\aboutUs\AboutUs.tsx">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
       </file>
-      <file name="Page404.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\pages\Page404.tsx">
+    </package>
+    <package name="src.components.pages.mainPage">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="MainPage.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\pages\mainPage\MainPage.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.pages.page404">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <file name="Page404.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\pages\page404\Page404.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
@@ -81,27 +94,26 @@
       </file>
     </package>
     <package name="src.components.searchPanel">
-      <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+      <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
       <file name="SearchPanel.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\searchPanel\SearchPanel.tsx">
-        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
-        <line num="5" count="2" type="stmt"/>
-        <line num="9" count="2" type="stmt"/>
+        <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="5" coveredmethods="5"/>
+        <line num="5" count="4" type="stmt"/>
+        <line num="9" count="4" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="14" count="2" type="stmt"/>
-        <line num="16" count="2" type="stmt"/>
-        <line num="20" count="3" type="stmt"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="46" count="3" type="stmt"/>
+        <line num="14" count="4" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="5" type="stmt"/>
       </file>
     </package>
     <package name="src.components.spinner">
       <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="Spinner.tsx" path="C:\Users\huffpuff\Desktop\Projects\rss-react\src\components\spinner\Spinner.tsx">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="3" count="3" type="stmt"/>
-        <line num="4" count="3" type="stmt"/>
+        <line num="3" count="4" type="stmt"/>
+        <line num="4" count="5" type="stmt"/>
       </file>
     </package>
   </project>

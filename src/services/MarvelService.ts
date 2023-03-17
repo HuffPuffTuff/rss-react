@@ -1,4 +1,4 @@
-import IComic from 'types/comicsTypes';
+import { ComicAdapter, RootObject, Result } from 'types/comicsTypes';
 
 import { _baseLink, _apiKey, _baseOffset } from '../components/constants';
 
@@ -20,13 +20,13 @@ export default class MarvelService {
     }
   };
 
-  public static getAllComics = async (): Promise<IComic.ComicAdapter[]> => {
-    const url = `${this._baseLink}comics?limit=2&offset=${this._baseOffset}&${this._apiKey}`;
-    const res = await this.getResponseData<IComic.RootObject>(url);
+  public static getAllComics = async (): Promise<ComicAdapter[]> => {
+    const url = `${this._baseLink}comics?limit=9&offset=${this._baseOffset}&${this._apiKey}`;
+    const res = await this.getResponseData<RootObject>(url);
     return res.data.results.map(this._comicAdapter);
   };
 
-  private static _comicAdapter = (comic: IComic.Result): IComic.ComicAdapter => {
+  private static _comicAdapter = (comic: Result): ComicAdapter => {
     const {
       id,
       title,

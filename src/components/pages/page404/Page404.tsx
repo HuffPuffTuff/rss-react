@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 // import ErrorMessage from 'components/errorMessage/ErrorMessage';
 
-const ErrorMessage = lazy(() => import('../errorMessage/ErrorMessage'));
+const ErrorMessage = lazy(() => import('../../errorMessage/ErrorMessage'));
 
 const Page404 = () => {
   return (

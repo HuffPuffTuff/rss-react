@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import IComic from 'types/comicsTypes';
+import { ComicAdapter } from 'types/comicsTypes';
 import './comic.scss';
 
 interface IProps {
-  comic: IComic.ComicAdapter;
+  comic: ComicAdapter;
 }
 
 export default class Comic extends Component<IProps> {
