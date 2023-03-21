@@ -18,6 +18,11 @@ const AppHeader = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink end style={linkStyle} to="/forms">
+              Forms
+            </NavLink>
+          </li>
+          <li>
             <NavLink end style={linkStyle} to="/about-us">
               About us
             </NavLink>

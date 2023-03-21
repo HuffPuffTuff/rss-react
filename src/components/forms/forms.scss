@@ -1,0 +1,107 @@
+.form {
+  width: 50%;
+  background: linear-gradient(-67deg, rgba(200, 216, 231, 0.7), rgba(255, 255, 255, 0.8));
+  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
+  padding: 25px;
+  font-size: 1.5em;
+  border-radius: 15px;
+
+  h2 {
+    margin-bottom: 0.5em;
+  }
+
+  label {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+    margin-bottom: 3px;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  button {
+    display: block;
+    margin-top: 20px;
+    width: 140px;
+    padding: 10px;
+    background-color: white;
+    color: black;
+    border: 2px solid #008cba;
+    border-radius: 10px;
+    cursor: pointer;
+
+    transition: all .4s linear;
+
+    &:hover {
+      background-color: #008CBA;
+      color: white;
+    }
+  }
+
+  input[type='checkbox'] {
+    display: inline;
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+  }
+
+  input[type='radio'] {
+    display: inline;
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    margin-top: 0;
+    margin-right: 15px;
+  }
+
+  &__error {
+    font-size: 12px;
+    color: red;
+  }
+
+  .upload-file__input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    width: 0.4px;
+    height: 0.4px;
+  }
+
+  .upload-file__label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 240px;
+    border: 2px dashed #150b22;
+    padding: 9px 9px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+
+  .upload-file__icon {
+    width: 20px;
+    height: auto;
+    margin-right: 11px;
+  }
+
+  .upload-file__label .upload-file__text,
+  .upload-file__label .upload-file__icon path {
+    transition: 0.25s ease;
+  }
+
+  .upload-file__label:hover .upload-file__text {
+    color: #58862d;
+  }
+
+  .upload-file__label:hover .upload-file__icon path {
+    fill: #58862d;
+  }
+
+  .upload-file__label:hover {
+    border: 2px dashed #58862d;
+  }
+}
