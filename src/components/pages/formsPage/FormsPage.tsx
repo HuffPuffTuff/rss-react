@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Forms from '../../forms/Forms';
+import CardList from '../../cardList/CardList';
+
 import { IErrors, IFormData } from 'types/formTypes';
 
 import './formsPage.scss';
@@ -23,6 +25,7 @@ export default class FormsPage extends Component<object, IState> {
     if (errors.nameErr || errors.dateErr || errors.currencyErr || errors.imageErr) {
       this.setState({ errors });
     } else {
+      console.log(card.image);
       this.setState(({ formCards }) => {
         return { formCards: [...formCards, card], errors: null };
       });
@@ -33,6 +36,7 @@ export default class FormsPage extends Component<object, IState> {
     return (
       <div className="forms-page">
         <Forms updateCards={this.updateCards} errors={this.state.errors} />
+        <CardList items={this.state.formCards} />
       </div>
     );
   }
@@ -44,6 +48,7 @@ const validate = (values: IFormData) => {
     dateErr: null,
     currencyErr: null,
     imageErr: null,
+    priceErr: null,
   };
 
   if (!values.name) {
@@ -55,11 +60,15 @@ const validate = (values: IFormData) => {
   if (!values.date) {
     errors.dateErr = 'Required field';
   } else if (new Date(values.date) < new Date()) {
-    errors.dateErr = 'Invalid date!';
+    errors.dateErr = 'Invalid date, minimum tomorrow!';
   }
 
   if (!values.currency) {
     errors.currencyErr = 'Required field';
+  }
+
+  if (!values.price) {
+    errors.priceErr = 'Required field';
   }
 
   if (!values.image) {

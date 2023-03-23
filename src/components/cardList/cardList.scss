@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.card-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 10px;
+
+  .list__item {
+    background: $blue-gradient;
+    box-shadow: $box-shadow;
+    border-radius: 15px;
+    display: block;
+
+    &-inner {
+      padding: 12px 15px;
+      background-color: $bg-inner;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+
+      img {
+        width: 130px;
+        border-radius: 15px;
+      }
+    }
+  }
+}

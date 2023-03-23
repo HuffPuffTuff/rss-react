@@ -1,11 +1,9 @@
-.comics__item {
-  position: relative;
-  display: flex;
-  background: linear-gradient(-67deg, rgba(200, 216, 231, 0.7), rgba(255, 255, 255, 0.8));
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
+@import '../../styles/variables.scss';
 
+.comics__item {
+  background: $blue-gradient;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
   transition: all 0.35s linear;
 
   &-img {
@@ -52,21 +50,29 @@
     color: aliceblue;
   }
 
-  &:hover {
-    background: linear-gradient(-67deg, rgba(9, 10, 10, 0.7), rgba(17, 15, 15, 0.8));
+  &-inner {
+    border-radius: 10px;
+    position: relative;
+    border: 1px solid black;
+    background-color: $bg-inner;
+    display: flex;
 
-    .comics__item-img {
-      opacity: 0;
-    }
+    &:hover {
+      background: linear-gradient(-67deg, rgba(9, 10, 10, 0.7), rgba(17, 15, 15, 0.8));
 
-    .comics__item-info {
-      opacity: 0;
-    }
+      .comics__item-img {
+        opacity: 0;
+      }
 
-    .comics__item-description {
-      color: aliceblue;
-      z-index: 2;
-      opacity: 1;
+      .comics__item-info {
+        opacity: 0;
+      }
+
+      .comics__item-description {
+        color: aliceblue;
+        z-index: 2;
+        opacity: 1;
+      }
     }
   }
 }
