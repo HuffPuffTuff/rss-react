@@ -3,7 +3,7 @@ import { IRefs, IFormData, IErrors } from 'types/formTypes';
 import './forms.scss';
 
 interface IProps {
-  updateCards: (card: IFormData) => void;
+  updateCards: (card: IFormData, clearForm: () => void) => void;
   errors: IErrors | null;
 }
 
@@ -24,6 +24,16 @@ export default class Forms extends Component<IProps> {
     };
   }
 
+  handleClear = () => {
+    this.formRefs.textRef.current!.value = '';
+    this.formRefs.dateRef.current!.value = '';
+    this.formRefs.currencyRef.current!.value = '';
+    this.formRefs.priceRef.current!.value = '';
+    this.formRefs.visibleRef.current!.checked = false;
+    this.formRefs.fastDeliveryRef.current!.checked = true;
+    this.formRefs.imageRef.current!.value = '';
+  };
+
   render() {
     const {
       textRef,
@@ -38,82 +48,96 @@ export default class Forms extends Component<IProps> {
 
     const { errors, updateCards } = this.props;
 
-    console.log('form render');
     return (
       <form
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
-          updateCards({
-            name: textRef.current?.value || '',
-            date: dateRef.current?.value || '',
-            currency: currencyRef.current?.value || '',
-            price: priceRef.current?.value || '',
-            visible: !!visibleRef.current?.checked,
-            fee: standartDeliveryRef.current?.checked
-              ? standartDeliveryRef.current.value
-              : fastDeliveryRef.current?.checked
-              ? fastDeliveryRef.current.value
-              : '',
-
-            image:
-              imageRef.current?.files && imageRef.current?.files?.length > 0
-                ? URL.createObjectURL(imageRef.current.files[0])
+          updateCards(
+            {
+              name: textRef.current?.value || '',
+              date: dateRef.current?.value || '',
+              currency: currencyRef.current?.value || '',
+              price: priceRef.current?.value || '',
+              visible: !!visibleRef.current?.checked,
+              fee: standartDeliveryRef.current?.checked
+                ? standartDeliveryRef.current.value
+                : fastDeliveryRef.current?.checked
+                ? fastDeliveryRef.current.value
                 : '',
-          });
+
+              image:
+                imageRef.current?.files && imageRef.current?.files?.length > 0
+                  ? URL.createObjectURL(imageRef.current.files[0])
+                  : '',
+            },
+            this.handleClear
+          );
         }}
       >
-        <div className="form-inner">
-          <h2>Sell NFT form!</h2>
-          <label>
-            <input type="text" ref={textRef} maxLength={15} />
-            NFT name
-          </label>
-          {errors?.nameErr ? <div className="form__error">{errors?.nameErr}</div> : null}
-          <label>
-            <input type="date" ref={dateRef} />
-            End date of sale
-          </label>
-          {errors?.dateErr ? <div className="form__error">{errors?.dateErr}</div> : null}
-          <label htmlFor="currency">
-            <select id="currency" ref={currencyRef}>
-              <option value="">Choose currency</option>
-              <option value="USDT">USDT</option>
-              <option value="BTC">BTC</option>
-              <option value="ETH">ETH</option>
-            </select>
-            Currency
-          </label>
-          {errors?.currencyErr ? <div className="form__error">{errors?.currencyErr}</div> : null}
-
-          <label>
-            <input type="number" ref={priceRef} />
-            Price
-          </label>
-
-          {errors?.priceErr ? <div className="form__error">{errors?.priceErr}</div> : null}
-
-          <label>
-            <input type="checkbox" ref={visibleRef} />
-            NFT visivle?
-          </label>
-          <div>
-            <p>Creator fee:</p>
+        <h2 className="form__title">Sell NFT form!</h2>
+        <div className="form__inner">
+          <div className="form__item">
             <label>
-              <input ref={standartDeliveryRef} type="radio" name="radio" value="standart" />
-              Standart (5%)
+              <input type="text" ref={textRef} maxLength={15} />
+              NFT name
             </label>
-            <label>
-              <input
-                ref={fastDeliveryRef}
-                type="radio"
-                name="radio"
-                value="premium"
-                defaultChecked
-              />
-              Premium (10%)
-            </label>
+            {errors?.nameErr ? <div className="form__error">{errors?.nameErr}</div> : null}
           </div>
+
+          <div className="form__item">
+            <label>
+              <input type="date" ref={dateRef} />
+              End date of sale
+            </label>
+            {errors?.dateErr ? <div className="form__error">{errors?.dateErr}</div> : null}
+          </div>
+
+          <div className="form__item">
+            <label htmlFor="currency">
+              <select id="currency" ref={currencyRef}>
+                <option value="">Choose currency</option>
+                <option value="USDT">USDT</option>
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+              </select>
+              Currency
+            </label>
+            {errors?.currencyErr ? <div className="form__error">{errors?.currencyErr}</div> : null}
+          </div>
+
+          <div className="form__item">
+            <label>
+              <input type="number" ref={priceRef} />
+              Price
+            </label>
+            {errors?.priceErr ? <div className="form__error">{errors?.priceErr}</div> : null}
+          </div>
+
+          <div className="form__item">
+            <label>
+              <input type="checkbox" ref={visibleRef} />
+              NFT visible?
+            </label>
+            <div className="creator-fee">
+              <p>Creator fee:</p>
+              <label>
+                <input ref={standartDeliveryRef} type="radio" name="radio" value="standart" />
+                Standart (5%)
+              </label>
+              <label>
+                <input
+                  ref={fastDeliveryRef}
+                  type="radio"
+                  name="radio"
+                  value="premium"
+                  defaultChecked
+                />
+                Premium (10%)
+              </label>
+            </div>
+          </div>
+
           <div className="upload-file__wrapper">
             <input
               name="files[]"
@@ -135,8 +159,8 @@ export default class Forms extends Component<IProps> {
             </label>
           </div>
           {errors?.imageErr ? <div className="form__error">{errors?.imageErr}</div> : null}
-          <button type="submit">Sumbit</button>
         </div>
+        <button type="submit">Sumbit</button>
       </form>
     );
   }

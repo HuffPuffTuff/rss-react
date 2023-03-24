@@ -1,8 +1,13 @@
-
-
-.forms-page {
+.forms__page {
   margin-top: 30px;
   display: grid;
   grid-template-columns: 40% 1fr;
+  grid-template-rows: minmax(550px, 650px) 1fr;
   gap: 2em;
+  box-sizing: border-box;
+
+  &-message {
+    font-size: 2.5em;
+    color: aliceblue;
+  }
 }
