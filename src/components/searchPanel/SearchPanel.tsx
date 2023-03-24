@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import './searchPanel.scss';
 
-class SearchPanel extends Component {
+interface IPops {
+  onSearch: (text: string) => void;
+}
+
+class SearchPanel extends Component<IPops> {
   state = {
     searchValue: localStorage.getItem('searchValue') || '',
   };
 
-  private onUpdateSearch = (searchValue: string): void => {
+  constructor(props: IPops) {
+    super(props);
+  }
+
+  private handleSearchChange = (searchValue: string): void => {
     this.setState({ searchValue });
+    this.props.onSearch(searchValue);
   };
 
   componentWillUnmount(): void {
@@ -29,7 +38,7 @@ class SearchPanel extends Component {
                 id="input-search"
                 aria-label="search-input"
                 defaultValue={this.state.searchValue}
-                onChange={({ target }) => this.onUpdateSearch(target.value)}
+                onChange={({ target }) => this.handleSearchChange(target.value)}
               />
             </div>
           </div>

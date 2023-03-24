@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import MainPage from './MainPage';
-import { comicsResponse } from '../../../mocks/mockData';
+import { comicsResponse } from '../../mocks/mockData';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponse) })

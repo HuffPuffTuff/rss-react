@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Forms from '../../forms/Forms';
-import CardList from '../../cardList/CardList';
-import Modal from '../../modal/Modal';
+import Forms from '../../components/forms/Forms';
+import CardList from '../../components/cardList/CardList';
+import Modal from '../../components/modal/Modal';
 import { IErrors, IFormData } from 'types/formTypes';
 
 import './formsPage.scss';

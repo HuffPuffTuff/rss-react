@@ -11,8 +11,12 @@ interface IState {
   loading: boolean;
 }
 
-export default class ComicsList extends Component<object, IState> {
-  constructor(props: object) {
+interface IProps {
+  searchValue: string | null;
+}
+
+export default class ComicsList extends Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       comicsList: [],
@@ -24,11 +28,23 @@ export default class ComicsList extends Component<object, IState> {
     MarvelService.getAllComics().then(this.onComicsLoaded);
   }
 
-  onComicsLoaded = (data: ComicAdapter[]) => {
+  private filterArr = (arr: ComicAdapter[], filterType: 'props' | 'LS') => {
+    if (arr.length === 0) return [];
+
+    const searchKey =
+      filterType === 'props'
+        ? this.props.searchValue?.toLowerCase() || ''
+        : localStorage.getItem('searchValue') || '';
+
+    const filteredData = arr.filter((product) => product.title.toLowerCase().includes(searchKey));
+    return filteredData;
+  };
+
+  private onComicsLoaded = (data: ComicAdapter[]) => {
     this.setState({ comicsList: data, loading: false });
   };
 
-  renderItems = (arr: ComicAdapter[]): JSX.Element => {
+  private renderItems = (arr: ComicAdapter[]): JSX.Element => {
     const items = arr.map((item) => {
       return <Comic comic={item} key={item.id} />;
     });
@@ -39,7 +55,12 @@ export default class ComicsList extends Component<object, IState> {
   render(): React.ReactNode {
     const { comicsList, loading } = this.state;
 
-    const elements = this.renderItems(comicsList);
+    const filteredData =
+      this.props.searchValue === null
+        ? this.filterArr(comicsList, 'LS')
+        : this.filterArr(comicsList, 'props');
+
+    const elements = this.renderItems(filteredData);
 
     const spinner = loading ? <Spinner /> : null;
     const content = !loading ? elements : null;

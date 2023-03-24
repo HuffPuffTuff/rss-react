@@ -4,10 +4,10 @@ import AppHeader from '../appHeader/AppHeader';
 import Spinner from '../spinner/Spinner';
 import './app.scss';
 
-const Page404 = lazy(() => import('../pages/page404/Page404'));
-const MainPage = lazy(() => import('../pages/mainPage/MainPage'));
-const AboutUs = lazy(() => import('../pages/aboutUs/AboutUs'));
-const FormsPage = lazy(() => import('../pages/formsPage/FormsPage'));
+const Page404 = lazy(() => import('../../pages/page404/Page404'));
+const MainPage = lazy(() => import('../../pages/mainPage/MainPage'));
+const AboutUs = lazy(() => import('../../pages/aboutUs/AboutUs'));
+const FormsPage = lazy(() => import('../../pages/formsPage/FormsPage'));
 
 const App = () => {
   return (
