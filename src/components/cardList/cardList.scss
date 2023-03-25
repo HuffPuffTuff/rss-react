@@ -3,11 +3,12 @@
 .card-list {
   display: flex;
   align-items: flex-start;
-  justify-content: space-around;
   flex-wrap: wrap;
+  gap: 10px;
   row-gap: 10px;
 
   .list__item {
+    width: 32%;
     background: $white;
     box-shadow: $small-shadow;
     border-radius: 15px;
@@ -18,8 +19,8 @@
     gap: 0.5em;
 
     img {
-      width: 140px;
-      height: 140px;
+      width: 100%;
+      height: 193px;
       border-radius: 15px;
     }
   }
