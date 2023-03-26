@@ -1,0 +1,70 @@
+import React, { Component } from 'react';
+import './searchPanel.scss';
+
+interface IPops {
+  onSearch: (text: string) => void;
+}
+
+class SearchPanel extends Component<IPops> {
+  state = {
+    searchValue: localStorage.getItem('searchValue') || '',
+  };
+
+  constructor(props: IPops) {
+    super(props);
+  }
+
+  private handleSearchChange = (searchValue: string): void => {
+    this.setState({ searchValue });
+    this.props.onSearch(searchValue);
+  };
+
+  componentWillUnmount(): void {
+    const value = this.state.searchValue;
+    localStorage.setItem('searchValue', value);
+  }
+
+  render(): JSX.Element {
+    return (
+      <div className="search-panel">
+        <div className="search-panel__inner">
+          <label htmlFor="input-search">Search for everything you want</label>
+          <div className="search-panel__container">
+            <div className="search-panel__icon">
+              <Icon />
+            </div>
+            <div className="input-container">
+              <input
+                id="input-search"
+                aria-label="search-input"
+                defaultValue={this.state.searchValue}
+                onChange={({ target }) => this.handleSearchChange(target.value)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+const Icon = (): JSX.Element => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="36"
+      height="36"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#657789"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
+};
+
+export default SearchPanel;
