@@ -144,3 +144,24 @@ export const comicsResponse = {
   },
   etag: 'e0c8bcf518fba433f1e6405390c2a915250c136e',
 };
+
+export const formDataMock = [
+  {
+    currency: 'USDT',
+    date: '2222-02-22',
+    fee: 'standart',
+    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    name: 'First',
+    price: '0.86',
+    visible: true,
+  },
+  {
+    currency: 'ETH',
+    date: '2222-02-22',
+    fee: 'premium',
+    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    name: 'Second',
+    price: '0.86',
+    visible: false,
+  },
+];

@@ -3,9 +3,12 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import SearchPanel from './SearchPanel';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const mockSearch = jest.fn((_text: string) => {});
+
 describe('SearchPanel tests', () => {
   test('checking for changes in rendering input data', async () => {
-    const { unmount } = render(<SearchPanel />);
+    const { unmount } = render(<SearchPanel onSearch={mockSearch} />);
 
     act(() => {
       const input = screen.getByLabelText('search-input') as HTMLInputElement;
@@ -19,7 +22,7 @@ describe('SearchPanel tests', () => {
       expect(storage).toBe('Gamardjoba');
     });
 
-    render(<SearchPanel />);
+    render(<SearchPanel onSearch={mockSearch} />);
 
     const input = screen.getByLabelText('search-input') as HTMLInputElement;
     expect(input.value).toBe('Gamardjoba');

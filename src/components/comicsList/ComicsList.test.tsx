@@ -8,11 +8,13 @@ global.fetch = jest.fn(() =>
   Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponse) })
 ) as jest.Mock;
 
-test('Comics list render', async () => {
-  await act(async () => {
-    render(<ComicsList />);
-  });
+describe('ComiccList tests', () => {
+  test('Comics list render without searchValue', async () => {
+    await act(async () => {
+      render(<ComicsList searchValue={null} />);
+    });
 
-  expect(screen.getByText(/hellcat/i)).toBe;
-  expect(screen.getByText(/IN DIAMOND AGE/i)).toBe;
+    expect(screen.getByText(/hellcat/i)).toBe;
+    expect(screen.getByText(/IN DIAMOND AGE/i)).toBe;
+  });
 });

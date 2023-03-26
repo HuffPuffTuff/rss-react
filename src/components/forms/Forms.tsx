@@ -3,7 +3,7 @@ import { IRefs, IFormData, IErrors } from 'types/formTypes';
 import './forms.scss';
 
 interface IProps {
-  updateCards: (card: IFormData, clearForm: () => void) => void;
+  updateCards: (card: IFormData) => void;
   errors: IErrors | null;
 }
 
@@ -53,33 +53,31 @@ export default class Forms extends Component<IProps> {
         className="form"
         onSubmit={(e) => {
           e.preventDefault();
-          updateCards(
-            {
-              name: textRef.current?.value || '',
-              date: dateRef.current?.value || '',
-              currency: currencyRef.current?.value || '',
-              price: priceRef.current?.value || '',
-              visible: !!visibleRef.current?.checked,
-              fee: standartDeliveryRef.current?.checked
-                ? standartDeliveryRef.current.value
-                : fastDeliveryRef.current?.checked
-                ? fastDeliveryRef.current.value
-                : '',
+          updateCards({
+            name: textRef.current?.value || '',
+            date: dateRef.current?.value || '',
+            currency: currencyRef.current?.value || '',
+            price: priceRef.current?.value || '',
+            visible: !!visibleRef.current?.checked,
+            fee: standartDeliveryRef.current?.checked
+              ? standartDeliveryRef.current.value
+              : fastDeliveryRef.current?.checked
+              ? fastDeliveryRef.current.value
+              : '',
 
-              image:
-                imageRef.current?.files && imageRef.current?.files?.length > 0
-                  ? URL.createObjectURL(imageRef.current.files[0])
-                  : '',
-            },
-            this.handleClear
-          );
+            image:
+              imageRef.current?.files && imageRef.current?.files?.length > 0
+                ? URL.createObjectURL(imageRef.current.files[0])
+                : '',
+          });
+          this.handleClear();
         }}
       >
         <h2 className="form__title">Sell NFT form!</h2>
         <div className="form__inner">
           <div className="form__item">
             <label>
-              <input type="text" ref={textRef} maxLength={15} />
+              <input type="text" ref={textRef} maxLength={15} aria-label="name-input" />
               NFT name
             </label>
             {errors?.nameErr ? <div className="form__error">{errors?.nameErr}</div> : null}
@@ -87,7 +85,7 @@ export default class Forms extends Component<IProps> {
 
           <div className="form__item">
             <label>
-              <input type="date" ref={dateRef} />
+              <input type="date" ref={dateRef} aria-label="date-input" />
               End date of sale
             </label>
             {errors?.dateErr ? <div className="form__error">{errors?.dateErr}</div> : null}
@@ -95,7 +93,7 @@ export default class Forms extends Component<IProps> {
 
           <div className="form__item">
             <label htmlFor="currency">
-              <select id="currency" ref={currencyRef}>
+              <select id="currency" ref={currencyRef} aria-label="currency-input">
                 <option value="">Choose currency</option>
                 <option value="USDT">USDT</option>
                 <option value="BTC">BTC</option>
@@ -108,7 +106,7 @@ export default class Forms extends Component<IProps> {
 
           <div className="form__item">
             <label>
-              <input type="number" ref={priceRef} />
+              <input type="number" ref={priceRef} aria-label="price-input" />
               Price
             </label>
             {errors?.priceErr ? <div className="form__error">{errors?.priceErr}</div> : null}
@@ -146,6 +144,7 @@ export default class Forms extends Component<IProps> {
               accept="image/*"
               type="file"
               ref={imageRef}
+              aria-label="image-input"
             />
             <label className="upload-file__label" htmlFor="upload-file__input_1">
               <svg

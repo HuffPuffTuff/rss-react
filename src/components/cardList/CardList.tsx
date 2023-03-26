@@ -7,7 +7,7 @@ interface IProps {
   items: IFormData[];
 }
 
-export default class FormsList extends Component<IProps> {
+export default class CardList extends Component<IProps> {
   constructor(props: IProps) {
     super(props);
   }
@@ -17,7 +17,7 @@ export default class FormsList extends Component<IProps> {
       const { image, name, date, visible, fee, currency, price } = card;
       return (
         <li className="list__item" key={i}>
-          {image ? <img src={image} alt="" /> : null}
+          <img src={image} alt="" />
           <p>{name}</p>
           <p>End date: {date}</p>
           <p>Visible: {visible ? 'Yes' : 'No'}</p>

@@ -5,6 +5,7 @@ import './modal.scss';
 interface IProps {
   children: JSX.Element;
   closeModal: () => void;
+  show: boolean;
 }
 
 export default class Modal extends Component<IProps> {
@@ -22,10 +23,10 @@ export default class Modal extends Component<IProps> {
   };
 
   render() {
-    return (
-      <div className="modal" onClick={this.handleCloseModal}>
+    return this.props.show ? (
+      <div className="modal" aria-label="modal" onClick={this.handleCloseModal}>
         {this.props.children}
       </div>
-    );
+    ) : null;
   }
 }
