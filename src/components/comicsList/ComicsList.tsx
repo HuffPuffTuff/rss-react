@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComicAdapter } from 'types/comicsTypes';
 import MarvelService from '../../services/MarvelService';
 import Comic from '../comic/Comic';
@@ -6,45 +6,41 @@ import Spinner from '../spinner/Spinner';
 
 import './comicsList.scss';
 
-interface IState {
-  comicsList: ComicAdapter[];
-  loading: boolean;
-}
-
 interface IProps {
   searchValue: string | null;
 }
 
-export default class ComicsList extends Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = {
-      comicsList: [],
-      loading: true,
+const ComicsList = ({ searchValue }: IProps) => {
+  const [comicsList, setComicsList] = useState<ComicAdapter[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadComics = async () => {
+      const comics = await MarvelService.getAllComics();
+      setLoading(false);
+      const filteredComics =
+        searchValue === null ? filterArr(comics, 'LS') : filterArr(comics, 'props');
+
+      setComicsList(filteredComics);
     };
-  }
 
-  componentDidMount(): void {
-    MarvelService.getAllComics().then(this.onComicsLoaded);
-  }
+    loadComics();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchValue]);
 
-  private filterArr = (arr: ComicAdapter[], filterType: 'props' | 'LS') => {
+  const filterArr = (arr: ComicAdapter[], filterType: 'props' | 'LS') => {
     if (arr.length === 0) return [];
 
     const searchKey =
       filterType === 'props'
-        ? this.props.searchValue?.toLowerCase() || ''
+        ? searchValue?.toLowerCase() || ''
         : localStorage.getItem('searchValue') || '';
 
     const filteredData = arr.filter((product) => product.title.toLowerCase().includes(searchKey));
     return filteredData;
   };
 
-  private onComicsLoaded = (data: ComicAdapter[]) => {
-    this.setState({ comicsList: data, loading: false });
-  };
-
-  private renderItems = (arr: ComicAdapter[]): JSX.Element => {
+  const renderItems = (arr: ComicAdapter[]): JSX.Element => {
     const items = arr.map((item) => {
       return <Comic comic={item} key={item.id} />;
     });
@@ -52,24 +48,17 @@ export default class ComicsList extends Component<IProps, IState> {
     return <ul className="comics__grid">{items}</ul>;
   };
 
-  render(): React.ReactNode {
-    const { comicsList, loading } = this.state;
+  const elements = renderItems(comicsList);
 
-    const filteredData =
-      this.props.searchValue === null
-        ? this.filterArr(comicsList, 'LS')
-        : this.filterArr(comicsList, 'props');
+  const spinner = loading ? <Spinner /> : null;
+  const content = !loading ? elements : null;
 
-    const elements = this.renderItems(filteredData);
+  return (
+    <div className="comics__list">
+      {content}
+      {spinner}
+    </div>
+  );
+};
 
-    const spinner = loading ? <Spinner /> : null;
-    const content = !loading ? elements : null;
-
-    return (
-      <div className="comics__list">
-        {content}
-        {spinner}
-      </div>
-    );
-  }
-}
+export default ComicsList;

@@ -1,31 +1,20 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SearchPanel from '../../components/searchPanel/SearchPanel';
 import ComicsList from '../../components/comicsList/ComicsList';
 
-interface IState {
-  searchValue: string | null;
-}
+const MainPage = () => {
+  const [searchValue, setSearchValue] = useState<string | null>(null);
 
-class MainPage extends Component<object, IState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      searchValue: null,
-    };
-  }
-
-  private handleSearch = (text: string) => {
-    this.setState({ searchValue: text });
+  const onSearch = (text: string) => {
+    setSearchValue(text);
   };
 
-  render() {
-    return (
-      <>
-        <SearchPanel onSearch={this.handleSearch} />
-        <ComicsList searchValue={this.state.searchValue} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <SearchPanel onSearch={onSearch} />
+      <ComicsList searchValue={searchValue} />
+    </>
+  );
+};
 
 export default MainPage;

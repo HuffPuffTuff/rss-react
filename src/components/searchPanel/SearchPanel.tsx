@@ -1,54 +1,47 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './searchPanel.scss';
 
 interface IPops {
   onSearch: (text: string) => void;
 }
 
-class SearchPanel extends Component<IPops> {
-  state = {
-    searchValue: localStorage.getItem('searchValue') || '',
+const SearchPanel = ({ onSearch }: IPops) => {
+  const searchRef = useRef<string>(localStorage.getItem('searchValue') || '');
+
+  const handleSearchChange = (value: string): void => {
+    searchRef.current = value;
+    onSearch(value);
   };
 
-  constructor(props: IPops) {
-    super(props);
-  }
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('searchValue', searchRef.current);
+    };
+  }, []);
 
-  private handleSearchChange = (searchValue: string): void => {
-    this.setState({ searchValue });
-    this.props.onSearch(searchValue);
-  };
-
-  componentWillUnmount(): void {
-    const value = this.state.searchValue;
-    localStorage.setItem('searchValue', value);
-  }
-
-  render(): JSX.Element {
-    return (
-      <div className="search-panel">
-        <div className="search-panel__inner">
-          <label htmlFor="input-search">Search for everything you want</label>
-          <div className="search-panel__container">
-            <div className="search-panel__icon">
-              <Icon />
-            </div>
-            <div className="input-container">
-              <input
-                id="input-search"
-                aria-label="search-input"
-                defaultValue={this.state.searchValue}
-                onChange={({ target }) => this.handleSearchChange(target.value)}
-              />
-            </div>
+  return (
+    <div className="search-panel">
+      <div className="search-panel__inner">
+        <label htmlFor="input-search">Search for everything you want</label>
+        <div className="search-panel__container">
+          <div className="search-panel__icon">
+            <SearchIcon />
+          </div>
+          <div className="input-container">
+            <input
+              id="input-search"
+              aria-label="search-input"
+              value={searchRef.current}
+              onChange={({ target }) => handleSearchChange(target.value)}
+            />
           </div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const Icon = (): JSX.Element => {
+const SearchIcon = (): JSX.Element => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
