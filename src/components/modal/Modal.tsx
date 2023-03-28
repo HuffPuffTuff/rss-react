@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './modal.scss';
 
@@ -8,25 +8,21 @@ interface IProps {
   show: boolean;
 }
 
-export default class Modal extends Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
-  handleCloseModal = (e: React.MouseEvent) => {
+const Modal = ({ children, closeModal, show }: IProps) => {
+  const handleCloseModal = (e: React.MouseEvent) => {
     const target = e.target;
     const currTarget = e.currentTarget;
 
     if (target === currTarget) {
-      this.props.closeModal();
+      closeModal();
     }
   };
 
-  render() {
-    return this.props.show ? (
-      <div className="modal" aria-label="modal" onClick={this.handleCloseModal}>
-        {this.props.children}
-      </div>
-    ) : null;
-  }
-}
+  return show ? (
+    <div className="modal" aria-label="modal" onClick={handleCloseModal}>
+      {children}
+    </div>
+  ) : null;
+};
+
+export default Modal;

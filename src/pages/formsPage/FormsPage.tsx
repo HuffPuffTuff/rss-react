@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Forms from '../../components/forms/Forms';
 import CardList from '../../components/cardList/CardList';
 import Modal from '../../components/modal/Modal';
@@ -6,95 +6,85 @@ import { IErrors, IFormData } from 'types/formTypes';
 
 import './formsPage.scss';
 
-interface IState {
-  formCards: IFormData[];
-  errors: IErrors | null;
-  showModal: boolean;
-}
+const FormsPage = () => {
+  const [formCards, setFormCards] = useState<IFormData[]>([
+    {
+      currency: 'USDT',
+      date: '2222-02-22',
+      fee: 'standart',
+      image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+      name: 'First',
+      price: '0.86',
+      visible: true,
+    },
+  ]);
+  const [errors, setErrors] = useState<null | IErrors>(null);
+  const [showModal, setShowModal] = useState(false);
 
-export default class FormsPage extends Component<object, IState> {
-  constructor(props: object) {
-    super(props);
-    this.state = {
-      formCards: [
-        {
-          currency: 'USDT',
-          date: '2222-02-22',
-          fee: 'premium',
-          image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
-          name: '12ad2',
-          price: '0.86',
-          visible: false,
-        },
-      ],
-      errors: null,
-      showModal: false,
-    };
-  }
-
-  updateCards = (card: IFormData) => {
-    const errors = this.validate(card);
+  const updateCards = (clearForm: () => void, card: IFormData) => {
+    const errors = validate(card);
     if (errors.nameErr || errors.dateErr || errors.currencyErr || errors.imageErr) {
-      this.setState({ errors });
+      setErrors(errors);
     } else {
-      this.setState(({ formCards }) => {
-        return { formCards: [card, ...formCards], errors: null, showModal: true };
-      });
+      setFormCards([card, ...formCards]);
+      clearForm();
+      setErrors(null);
+      setShowModal(true);
     }
   };
 
-  closeModal = () => {
-    this.setState({ showModal: false });
+  const closeModal = () => {
+    setShowModal(false);
   };
 
-  render() {
-    return (
-      <div className="forms__page">
-        <Forms updateCards={this.updateCards} errors={this.state.errors} />
-        <CardList items={this.state.formCards} />
+  return (
+    <div className="forms__page">
+      <Forms updateCards={updateCards} errors={errors} />
+      <CardList items={formCards} />
 
-        <Modal show={this.state.showModal} closeModal={this.closeModal}>
-          <p className="forms__page-message">Your data has been saved!</p>
-        </Modal>
-      </div>
-    );
+      <Modal show={showModal} closeModal={closeModal}>
+        <p className="forms__page-message">Your data has been saved!</p>
+      </Modal>
+    </div>
+  );
+};
+
+const validate = (values: IFormData) => {
+  const errors: IErrors = {
+    nameErr: null,
+    dateErr: null,
+    currencyErr: null,
+    imageErr: null,
+    priceErr: null,
+  };
+
+  if (!values.name) {
+    errors.nameErr = 'Required field!';
+  } else if (values.name.length < 5) {
+    errors.nameErr = 'Short name, min 5 words';
   }
 
-  validate = (values: IFormData) => {
-    const errors: IErrors = {
-      nameErr: null,
-      dateErr: null,
-      currencyErr: null,
-      imageErr: null,
-      priceErr: null,
-    };
+  if (!values.date) {
+    errors.dateErr = 'Required field!';
+  } else if (new Date(values.date) < new Date()) {
+    errors.dateErr = 'Invalid date, minimum tomorrow!';
+  }
 
-    if (!values.name) {
-      errors.nameErr = 'Required field!';
-    } else if (values.name.length < 5) {
-      errors.nameErr = 'Short name, min 5 words';
-    }
+  if (!values.currency) {
+    errors.currencyErr = 'Required field!';
+  }
 
-    if (!values.date) {
-      errors.dateErr = 'Required field!';
-    } else if (new Date(values.date) < new Date()) {
-      errors.dateErr = 'Invalid date, minimum tomorrow!';
-    }
+  if (!values.price) {
+    errors.priceErr = 'Required field!';
+  } else if (Number(values.price) <= 0) {
+    errors.priceErr = 'The price must be greater than 0!';
+  }
 
-    if (!values.currency) {
-      errors.currencyErr = 'Required field!';
-    }
+  if (!values.image) {
+    errors.imageErr = 'Required field!';
+  }
 
-    if (!values.price) {
-      errors.priceErr = 'Required field!';
-    } else if (Number(values.price) <= 0) {
-      errors.priceErr = 'The price must be greater than 0!';
-    }
+  return errors;
+};
 
-    if (!values.image) {
-      errors.imageErr = 'Required field!';
-    }
-
-    return errors;
-  };
-}
+export default FormsPage;
