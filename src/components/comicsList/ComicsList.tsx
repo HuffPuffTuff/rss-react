@@ -4,41 +4,30 @@ import MarvelService from '../../services/MarvelService';
 import Comic from '../comic/Comic';
 import Spinner from '../spinner/Spinner';
 
+import { filterComics } from '../../helpers/helpers';
+
 import './comicsList.scss';
 
 interface IProps {
-  searchValue: string | null;
+  searchValue: string;
 }
 
 const ComicsList = ({ searchValue }: IProps) => {
   const [comicsList, setComicsList] = useState<ComicAdapter[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
+
     const loadComics = async () => {
       const comics = await MarvelService.getAllComics();
+      const filteredComics = filterComics(comics, searchValue);
       setLoading(false);
-      const filteredComics =
-        searchValue === null ? filterArr(comics, 'LS') : filterArr(comics, 'props');
-
       setComicsList(filteredComics);
     };
 
     loadComics();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchValue]);
-
-  const filterArr = (arr: ComicAdapter[], filterType: 'props' | 'LS') => {
-    if (arr.length === 0) return [];
-
-    const searchKey =
-      filterType === 'props'
-        ? searchValue?.toLowerCase() || ''
-        : localStorage.getItem('searchValue') || '';
-
-    const filteredData = arr.filter((product) => product.title.toLowerCase().includes(searchKey));
-    return filteredData;
-  };
 
   const renderItems = (arr: ComicAdapter[]): JSX.Element => {
     const items = arr.map((item) => {

@@ -11,8 +11,8 @@ const SearchPanel = ({ onSearch }: IPops) => {
   const searchRef = useRef<string>(storageValue);
 
   const handleSearchChange = (value: string): void => {
-    searchRef.current = value;
-    onSearch(value);
+    searchRef.current = value.toLowerCase();
+    onSearch(value.toLowerCase());
   };
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import SearchPanel from '../../components/searchPanel/SearchPanel';
 import ComicsList from '../../components/comicsList/ComicsList';
 
 const MainPage = () => {
-  const [searchValue, setSearchValue] = useState<string | null>(null);
+  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
 
   const onSearch = (text: string) => {
     setSearchValue(text);

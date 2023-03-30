@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import Forms from '../../components/forms/Forms';
 import CardList from '../../components/cardList/CardList';
 import Modal from '../../components/modal/Modal';
 import { IErrors, IFormData } from 'types/formTypes';
 
 import './formsPage.scss';
+import { validate } from '../../helpers/helpers';
 
 const FormsPage = () => {
   const [formCards, setFormCards] = useState<IFormData[]>([
@@ -33,8 +34,13 @@ const FormsPage = () => {
     }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const closeModal = (e: MouseEvent) => {
+    const target = e.target as HTMLDivElement;
+    const currTarget = e.currentTarget as HTMLDivElement;
+
+    if (target === currTarget) {
+      setShowModal(false);
+    }
   };
 
   return (
@@ -47,44 +53,6 @@ const FormsPage = () => {
       </Modal>
     </div>
   );
-};
-
-const validate = (values: IFormData) => {
-  const errors: IErrors = {
-    nameErr: null,
-    dateErr: null,
-    currencyErr: null,
-    imageErr: null,
-    priceErr: null,
-  };
-
-  if (!values.name) {
-    errors.nameErr = 'Required field!';
-  } else if (values.name.length < 5) {
-    errors.nameErr = 'Short name, min 5 words';
-  }
-
-  if (!values.date) {
-    errors.dateErr = 'Required field!';
-  } else if (new Date(values.date) < new Date()) {
-    errors.dateErr = 'Invalid date, minimum tomorrow!';
-  }
-
-  if (!values.currency) {
-    errors.currencyErr = 'Required field!';
-  }
-
-  if (!values.price) {
-    errors.priceErr = 'Required field!';
-  } else if (Number(values.price) <= 0) {
-    errors.priceErr = 'The price must be greater than 0!';
-  }
-
-  if (!values.image) {
-    errors.imageErr = 'Required field!';
-  }
-
-  return errors;
 };
 
 export default FormsPage;

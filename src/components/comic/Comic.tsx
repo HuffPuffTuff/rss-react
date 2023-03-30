@@ -8,7 +8,8 @@ interface IProps {
 
 const Comic = ({ comic }: IProps) => {
   const { thumbnail, title, description, issueNumber, pageCount, price } = comic;
-  const descr = description.length < 640 ? description : description.slice(0, 637) + '...';
+  const descrLength = 640;
+  const descr = description.slice(0, descrLength).trim();
 
   return (
     <li className="comics__item">
