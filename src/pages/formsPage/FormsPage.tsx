@@ -23,7 +23,7 @@ const FormsPage = () => {
 
   const updateCards = (clearForm: () => void, card: IFormData) => {
     const errors = validate(card);
-    if (errors.nameErr || errors.dateErr || errors.currencyErr || errors.imageErr) {
+    if (Object.entries(errors).some(([, value]) => value)) {
       setErrors(errors);
     } else {
       setFormCards([card, ...formCards]);
@@ -38,7 +38,7 @@ const FormsPage = () => {
   };
 
   return (
-    <div className="forms__page">
+    <div className="forms__page" data-testid="forms-page-test">
       <Forms updateCards={updateCards} errors={errors} />
       <CardList items={formCards} />
 

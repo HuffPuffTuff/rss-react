@@ -28,11 +28,10 @@
     label {
       margin-bottom: 3px;
       display: flex;
-      align-items:stretch;
+      align-items: stretch;
       gap: 10px;
     }
   }
-
 
   input {
     width: 50%;
@@ -96,17 +95,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     max-width: 240px;
     border: 2px dashed #150b22;
     padding: 9px 9px;
     border-radius: 6px;
     cursor: pointer;
-  }
-
-  .upload-file__icon {
-    width: 20px;
-    height: auto;
-    margin-right: 11px;
   }
 
   .upload-file__label .upload-file__text,

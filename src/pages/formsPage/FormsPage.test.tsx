@@ -7,6 +7,6 @@ describe('FormsPage component tests', () => {
   test('Render component', () => {
     render(<FormsPage />);
 
-    expect(screen.getByText(/standart/i)).toBe;
+    expect(screen.getByTestId('forms-page-test')).toBe;
   });
 });

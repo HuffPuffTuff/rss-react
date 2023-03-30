@@ -1,3 +1,4 @@
+import SearchIcon from '../searchIcon/SearchIcon';
 import React, { useEffect, useRef } from 'react';
 import './searchPanel.scss';
 
@@ -6,7 +7,8 @@ interface IPops {
 }
 
 const SearchPanel = ({ onSearch }: IPops) => {
-  const searchRef = useRef<string>(localStorage.getItem('searchValue') || '');
+  const storageValue = localStorage.getItem('searchValue') || '';
+  const searchRef = useRef<string>(storageValue);
 
   const handleSearchChange = (value: string): void => {
     searchRef.current = value;
@@ -30,33 +32,14 @@ const SearchPanel = ({ onSearch }: IPops) => {
           <div className="input-container">
             <input
               id="input-search"
-              aria-label="search-input"
-              value={searchRef.current}
+              aria-label="input-search"
+              defaultValue={searchRef.current}
               onChange={({ target }) => handleSearchChange(target.value)}
             />
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-const SearchIcon = (): JSX.Element => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="36"
-      height="36"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#657789"
-      strokeWidth="3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="11" cy="11" r="8" />
-      <line x1="21" y1="21" x2="16.65" y2="16.65" />
-    </svg>
   );
 };
 

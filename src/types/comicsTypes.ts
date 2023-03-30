@@ -9,22 +9,7 @@ export interface Url {
   url: string;
 }
 
-export interface Series {
-  resourceURI: string;
-  name: string;
-}
-
-export interface Variant {
-  resourceURI: string;
-  name: string;
-}
-
-export interface Collection {
-  resourceURI: string;
-  name: string;
-}
-
-export interface CollectedIssue {
+export interface Resource {
   resourceURI: string;
   name: string;
 }
@@ -49,46 +34,28 @@ export interface Image {
   extension: string;
 }
 
-export interface Item {
+export interface PersonItem {
   resourceURI: string;
   name: string;
-  role: string;
+  type?: string;
+  role?: string;
 }
 
-export interface Creators {
+export interface Persons {
   available: string;
   returned: string;
   collectionURI: string;
-  items: Item[];
-}
-
-export interface Item2 {
-  resourceURI: string;
-  name: string;
-  role: string;
-}
-
-export interface Characters {
-  available: string;
-  returned: string;
-  collectionURI: string;
-  items: Item2[];
-}
-
-export interface Item3 {
-  resourceURI: string;
-  name: string;
-  type: string;
+  items: PersonItem[];
 }
 
 export interface Stories {
   available: string;
   returned: string;
   collectionURI: string;
-  items: Item3[];
+  items: EventsStoriesItem[];
 }
 
-export interface Item4 {
+export interface EventsStoriesItem {
   resourceURI: string;
   name: string;
 }
@@ -97,7 +64,7 @@ export interface Events {
   available: string;
   returned: string;
   collectionURI: string;
-  items: Item4[];
+  items: EventsStoriesItem[];
 }
 
 export interface ComicAdapter {
@@ -128,16 +95,16 @@ export interface Result {
   textObjects: TextObject[];
   resourceURI: string;
   urls: Url[];
-  series: Series;
-  variants: Variant[];
-  collections: Collection[];
-  collectedIssues: CollectedIssue[];
+  series: Resource;
+  variants: Resource[];
+  collections: Resource[];
+  collectedIssues: Resource[];
   dates: Date[];
   prices: Price[];
   thumbnail: Thumbnail;
   images: Image[];
-  creators: Creators;
-  characters: Characters;
+  creators: Persons;
+  characters: Persons;
   stories: Stories;
   events: Events;
 }

@@ -14,7 +14,7 @@ describe('Main page test', () => {
       render(<MainPage />);
     });
 
-    expect(!!screen.getByLabelText('search-input')).toBe(true);
+    expect(!!screen.getByLabelText('input-search')).toBe(true);
     expect(screen.getByText(/hellcat/i)).toBe;
     expect(screen.getByText(/IN DIAMOND AGE/i)).toBe;
   });

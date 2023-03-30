@@ -11,7 +11,7 @@ describe('SearchPanel tests', () => {
     const { unmount } = render(<SearchPanel onSearch={mockSearch} />);
 
     act(() => {
-      const input = screen.getByLabelText('search-input') as HTMLInputElement;
+      const input = screen.getByLabelText('input-search') as HTMLInputElement;
       fireEvent.change(input, { target: { value: 'Gamardjoba' } });
       expect(input.value).toBe('Gamardjoba');
     });
@@ -21,10 +21,13 @@ describe('SearchPanel tests', () => {
       const storage = localStorage.getItem('searchValue');
       expect(storage).toBe('Gamardjoba');
     });
+  });
 
+  test('Test get data from local storage', () => {
+    screen.debug();
     render(<SearchPanel onSearch={mockSearch} />);
+    const input = screen.getByLabelText('input-search') as HTMLInputElement;
 
-    const input = screen.getByLabelText('search-input') as HTMLInputElement;
-    expect(input.value).toBe('Gamardjoba');
+    expect(input.defaultValue).toBe('Gamardjoba');
   });
 });

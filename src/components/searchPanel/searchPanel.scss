@@ -1,11 +1,8 @@
 @import '../../styles/variables.scss';
-:root {
-  --border-radius: 10px;
-}
 
 .search-panel {
   padding: 1px;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   background: $white;
   overflow: hidden;
   box-shadow: $small-shadow;
@@ -25,6 +22,7 @@
 
   &__container {
     display: flex;
+    gap: 12px;
   }
 
   &__icon {
@@ -33,8 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--border-radius);
-    margin-right: 12px;
+    border-radius: $border-radius;
     box-shadow: -2px -2px 6px rgba(#fff, 0.6), 2px 2px 12px #c8d8e7;
 
     svg {
@@ -48,7 +45,7 @@
     --bottom-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.7);
 
     position: relative;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
     overflow: hidden;
 
     &:before,
