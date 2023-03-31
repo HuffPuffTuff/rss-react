@@ -1,10 +1,11 @@
-import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
-import React, { createRef } from 'react';
+import React, { createRef, FormEvent } from 'react';
 import { IFormData, IErrors } from 'types/formTypes';
+import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
+
 import './forms.scss';
 
 interface IProps {
-  updateCards: (clearForm: () => void, card: IFormData) => void;
+  updateCards: (card: IFormData) => boolean;
   errors: IErrors | null;
 }
 
@@ -13,45 +14,48 @@ const Forms = ({ updateCards, errors }: IProps) => {
   const dateRef = createRef<HTMLInputElement>();
   const currencyRef = createRef<HTMLSelectElement>();
   const visibleRef = createRef<HTMLInputElement>();
-  const standartDeliveryRef = createRef<HTMLInputElement>();
-  const fastDeliveryRef = createRef<HTMLInputElement>();
+  const standartFeeRef = createRef<HTMLInputElement>();
+  const premiumFeeRef = createRef<HTMLInputElement>();
   const imageRef = createRef<HTMLInputElement>();
   const priceRef = createRef<HTMLInputElement>();
 
-  const handleClear = () => {
+  const clearForm = () => {
     textRef.current!.value = '';
     dateRef.current!.value = '';
     currencyRef.current!.value = '';
     priceRef.current!.value = '';
     visibleRef.current!.checked = false;
-    fastDeliveryRef.current!.checked = true;
+    standartFeeRef.current!.checked = true;
     imageRef.current!.value = '';
   };
 
-  return (
-    <form
-      className="form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        updateCards(handleClear, {
-          name: textRef.current?.value || '',
-          date: dateRef.current?.value || '',
-          currency: currencyRef.current?.value || '',
-          price: priceRef.current?.value || '',
-          visible: !!visibleRef.current?.checked,
-          fee: standartDeliveryRef.current?.checked
-            ? standartDeliveryRef.current.value
-            : fastDeliveryRef.current?.checked
-            ? fastDeliveryRef.current.value
-            : '',
+  const handleSumbit = (e: FormEvent) => {
+    e.preventDefault();
+    const updated = updateCards({
+      name: textRef.current?.value || '',
+      date: dateRef.current?.value || '',
+      currency: currencyRef.current?.value || '',
+      price: priceRef.current?.value || '',
+      visible: !!visibleRef.current?.checked,
+      fee: standartFeeRef.current?.checked
+        ? standartFeeRef.current.value
+        : premiumFeeRef.current?.checked
+        ? premiumFeeRef.current.value
+        : '',
 
-          image:
-            imageRef.current?.files && imageRef.current?.files?.length > 0
-              ? URL.createObjectURL(imageRef.current.files[0])
-              : '',
-        });
-      }}
-    >
+      image:
+        imageRef.current?.files && imageRef.current?.files?.length > 0
+          ? URL.createObjectURL(imageRef.current.files[0])
+          : '',
+    });
+
+    if (updated) {
+      clearForm();
+    }
+  };
+
+  return (
+    <form className="form" onSubmit={handleSumbit}>
       <h2 className="form__title">Sell NFT form!</h2>
       <div className="form__inner">
         <div className="form__item">
@@ -99,17 +103,11 @@ const Forms = ({ updateCards, errors }: IProps) => {
           <div className="creator-fee">
             <p>Creator fee:</p>
             <label>
-              <input ref={standartDeliveryRef} type="radio" name="radio" value="standart" />
+              <input ref={standartFeeRef} type="radio" name="radio" value="standart" />
               Standart (5%)
             </label>
             <label>
-              <input
-                ref={fastDeliveryRef}
-                type="radio"
-                name="radio"
-                value="premium"
-                defaultChecked
-              />
+              <input ref={premiumFeeRef} type="radio" name="radio" value="premium" defaultChecked />
               Premium (10%)
             </label>
           </div>

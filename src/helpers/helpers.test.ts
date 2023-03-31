@@ -30,8 +30,6 @@ describe('Test helpers functions', () => {
 
     const errors = validate(failData);
 
-    console.log(errors.nameErr);
-
     expect(errors.nameErr).toBe('Required field!');
     expect(errors.dateErr).toBe('Required field!');
     expect(errors.currencyErr).toBe('Required field!');

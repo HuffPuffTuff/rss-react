@@ -22,15 +22,16 @@ const FormsPage = () => {
   const [errors, setErrors] = useState<null | IErrors>(null);
   const [showModal, setShowModal] = useState(false);
 
-  const updateCards = (clearForm: () => void, card: IFormData) => {
+  const updateCards = (card: IFormData) => {
     const errors = validate(card);
     if (Object.entries(errors).some(([, value]) => value)) {
       setErrors(errors);
+      return false;
     } else {
       setFormCards([card, ...formCards]);
-      clearForm();
       setErrors(null);
       setShowModal(true);
+      return true;
     }
   };
 
