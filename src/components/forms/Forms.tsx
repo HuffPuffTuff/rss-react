@@ -1,50 +1,29 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 
+import { schema, schemaType } from '../../libraries/yupSchema';
 import { IFormData } from 'types/formTypes';
 import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
-
+import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
 import './forms.scss';
 
-const schema = Yup.object().shape({
-  name: Yup.string().required('Required field!').min(5, 'Minimum 5 words!'),
-  date: Yup.string()
-    .required('Required field!')
-    .test('Check date', 'Date cannot be in the past, min tomorrow', (value) => {
-      if (new Date(value) < new Date()) {
-        return false;
-      }
-      return true;
-    }),
-  currency: Yup.string().required('Required field!'),
-  price: Yup.number()
-    .transform((value) => (isNaN(value) ? undefined : value))
-    .nullable()
-    .required('Required field!'),
-  terms: Yup.boolean().oneOf([true], 'You must agree to the terms and conditions').required(),
-  files: Yup.mixed<File[]>().test('Required', 'Required field!', (value) => {
-    if (value && value.length > 0) {
-      return true;
-    }
-    return false;
-  }),
-  delivery: Yup.string(),
-});
-
-type FormData = Yup.InferType<typeof schema>;
+interface IProps {
+  updateCards: (card: IFormData) => void;
+}
 
 const Forms = ({ updateCards }: IProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
+    reset,
+  } = useForm<schemaType>({
     resolver: yupResolver(schema),
   });
 
   const onSubmit = handleSubmit(({ name, date, currency, price, terms, files, delivery }) => {
+    console.log(files);
     if (terms && files && delivery) {
       updateCards({
         name,
@@ -55,6 +34,7 @@ const Forms = ({ updateCards }: IProps) => {
         image: URL.createObjectURL(files[0]),
         delivery,
       });
+      reset();
     }
   });
 
@@ -64,23 +44,23 @@ const Forms = ({ updateCards }: IProps) => {
       <div className="form__inner">
         <div className="form__item">
           <label>
-            <input {...register('name')} maxLength={15} aria-label="name-input" />
-            NFT name*
+            <input {...register('name')} maxLength={15} />
+            Comic name*
           </label>
-          <p className="form__error">{errors.name?.message}</p>
+          <FormErrorMessage message={errors.name?.message} />
         </div>
 
         <div className="form__item">
           <label>
-            <input type="date" {...register('date')} aria-label="date-input" />
+            <input type="date" {...register('date')} role="date" />
             End date of sale*
           </label>
-          <p className="form__error">{errors.date?.message}</p>
+          <FormErrorMessage message={errors.date?.message} />
         </div>
 
         <div className="form__item">
           <label htmlFor="currency">
-            <select id="currency" {...register('currency')} aria-label="currency-input">
+            <select id="currency" {...register('currency')} role="select">
               <option value="">Choose currency</option>
               <option value="USDT">USDT</option>
               <option value="BTC">BTC</option>
@@ -88,15 +68,15 @@ const Forms = ({ updateCards }: IProps) => {
             </select>
             Currency
           </label>
-          <p className="form__error">{errors.currency?.message}</p>
+          <FormErrorMessage message={errors.currency?.message} />
         </div>
 
         <div className="form__item">
           <label>
-            <input type="number" {...register('price')} step={0.1} aria-label="price-input" />
+            <input type="number" {...register('price')} step={0.1} />
             Price
           </label>
-          <p className="form__error">{errors.price?.message}</p>
+          <FormErrorMessage message={errors.price?.message} />
         </div>
 
         <div className="form__item">
@@ -131,24 +111,23 @@ const Forms = ({ updateCards }: IProps) => {
             <span className="upload-file__text">Choose image</span>
           </label>
         </div>
-        <p className="form__error">{errors.files?.message}</p>
+        <FormErrorMessage message={errors.files?.message} />
       </div>
 
       <div className="form__item">
         <label>
-          <input type="checkbox" {...register('terms')} />
+          <input type="checkbox" {...register('terms')} aria-label="checkbox" />
           Do you agree with the privacy policy?
         </label>
-        <p className="form__error">{errors.terms?.message}</p>
+
+        <FormErrorMessage message={errors.terms?.message} />
       </div>
 
-      <button type="submit">Sumbit</button>
+      <button name="submit" type="submit">
+        Submit
+      </button>
     </form>
   );
 };
-
-interface IProps {
-  updateCards: (card: IFormData) => void;
-}
 
 export default Forms;
