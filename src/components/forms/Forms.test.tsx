@@ -2,8 +2,15 @@
 // import { render, screen } from '@testing-library/react';
 
 // import Forms from './Forms';
+// import { IFormData } from 'types/formTypes';
 
-// const mockUpdateCards = jest.fn(() => {});
+// const mockUpdateCards = jest.fn((card: IFormData): boolean => {
+//   if (card.name) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// });
 
 // describe('Forms component tests', () => {
 //   test('render component without errors', () => {

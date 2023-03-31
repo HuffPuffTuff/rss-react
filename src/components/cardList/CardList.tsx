@@ -9,15 +9,14 @@ interface IProps {
 
 const CardList = ({ items }: IProps) => {
   const elements = items.map((card, i) => {
-    const { image, name, date, visible, fee, currency, price } = card;
+    const { image, name, date, delivery, currency, price } = card;
 
     return (
       <li className="list__item" key={i}>
         <img src={image} alt="" />
         <p>{name}</p>
         <p>End date: {date}</p>
-        <p>Visible: {visible ? 'Yes' : 'No'}</p>
-        <p>Fee: {fee}</p>
+        <p>Delivery: {delivery}</p>
         <p>
           Price: {price} {currency}
         </p>

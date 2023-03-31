@@ -16,8 +16,8 @@ export interface IFormData {
   date: string;
   currency: string;
   price: string;
-  visible: boolean;
-  fee: string;
+  terms: boolean;
+  delivery: string;
   image: string;
 }
 

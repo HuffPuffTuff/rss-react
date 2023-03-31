@@ -1,82 +1,86 @@
-import React, { createRef, FormEvent } from 'react';
-import { IFormData, IErrors } from 'types/formTypes';
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+
+import { IFormData } from 'types/formTypes';
 import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
 
 import './forms.scss';
 
-interface IProps {
-  updateCards: (card: IFormData) => boolean;
-  errors: IErrors | null;
-}
-
-const Forms = ({ updateCards, errors }: IProps) => {
-  const textRef = createRef<HTMLInputElement>();
-  const dateRef = createRef<HTMLInputElement>();
-  const currencyRef = createRef<HTMLSelectElement>();
-  const visibleRef = createRef<HTMLInputElement>();
-  const standartFeeRef = createRef<HTMLInputElement>();
-  const premiumFeeRef = createRef<HTMLInputElement>();
-  const imageRef = createRef<HTMLInputElement>();
-  const priceRef = createRef<HTMLInputElement>();
-
-  const clearForm = () => {
-    textRef.current!.value = '';
-    dateRef.current!.value = '';
-    currencyRef.current!.value = '';
-    priceRef.current!.value = '';
-    visibleRef.current!.checked = false;
-    standartFeeRef.current!.checked = true;
-    imageRef.current!.value = '';
-  };
-
-  const handleSumbit = (e: FormEvent) => {
-    e.preventDefault();
-    const updated = updateCards({
-      name: textRef.current?.value || '',
-      date: dateRef.current?.value || '',
-      currency: currencyRef.current?.value || '',
-      price: priceRef.current?.value || '',
-      visible: !!visibleRef.current?.checked,
-      fee: standartFeeRef.current?.checked
-        ? standartFeeRef.current.value
-        : premiumFeeRef.current?.checked
-        ? premiumFeeRef.current.value
-        : '',
-
-      image:
-        imageRef.current?.files && imageRef.current?.files?.length > 0
-          ? URL.createObjectURL(imageRef.current.files[0])
-          : '',
-    });
-
-    if (updated) {
-      clearForm();
+const schema = Yup.object().shape({
+  name: Yup.string().required('Required field!').min(5, 'Minimum 5 words!'),
+  date: Yup.string()
+    .required('Required field!')
+    .test('Check date', 'Date cannot be in the past, min tomorrow', (value) => {
+      if (new Date(value) < new Date()) {
+        return false;
+      }
+      return true;
+    }),
+  currency: Yup.string().required('Required field!'),
+  price: Yup.number()
+    .transform((value) => (isNaN(value) ? undefined : value))
+    .nullable()
+    .required('Required field!'),
+  terms: Yup.boolean().oneOf([true], 'You must agree to the terms and conditions').required(),
+  files: Yup.mixed<File[]>().test('Required', 'Required field!', (value) => {
+    if (value && value.length > 0) {
+      return true;
     }
-  };
+    return false;
+  }),
+  delivery: Yup.string(),
+});
+
+type FormData = Yup.InferType<typeof schema>;
+
+const Forms = ({ updateCards }: IProps) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = handleSubmit(({ name, date, currency, price, terms, files, delivery }) => {
+    if (terms && files && delivery) {
+      updateCards({
+        name,
+        date,
+        currency,
+        price: price.toString(),
+        terms,
+        image: URL.createObjectURL(files[0]),
+        delivery,
+      });
+    }
+  });
 
   return (
-    <form className="form" onSubmit={handleSumbit}>
+    <form className="form" onSubmit={onSubmit}>
       <h2 className="form__title">Sell NFT form!</h2>
       <div className="form__inner">
         <div className="form__item">
           <label>
-            <input type="text" ref={textRef} maxLength={15} aria-label="name-input" />
-            NFT name
+            <input {...register('name')} maxLength={15} aria-label="name-input" />
+            NFT name*
           </label>
-          {errors?.nameErr ? <div className="form__error">{errors?.nameErr}</div> : null}
+          <p className="form__error">{errors.name?.message}</p>
         </div>
 
         <div className="form__item">
           <label>
-            <input type="date" ref={dateRef} aria-label="date-input" />
-            End date of sale
+            <input type="date" {...register('date')} aria-label="date-input" />
+            End date of sale*
           </label>
-          {errors?.dateErr ? <div className="form__error">{errors?.dateErr}</div> : null}
+          <p className="form__error">{errors.date?.message}</p>
         </div>
 
         <div className="form__item">
           <label htmlFor="currency">
-            <select id="currency" ref={currencyRef} aria-label="currency-input">
+            <select id="currency" {...register('currency')} aria-label="currency-input">
               <option value="">Choose currency</option>
               <option value="USDT">USDT</option>
               <option value="BTC">BTC</option>
@@ -84,55 +88,67 @@ const Forms = ({ updateCards, errors }: IProps) => {
             </select>
             Currency
           </label>
-          {errors?.currencyErr ? <div className="form__error">{errors?.currencyErr}</div> : null}
+          <p className="form__error">{errors.currency?.message}</p>
         </div>
 
         <div className="form__item">
           <label>
-            <input type="number" ref={priceRef} aria-label="price-input" />
+            <input type="number" {...register('price')} step={0.1} aria-label="price-input" />
             Price
           </label>
-          {errors?.priceErr ? <div className="form__error">{errors?.priceErr}</div> : null}
+          <p className="form__error">{errors.price?.message}</p>
         </div>
 
         <div className="form__item">
+          <p>Delivery:</p>
           <label>
-            <input type="checkbox" ref={visibleRef} />
-            NFT visible?
+            <input type="radio" {...register('delivery')} name="radio" value="worldwide" />
+            Worldwide
           </label>
-          <div className="creator-fee">
-            <p>Creator fee:</p>
-            <label>
-              <input ref={standartFeeRef} type="radio" name="radio" value="standart" />
-              Standart (5%)
-            </label>
-            <label>
-              <input ref={premiumFeeRef} type="radio" name="radio" value="premium" defaultChecked />
-              Premium (10%)
-            </label>
-          </div>
+          <label>
+            <input
+              type="radio"
+              {...register('delivery')}
+              name="radio"
+              value="georgia"
+              defaultChecked
+            />
+            Georgia
+          </label>
         </div>
 
         <div className="upload-file__wrapper">
           <input
-            name="files[]"
             id="upload-file__input_1"
             className="upload-file__input"
             accept="image/*"
             type="file"
-            ref={imageRef}
             aria-label="image-input"
+            {...register('files')}
           />
           <label className="upload-file__label" htmlFor="upload-file__input_1">
             <UploadFileIcon />
             <span className="upload-file__text">Choose image</span>
           </label>
         </div>
-        {errors?.imageErr ? <div className="form__error">{errors?.imageErr}</div> : null}
+        <p className="form__error">{errors.files?.message}</p>
       </div>
+
+      <div className="form__item">
+        <label>
+          <input type="checkbox" {...register('terms')} />
+          Do you agree with the privacy policy?
+        </label>
+        <p className="form__error">{errors.terms?.message}</p>
+      </div>
+
       <button type="submit">Sumbit</button>
     </form>
   );
 };
+
+interface IProps {
+  updateCards: (card: IFormData) => void;
+}
 
 export default Forms;

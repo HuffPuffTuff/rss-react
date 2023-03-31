@@ -2,37 +2,27 @@ import React, { useState, MouseEvent } from 'react';
 import Forms from '../../components/forms/Forms';
 import CardList from '../../components/cardList/CardList';
 import Modal from '../../components/modal/Modal';
-import { IErrors, IFormData } from 'types/formTypes';
+import { IFormData } from 'types/formTypes';
 
 import './formsPage.scss';
-import { validate } from '../../helpers/helpers';
 
 const FormsPage = () => {
   const [formCards, setFormCards] = useState<IFormData[]>([
     {
       currency: 'USDT',
       date: '2222-02-22',
-      fee: 'standart',
+      delivery: 'worldwide',
       image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
       name: 'First',
       price: '0.86',
-      visible: true,
+      terms: true,
     },
   ]);
-  const [errors, setErrors] = useState<null | IErrors>(null);
   const [showModal, setShowModal] = useState(false);
 
   const updateCards = (card: IFormData) => {
-    const errors = validate(card);
-    if (Object.entries(errors).some(([, value]) => value)) {
-      setErrors(errors);
-      return false;
-    } else {
-      setFormCards([card, ...formCards]);
-      setErrors(null);
-      setShowModal(true);
-      return true;
-    }
+    setFormCards([card, ...formCards]);
+    setShowModal(true);
   };
 
   const closeModal = (e: MouseEvent) => {
@@ -46,7 +36,7 @@ const FormsPage = () => {
 
   return (
     <div className="forms__page" data-testid="forms-page-test">
-      <Forms updateCards={updateCards} errors={errors} />
+      <Forms updateCards={updateCards} />
       <CardList items={formCards} />
 
       <Modal show={showModal} closeModal={closeModal}>
