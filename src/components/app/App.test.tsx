@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import App from './App';
-import { comicsResponse } from '../../mocks/mockData';
+import { comicsResponseMock } from '../../mocks/mockData';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 global.fetch = jest.fn(() =>
-  Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponse) })
+  Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponseMock) })
 ) as jest.Mock;
 
 describe('App test', () => {
@@ -23,7 +23,7 @@ describe('App test', () => {
     });
 
     expect(!!queryByTestId('header')).toBe(true);
-    expect(screen.getByText(/hellcat/i)).toBe;
-    expect(screen.getByText(/IN DIAMOND AGE/i)).toBe;
+    expect(screen.getByText(/first title/i)).toBe;
+    expect(screen.getByText(/second title/i)).toBe;
   });
 });

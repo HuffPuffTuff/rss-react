@@ -20,7 +20,11 @@
       li {
         margin: 0 8px;
         a:hover {
-          color: black;
+          color: #9f0013;
+        }
+
+        .active {
+          color: #9f0013;
         }
       }
     }

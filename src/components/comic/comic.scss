@@ -1,21 +1,23 @@
+@import '../../styles/variables.scss';
+
 .comics__item {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: $small-shadow;
+  transition: all 0.35s linear;
   position: relative;
   display: flex;
-  background: linear-gradient(-67deg, rgba(200, 216, 231, 0.7), rgba(255, 255, 255, 0.8));
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
-
-  transition: all 0.35s linear;
+  padding: 10px;
+  gap: 15px;
 
   &-img {
     width: 180px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
+    box-shadow: $small-shadow;
   }
 
   &-info {
     width: 100%;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -53,7 +55,7 @@
   }
 
   &:hover {
-    background: linear-gradient(-67deg, rgba(9, 10, 10, 0.7), rgba(17, 15, 15, 0.8));
+    background: rgba(0, 0, 0, 0.7);
 
     .comics__item-img {
       opacity: 0;

@@ -1,4 +1,4 @@
-export const comicsResponse = {
+export const comicsResponseMock = {
   code: 200,
   status: 'Ok',
   attributionHTML: '',
@@ -13,7 +13,7 @@ export const comicsResponse = {
       {
         id: 106450,
         digitalId: 61975,
-        title: 'Hellcat (2023) #1',
+        title: 'First Title 1',
         issueNumber: 1,
         variantDescription: '',
         description: null,
@@ -75,7 +75,7 @@ export const comicsResponse = {
       {
         id: 107831,
         digitalId: 0,
-        title: 'Immoral X-Men (2023) #2 (Variant)',
+        title: 'Second Title',
         issueNumber: 2,
         variantDescription: 'Variant',
         description:
@@ -144,3 +144,45 @@ export const comicsResponse = {
   },
   etag: 'e0c8bcf518fba433f1e6405390c2a915250c136e',
 };
+
+export const formDataMock = [
+  {
+    currency: 'USDT',
+    date: '2222-02-22',
+    fee: 'standart',
+    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    name: 'First',
+    price: '0.86',
+    visible: true,
+  },
+  {
+    currency: 'ETH',
+    date: '2222-02-22',
+    fee: 'premium',
+    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    name: 'Second',
+    price: '0.86',
+    visible: false,
+  },
+];
+
+export const comicsListDataMock = [
+  {
+    id: '11',
+    title: 'hello',
+    description: "I'm first",
+    thumbnail: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    issueNumber: '1',
+    pageCount: '25',
+    price: '5',
+  },
+  {
+    id: '22',
+    title: 'ByBy',
+    description: "I'm second",
+    thumbnail: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+    issueNumber: '2',
+    pageCount: '25',
+    price: '5',
+  },
+];

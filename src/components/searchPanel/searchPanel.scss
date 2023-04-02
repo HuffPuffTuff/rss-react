@@ -1,34 +1,28 @@
-:root {
-  --border-radius: 10px;
-}
+@import '../../styles/variables.scss';
 
 .search-panel {
   padding: 1px;
-  border-radius: var(--border-radius);
-  background: linear-gradient(-67deg, rgba(#c8d8e7, 0.7), rgba(255, 255, 255, 0.8));
+  border-radius: $border-radius;
+  background: $white;
   overflow: hidden;
-  box-shadow: -2px -2px 6px rgba(#fff, 0.6), 2px 2px 12px #c8d8e7;
+  box-shadow: $small-shadow;
   width: 90%;
   margin: 2em auto 0 auto;
+  padding: 16px 16px;
 
-  &__inner {
-    padding: 16px 16px;
-    background-color: #e2e9f4;
-    border-radius: var(--border-radius);
-
-    label {
-      display: block;
-      color: #313b4e;
-      font-size: 20px;
-      margin-bottom: 12px;
-      background: linear-gradient(45deg, rgba(#6b7b8f, 1), #3c4b66);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  label {
+    display: block;
+    color: #313b4e;
+    font-size: 20px;
+    margin-bottom: 12px;
+    background: linear-gradient(45deg, rgba(#6b7b8f, 1), #3c4b66);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   &__container {
     display: flex;
+    gap: 12px;
   }
 
   &__icon {
@@ -37,8 +31,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--border-radius);
-    margin-right: 12px;
+    border-radius: $border-radius;
     box-shadow: -2px -2px 6px rgba(#fff, 0.6), 2px 2px 12px #c8d8e7;
 
     svg {
@@ -52,7 +45,7 @@
     --bottom-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.7);
 
     position: relative;
-    border-radius: var(--border-radius);
+    border-radius: $border-radius;
     overflow: hidden;
 
     &:before,
