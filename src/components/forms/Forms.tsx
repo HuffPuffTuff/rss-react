@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { schema, schemaType } from '../../libraries/yupSchema';
+import { schema, schemaType } from '../../utilits/yupSchema';
 import { IFormData } from 'types/formTypes';
 import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
 import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
@@ -23,7 +23,6 @@ const Forms = ({ updateCards }: IProps) => {
   });
 
   const onSubmit = handleSubmit(({ name, date, currency, price, terms, files, delivery }) => {
-    console.log(files);
     if (terms && files && delivery) {
       updateCards({
         name,
