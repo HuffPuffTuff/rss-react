@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import Comic from './Comic';
+import PhotoCard from './PhotoCard';
 
 test('Comic Card render', () => {
   const data = {
@@ -14,7 +14,7 @@ test('Comic Card render', () => {
     price: '3.99',
   };
 
-  render(<Comic comic={data} />);
+  render(<PhotoCard photo={data} />);
 
   expect(screen.getByText(/title/i)).toBe;
 });

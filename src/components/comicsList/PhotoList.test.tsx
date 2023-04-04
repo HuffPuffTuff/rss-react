@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import ComicsList from './ComicsList';
+import ComicsList from './PhotoList';
 import { act } from 'react-dom/test-utils';
 import { comicsResponseMock } from '../../mocks/mockData';
 

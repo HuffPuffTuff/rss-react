@@ -1,0 +1,51 @@
+@import '../../styles/variables.scss';
+
+.photo__item {
+  background: $white;
+  border-radius: 10px;
+  box-shadow: $medium-shadow;
+  position: relative;
+  height: 300px;
+  cursor: pointer;
+  transition: all 0.5s linear;
+
+  &-header {
+    height: 50px;
+    background-color: #e3edf7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-radius: 10px 10px 0 0;
+  }
+
+  &-likes {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &-user {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 10px;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 0 0 10px 10px;
+    object-fit: cover;
+    // box-shadow: $medium-shadow;
+  }
+
+  &:hover {
+    box-shadow: $big-shadow;
+    transform: scale(1.05);
+  }
+}

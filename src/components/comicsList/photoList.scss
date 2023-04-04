@@ -1,0 +1,12 @@
+.photos {
+  &__list {
+    margin-top: 3em;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    row-gap: 30px;
+    justify-content: space-between;
+  }
+}

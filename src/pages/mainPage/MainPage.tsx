@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SearchPanel from '../../components/searchPanel/SearchPanel';
-import ComicsList from '../../components/comicsList/ComicsList';
+import PhotoList from '../../components/comicsList/PhotoList';
 
 const MainPage = () => {
   const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
@@ -12,7 +12,7 @@ const MainPage = () => {
   return (
     <>
       <SearchPanel onSearch={onSearch} />
-      <ComicsList searchValue={searchValue} />
+      <PhotoList searchValue={searchValue} />
     </>
   );
 };

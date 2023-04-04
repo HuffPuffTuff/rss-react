@@ -1,5 +1,5 @@
 import React, { useState, MouseEvent } from 'react';
-import Forms from '../../components/forms/Forms';
+import Forms from '../../components/form/Form';
 import CardList from '../../components/cardList/CardList';
 import Modal from '../../components/modal/Modal';
 import { IFormData } from 'types/formTypes';

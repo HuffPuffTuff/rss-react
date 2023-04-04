@@ -4,9 +4,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { schema, schemaType } from '../../utilits/yupSchema';
 import { IFormData } from 'types/formTypes';
-import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
+import UploadFileIcon from '../icons/uploadFileIcon/UploadFileIcon';
 import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
-import './forms.scss';
+import './form.scss';
 
 interface IProps {
   updateCards: (card: IFormData) => void;
