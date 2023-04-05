@@ -1,26 +1,28 @@
-import Heart from '../icons/heart/Heart';
 import React from 'react';
 import { PhotoData } from 'types/unsplashTypes';
 import './photoCard.scss';
+import Likes from '../icons/likes/Likes';
 
 interface IProps {
   photo: PhotoData;
+  onPhotoSelected: (photo: PhotoData) => void;
 }
 
-const PhotoCard = ({ photo }: IProps) => {
+const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
   const { urls, alt, likes, user } = photo;
   const { avatar, username } = user;
 
+  const handleClick = () => {
+    onPhotoSelected(photo);
+  };
+
   return (
-    <li className="photo__item">
+    <li className="photo__item" onClick={handleClick}>
       <div className="photo__item-header">
-        <div className="photo__item-likes">
-          <Heart />
-          <span>{likes}</span>
-        </div>
+        <Likes likes={likes} />
         <div className="photo__item-user">
-          <img src={avatar.small} alt="avatar" />
           <span>{username}</span>
+          <img src={avatar.small} alt="avatar" />
         </div>
       </div>
       <img src={urls.small} className="photo__item-img" alt={alt}></img>

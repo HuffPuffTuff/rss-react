@@ -1,7 +1,6 @@
 import SearchIcon from '../icons/searchIcon/SearchIcon';
 import React, { FormEvent, useEffect, useRef } from 'react';
 import './searchPanel.scss';
-import useUnsplashService from '../../services/useUnsplashService';
 
 interface IPops {
   onSearch: (text: string) => void;
