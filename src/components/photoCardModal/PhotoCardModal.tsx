@@ -11,7 +11,7 @@ import './photoCardModal.scss';
 
 interface IProps {
   photo: PhotoData;
-  closeModal?: (e: React.MouseEvent) => void;
+  closeModal: (e: React.MouseEvent) => void;
 }
 
 const PhotoCardModal = ({ photo, closeModal }: IProps) => {
@@ -21,7 +21,13 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
   return (
     <>
       <div className="card__modal">
-        <img className="close-modal" src={close} alt="close" onClick={closeModal} />
+        <img
+          data-testid={'closeModalIcon'}
+          className="close-modal"
+          src={close}
+          alt="close"
+          onClick={closeModal}
+        />
         <img className="card__image" src={urls.regular} alt={alt} />
         <div className="card__info">
           <div className="card__info-header">
@@ -31,18 +37,18 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
 
           <ul className="card__info-list">
             <li>
-              <b>Bio:</b> {bio ? bio : 'Not have bio'}
+              <b>Bio:</b> {bio ? bio : <span className="error">{'Not have bio'}</span>}
             </li>
             <li className="list-item">
               <img width={32} src={locationIcon} alt="lcoation icon" />{' '}
-              <b>{location ? location : 'Not have location'}</b>
+              {location ? <b>{location}</b> : <b className="error">{'Not have location'}</b>}
             </li>
             <li className="list-item">
               <img width={32} src={twitterIcon} alt="twitter Icon" />
               {twitter ? (
                 <a href={`https://twitter.com/${twitter}`}>{<b>{twitter}</b>}</a>
               ) : (
-                <b>{'Not have twitter'}</b>
+                <b className="error">{'Not have twitter'}</b>
               )}
             </li>
             <li className="list-item">
@@ -52,7 +58,7 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
                   <b>{instagram}</b>
                 </a>
               ) : (
-                <b>{'Not have instagram'}</b>
+                <b className="error">{'Not have instagram'}</b>
               )}
             </li>
             <li className="likes">

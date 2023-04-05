@@ -22,7 +22,7 @@ const SearchPanel = ({ onSearch }: IPops) => {
   }, []);
 
   return (
-    <form className="search-panel" onSubmit={handleSubmit}>
+    <form aria-label="search-form" className="search-panel" onSubmit={handleSubmit}>
       <div className="search-panel__inner">
         <label htmlFor="input-search">Search for everything you want</label>
         <div className="search-panel__container">

@@ -1,20 +1,17 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import PhotoCard from './PhotoCard';
+import { photoCardMock } from '../../mocks/mockData';
 
-test('Comic Card render', () => {
-  const data = {
-    id: '55525',
-    thumbnail: '/image',
-    title: 'Title',
-    description: 'description',
-    issueNumber: '142',
-    pageCount: '20',
-    price: '3.99',
-  };
+const onFotoSelectedMock = jest.fn();
 
-  render(<PhotoCard photo={data} />);
+test('Photo Card render', () => {
+  render(<PhotoCard onPhotoSelected={onFotoSelectedMock} photo={photoCardMock} />);
 
-  expect(screen.getByText(/title/i)).toBe;
+  const card = screen.getByTestId('photoCard');
+  expect(card).toBe;
+
+  fireEvent.click(card);
+  expect(onFotoSelectedMock).toBeCalled;
 });

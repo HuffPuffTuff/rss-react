@@ -4,7 +4,7 @@ import { act } from 'react-dom/test-utils';
 import SearchPanel from './SearchPanel';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const mockSearch = jest.fn((_text: string) => {});
+const mockSearch = jest.fn();
 
 describe('SearchPanel tests', () => {
   test('checking for changes in rendering input data', async () => {
@@ -28,5 +28,11 @@ describe('SearchPanel tests', () => {
     const input = screen.getByLabelText('input-search') as HTMLInputElement;
 
     expect(input.defaultValue).toBe('gamardjoba');
+
+    const form = screen.getByLabelText('search-form');
+
+    fireEvent.submit(form);
+
+    expect(mockSearch).toBeCalled;
   });
 });

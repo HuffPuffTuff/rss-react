@@ -17,7 +17,7 @@ const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
   };
 
   return (
-    <li className="photo__item" onClick={handleClick}>
+    <li data-testid="photoCard" className="photo__item" onClick={handleClick}>
       <div className="photo__item-header">
         <Likes likes={likes} />
         <div className="photo__item-user">

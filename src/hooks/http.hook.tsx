@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import unsplash from '../api/unsplash';
+import { unsplash } from '../api/unsplash';
 
 type Process = 'waiting' | 'loading' | 'error';
 
@@ -22,6 +22,7 @@ const useHttp = () => {
       if (response.status !== 200) {
         throw new Error(`Could not fetch , status: ${response.status}`);
       }
+
       setProcess('waiting');
       return response.data;
     } catch (e) {

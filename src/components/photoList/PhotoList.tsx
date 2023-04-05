@@ -42,7 +42,7 @@ const PhotoList = ({ searchValue }: IProps) => {
       setPhoto(null);
     }
   };
-
+  console.log(process);
   if (process === 'loading') {
     return <Spinner />;
   } else if (process === 'error') {
