@@ -2,11 +2,11 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { schema, schemaType } from '../../libraries/yupSchema';
+import { schema, schemaType } from '../../utilits/yupSchema';
 import { IFormData } from 'types/formTypes';
-import UploadFileIcon from '../uploadFileIcon/UploadFileIcon';
+import UploadFileIcon from '../icons/uploadFileIcon/UploadFileIcon';
 import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
-import './forms.scss';
+import './form.scss';
 
 interface IProps {
   updateCards: (card: IFormData) => void;
@@ -23,7 +23,6 @@ const Forms = ({ updateCards }: IProps) => {
   });
 
   const onSubmit = handleSubmit(({ name, date, currency, price, terms, files, delivery }) => {
-    console.log(files);
     if (terms && files && delivery) {
       updateCards({
         name,
@@ -40,7 +39,7 @@ const Forms = ({ updateCards }: IProps) => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <h2 className="form__title">Sell NFT form!</h2>
+      <h2 className="form__title">Sell comic form!</h2>
       <div className="form__inner">
         <div className="form__item">
           <label>

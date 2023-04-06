@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import gitHubLogo from '/github.svg';
 import rssLogo from '/rss-logo.svg';
 import './aboutUs.scss';
 
 const AboutUs = () => {
+  useEffect(() => {
+    document.title = 'About Us';
+  }, []);
   const style = { height: '200px' };
   return (
     <div className="about-us" data-testid="about-us">

@@ -1,5 +1,5 @@
-import SearchIcon from '../searchIcon/SearchIcon';
-import React, { useEffect, useRef } from 'react';
+import SearchIcon from '../icons/searchIcon/SearchIcon';
+import React, { FormEvent, useEffect, useRef } from 'react';
 import './searchPanel.scss';
 
 interface IPops {
@@ -10,9 +10,9 @@ const SearchPanel = ({ onSearch }: IPops) => {
   const storageValue = localStorage.getItem('searchValue') || '';
   const searchRef = useRef<string>(storageValue);
 
-  const handleSearchChange = (value: string): void => {
-    searchRef.current = value.toLowerCase();
-    onSearch(value.toLowerCase());
+  const handleSubmit = (e: FormEvent): void => {
+    e.preventDefault();
+    onSearch(searchRef.current);
   };
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const SearchPanel = ({ onSearch }: IPops) => {
   }, []);
 
   return (
-    <div className="search-panel">
+    <form aria-label="search-form" className="search-panel" onSubmit={handleSubmit}>
       <div className="search-panel__inner">
         <label htmlFor="input-search">Search for everything you want</label>
         <div className="search-panel__container">
@@ -34,12 +34,12 @@ const SearchPanel = ({ onSearch }: IPops) => {
               id="input-search"
               aria-label="input-search"
               defaultValue={searchRef.current}
-              onChange={({ target }) => handleSearchChange(target.value)}
+              onChange={({ target }) => (searchRef.current = target.value.toLowerCase())}
             />
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

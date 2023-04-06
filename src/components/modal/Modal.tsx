@@ -1,9 +1,8 @@
 import React, { MouseEvent } from 'react';
-
 import './modal.scss';
 
 interface IProps {
-  children: JSX.Element;
+  children: JSX.Element | null;
   closeModal: (e: MouseEvent) => void;
   show: boolean;
 }

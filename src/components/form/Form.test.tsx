@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Forms from './Forms';
+import Forms from './Form';
 
 const mockUpdateCards = jest.fn();
 
@@ -29,7 +29,7 @@ describe('Forms component tests', () => {
     expect(screen.getAllByRole('alert')).toHaveLength(6);
   });
 
-  test('Submit form with errors', async () => {
+  test('Submit form', async () => {
     const { user } = setup(<Forms updateCards={mockUpdateCards} />);
     const button = screen.getByRole('button', { name: /submit/i });
 
