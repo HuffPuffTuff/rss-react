@@ -1,33 +1,45 @@
-// import React from 'react';
-// import { render, screen, fireEvent } from '@testing-library/react';
-// import { act } from 'react-dom/test-utils';
-// import MainPage from './MainPage';
-// import { comicsResponseMock } from '../../mocks/mockData';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
+import userEvent from '@testing-library/user-event';
 
-// global.fetch = jest.fn(() =>
-//   Promise.resolve({ ok: true, json: () => Promise.resolve(comicsResponseMock) })
-// ) as jest.Mock;
+import MainPage from './MainPage';
+import { photoCardsMock } from '../../mocks/mockData';
 
-// describe('Main page test', () => {
-//   test('Render MainPage component', async () => {
-//     await act(async () => {
-//       render(<MainPage />);
-//     });
+const mockGetPhotos = jest.fn(async () => {
+  return photoCardsMock;
+});
 
-//     expect(!!screen.getByLabelText('input-search')).toBe(true);
-//     expect(screen.getByText(/first title/i)).toBe;
-//     expect(screen.getByText(/second title/i)).toBe;
-//   });
+jest.mock('../../services/useUnsplashService', () => {
+  return jest.fn(() => ({
+    getPhotos: mockGetPhotos,
+    searchPhotos: mockGetPhotos,
+  }));
+});
 
-//   test('Search comics test', async () => {
-//     await act(async () => {
-//       render(<MainPage />);
-//     });
+describe('Main page test', () => {
+  test('Render MainPage component', async () => {
+    await act(async () => {
+      render(<MainPage />);
+    });
 
-//     await act(async () => {
-//       const input = screen.getByLabelText('input-search') as HTMLInputElement;
-//       fireEvent.change(input, { target: { value: 'First Title' } });
-//       expect(screen.getByText(/first title 1/i)).toBe;
-//     });
-//   });
-// });
+    expect(!!screen.getByLabelText('input-search')).toBe(true);
+    expect(screen.getAllByTestId('photoCard')).toHaveLength(2);
+  });
+
+  test('Search photos test', async () => {
+    const user = userEvent.setup();
+    await act(async () => {
+      render(<MainPage />);
+    });
+
+    const input = screen.getByLabelText('input-search') as HTMLInputElement;
+    await user.type(input, 'pretty cats');
+
+    await act(async () => {
+      await user.keyboard('{Enter}');
+    });
+
+    expect(input.value).toEqual('pretty cats');
+  });
+});

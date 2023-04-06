@@ -1,4 +1,4 @@
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, useEffect, MouseEvent } from 'react';
 import Forms from '../../components/form/Form';
 import CardList from '../../components/cardList/CardList';
 import Modal from '../../components/modal/Modal';
@@ -20,6 +20,10 @@ const FormsPage = () => {
   ]);
   const [showModal, setShowModal] = useState(false);
 
+  useEffect(() => {
+    document.title = 'Sell comic form';
+  }, []);
+
   const updateCards = (card: IFormData) => {
     setFormCards([card, ...formCards]);
     setShowModal(true);
@@ -40,7 +44,9 @@ const FormsPage = () => {
       <CardList items={formCards} />
 
       <Modal show={showModal} closeModal={closeModal}>
-        <p className="forms__page-message">Your data has been saved!</p>
+        <p data-testid="save-message" className="forms__page-message">
+          Your data has been saved!
+        </p>
       </Modal>
     </div>
   );

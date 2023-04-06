@@ -39,7 +39,7 @@ const Forms = ({ updateCards }: IProps) => {
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <h2 className="form__title">Sell NFT form!</h2>
+      <h2 className="form__title">Sell comic form!</h2>
       <div className="form__inner">
         <div className="form__item">
           <label>

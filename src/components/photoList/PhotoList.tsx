@@ -42,7 +42,7 @@ const PhotoList = ({ searchValue }: IProps) => {
       setPhoto(null);
     }
   };
-  console.log(process);
+
   if (process === 'loading') {
     return <Spinner />;
   } else if (process === 'error') {
@@ -52,7 +52,7 @@ const PhotoList = ({ searchValue }: IProps) => {
   if (photosList.length === 0) {
     return (
       <p style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}>
-        Photos not found! Search another word!
+        No photos found! Enter another query!
       </p>
     );
   }

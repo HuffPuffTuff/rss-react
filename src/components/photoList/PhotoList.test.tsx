@@ -6,7 +6,7 @@ import PhotoList from './PhotoList';
 import { photoCardsMock } from '../../mocks/mockData';
 
 const mockGetPhotos = jest.fn(async () => {
-  return await photoCardsMock;
+  return photoCardsMock;
 });
 
 jest.mock('../../services/useUnsplashService', () => {
@@ -16,12 +16,22 @@ jest.mock('../../services/useUnsplashService', () => {
   }));
 });
 
-describe('ComicsList tests', () => {
+describe('PhotoList tests', () => {
   test('Comics list render without searchValue', async () => {
-    const user = userEvent.setup();
-
     await act(async () => {
       render(<PhotoList searchValue={''} />);
+    });
+
+    const photos = screen.getAllByTestId('photoCard');
+    expect(photos).toHaveLength(2);
+  });
+
+  test('test modal', async () => {
+    const user = userEvent.setup();
+
+    const container = await act(async () => {
+      const { container } = render(<PhotoList searchValue={''} />);
+      return container;
     });
 
     const photos = screen.getAllByTestId('photoCard');
@@ -30,11 +40,11 @@ describe('ComicsList tests', () => {
     expect(screen.getByLabelText('modal')).toBe;
 
     await user.click(screen.getByLabelText('modal'));
+
+    expect(container.querySelector('modal')).toBe(null);
   });
 
-  test('Comics list render with searchValue', async () => {
-    const user = userEvent.setup();
-
+  test('PhotoList render with searchValue', async () => {
     await act(async () => {
       render(<PhotoList searchValue={'ad'} />);
     });

@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './page404.scss';
@@ -6,6 +6,9 @@ import './page404.scss';
 const ErrorMessage = lazy(() => import('../../components/errorMessage/ErrorMessage'));
 
 const Page404 = () => {
+  useEffect(() => {
+    document.title = 'Page not found';
+  }, []);
   return (
     <div className="page-404">
       <ErrorMessage />
