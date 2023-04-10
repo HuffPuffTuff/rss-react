@@ -12,12 +12,12 @@ const AppHeader = () => {
         <ul>
           <li>
             <NavLink end to="/">
-              Main Page
+              Search
             </NavLink>
           </li>
           <li>
             <NavLink end to="/forms">
-              Forms
+              Form
             </NavLink>
           </li>
           <li>

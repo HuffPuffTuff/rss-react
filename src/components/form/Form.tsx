@@ -1,18 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { v4 as uuidv4 } from 'uuid';
 
+import { cardAdded } from '../formCards/formCardsSlice';
 import { schema, schemaType } from '../../utilits/yupSchema';
-import { IFormData } from 'types/formTypes';
 import UploadFileIcon from '../icons/uploadFileIcon/UploadFileIcon';
 import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
 import './form.scss';
 
-interface IProps {
-  updateCards: (card: IFormData) => void;
-}
-
-const Forms = ({ updateCards }: IProps) => {
+const Forms = () => {
   const {
     register,
     handleSubmit,
@@ -22,29 +20,58 @@ const Forms = ({ updateCards }: IProps) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = handleSubmit(({ name, date, currency, price, terms, files, delivery }) => {
-    if (terms && files && delivery) {
-      updateCards({
-        name,
-        date,
-        currency,
-        price: price.toString(),
-        terms,
-        image: URL.createObjectURL(files[0]),
-        delivery,
-      });
-      reset();
+  const dispatch = useDispatch();
+
+  const onSubmit = handleSubmit(
+    ({ username, date, location, name, terms, files, privacy, twitter, instagram, bio }) => {
+      if (terms && files && privacy) {
+        const imageUrl = URL.createObjectURL(files[0]);
+
+        const newCard = {
+          id: uuidv4(),
+          likes: 0,
+          alt: `${username} photo`,
+          color: 'red',
+          urls: {
+            small: imageUrl,
+            regular: imageUrl,
+          },
+          user: {
+            username,
+            name,
+            bio: bio || null,
+            location: location || null,
+            instagram: instagram || null,
+            twitter: twitter || null,
+            avatar: {
+              small: '',
+              large: '',
+            },
+          },
+        };
+
+        dispatch(cardAdded(newCard));
+        reset();
+      }
     }
-  });
+  );
 
   return (
     <form className="form" onSubmit={onSubmit}>
-      <h2 className="form__title">Sell comic form!</h2>
+      <h2 className="form__title">Create photo card</h2>
       <div className="form__inner">
         <div className="form__item">
           <label>
-            <input {...register('name')} maxLength={15} />
-            Comic name*
+            <input {...register('username')} maxLength={15} />
+            Usename *
+          </label>
+          <FormErrorMessage message={errors.username?.message} />
+        </div>
+
+        <div className="form__item">
+          <label>
+            <input type="text" {...register('name')} />
+            Full Name *
           </label>
           <FormErrorMessage message={errors.name?.message} />
         </div>
@@ -52,47 +79,56 @@ const Forms = ({ updateCards }: IProps) => {
         <div className="form__item">
           <label>
             <input type="date" {...register('date')} role="date" />
-            End date of sale*
+            Date of creation *
           </label>
           <FormErrorMessage message={errors.date?.message} />
         </div>
 
         <div className="form__item">
-          <label htmlFor="currency">
-            <select id="currency" {...register('currency')} role="select">
-              <option value="">Choose currency</option>
-              <option value="USDT">USDT</option>
-              <option value="BTC">BTC</option>
-              <option value="ETH">ETH</option>
+          <label>
+            <select {...register('location')} role="select">
+              <option value="">Choose location</option>
+              <option value="georgia">Georgia</option>
+              <option value="russia">Russia</option>
+              <option value="ukraine">Ukraine</option>
+              <option value="belarus">Belarus</option>
+              <option value="usa">USA</option>
             </select>
-            Currency
+            Location
           </label>
-          <FormErrorMessage message={errors.currency?.message} />
+          <FormErrorMessage message={errors.location?.message} />
         </div>
 
-        <div className="form__item">
-          <label>
-            <input type="number" {...register('price')} step={0.1} />
-            Price
-          </label>
-          <FormErrorMessage message={errors.price?.message} />
-        </div>
+        <label>
+          <input type="text" {...register('twitter')} maxLength={15} />
+          Twitter
+        </label>
+
+        <label>
+          <input type="text" {...register('instagram')} maxLength={15} />
+          Instagram
+        </label>
+
+        <label>
+          <input type="text" {...register('bio')} maxLength={60} />
+          Bio
+        </label>
 
         <div className="form__item">
-          <p>Delivery:</p>
+          <p>Privacy:</p>
           <label>
-            <input type="radio" {...register('delivery')} name="radio" value="worldwide" />
-            Worldwide
+            <input type="radio" {...register('privacy')} name="radio" value="private" />
+            Private
           </label>
           <label>
             <input
               type="radio"
-              {...register('delivery')}
+              {...register('privacy')}
               name="radio"
-              value="georgia"
+              value="public"
               defaultChecked
             />
-            Georgia
+            Public
           </label>
         </div>
 
@@ -111,15 +147,15 @@ const Forms = ({ updateCards }: IProps) => {
           </label>
         </div>
         <FormErrorMessage message={errors.files?.message} />
-      </div>
 
-      <div className="form__item">
-        <label>
-          <input type="checkbox" {...register('terms')} aria-label="checkbox" />
-          Do you agree with the privacy policy?
-        </label>
+        <div className="form__item">
+          <label>
+            <input type="checkbox" {...register('terms')} aria-label="checkbox" />
+            Do you agree with the privacy policy?
+          </label>
 
-        <FormErrorMessage message={errors.terms?.message} />
+          <FormErrorMessage message={errors.terms?.message} />
+        </div>
       </div>
 
       <button name="submit" type="submit">

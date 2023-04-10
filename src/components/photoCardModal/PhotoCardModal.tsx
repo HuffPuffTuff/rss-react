@@ -7,6 +7,7 @@ import close from '/close.svg';
 import locationIcon from '/locations.svg';
 import twitterIcon from '/twitter.svg';
 import instagramIcon from '/instagram.svg';
+import avatarIcon from '/avatar.jpg';
 import './photoCardModal.scss';
 
 interface IProps {
@@ -32,7 +33,12 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
         <div className="card__info">
           <div className="card__info-header">
             <p>{name}</p>
-            <img style={{ border: `2px solid ${color}` }} src={avatar.large} alt="avatar" />
+            <img
+              width={80}
+              style={{ border: `2px solid ${color}` }}
+              src={avatar.large || avatarIcon}
+              alt="avatar"
+            />
           </div>
 
           <ul className="card__info-list">

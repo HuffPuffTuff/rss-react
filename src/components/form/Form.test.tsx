@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Forms from './Form';
+import Forms from './form';
 
 const mockUpdateCards = jest.fn();
 

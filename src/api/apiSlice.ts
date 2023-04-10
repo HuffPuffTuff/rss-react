@@ -13,10 +13,9 @@ export const apiSlice = createApi({
     searchPhotos: builder.query<PhotoData[], string>({
       query: (searchValue: string) =>
         !!searchValue
-          ? `/search/photos/?query=${searchValue}&per_page=16&${apiKey}`
-          : `/photos/?per_page=16&${apiKey}`,
+          ? `/search/photos/?query=${searchValue}&per_page=20&${apiKey}`
+          : `/photos/?per_page=20&${apiKey}`,
       transformResponse: (response: SearchData | Result[]) => {
-        console.log(response);
         if (Array.isArray(response)) {
           return response.map(_photosTransformer);
         } else {

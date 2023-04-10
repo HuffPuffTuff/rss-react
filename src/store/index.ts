@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import search from '../components/searchPanel/searchPanelSlice';
 import { apiSlice } from '../api/apiSlice';
-const reducers = { search, [apiSlice.reducerPath]: apiSlice.reducer };
+import forms from '../components/formCards/formCardsSlice';
+
+const reducers = { search, forms, [apiSlice.reducerPath]: apiSlice.reducer };
 
 const store = configureStore({
   reducer: reducers,

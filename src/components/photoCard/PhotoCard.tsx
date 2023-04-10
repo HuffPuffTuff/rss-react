@@ -2,6 +2,7 @@ import React from 'react';
 import { PhotoData } from 'types/unsplashTypes';
 import './photoCard.scss';
 import Likes from '../icons/likes/Likes';
+import avatarIcon from '/avatar.jpg';
 
 interface IProps {
   photo: PhotoData;
@@ -22,7 +23,7 @@ const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
         <Likes likes={likes} />
         <div className="photo__item-user">
           <span>{username}</span>
-          <img src={avatar.small} alt="avatar" />
+          <img width={32} src={avatar.small || avatarIcon} alt="avatar" />
         </div>
       </div>
       <img src={urls.small} className="photo__item-img" alt={alt}></img>
