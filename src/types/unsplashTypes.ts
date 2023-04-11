@@ -157,6 +157,7 @@ export interface PhotoData {
   likes: number;
   alt: string;
   color: string;
+  date: number;
   urls: {
     small: string;
     regular: string;

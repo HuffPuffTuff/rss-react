@@ -1,17 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import search from '../components/searchPanel/searchPanelSlice';
 import { apiSlice } from '../api/apiSlice';
 import forms from '../components/formCards/formCardsSlice';
 
-const reducers = { search, forms, [apiSlice.reducerPath]: apiSlice.reducer };
-
-const store = configureStore({
-  reducer: reducers,
-  devTools: process.env.NODE_ENV !== 'production',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+const rootReducer = combineReducers({
+  search,
+  forms,
+  [apiSlice.reducerPath]: apiSlice.reducer,
 });
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+const setupStore = () => {
+  return configureStore({
+    reducer: rootReducer,
+    devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  });
+};
 
-export default store;
+export type AppStore = ReturnType<typeof setupStore>;
+export type RootState = ReturnType<typeof rootReducer>;
+export type AppDispatch = AppStore['dispatch'];
+
+export default setupStore;

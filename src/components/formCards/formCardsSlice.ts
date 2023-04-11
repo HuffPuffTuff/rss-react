@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { PhotoData } from '../../types/unsplashTypes';
 
-// const formCardsAdapter = createEntityAdapter<PhotoData>({ selectId: (card) => card.id });
-
 const initialState: { formCards: PhotoData[] } = {
   formCards: [],
 };

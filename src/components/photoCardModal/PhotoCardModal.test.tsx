@@ -21,6 +21,6 @@ describe('PhotoCardModal component tests', () => {
       <PhotoCardModal closeModal={closeModalMock} photo={emptyPhotoCardMock} />
     );
 
-    expect(container.querySelectorAll('.error')).toHaveLength(4);
+    expect(container.querySelectorAll('.empty-field')).toHaveLength(4);
   });
 });

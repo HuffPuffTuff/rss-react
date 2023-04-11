@@ -54,23 +54,23 @@ export const emptyPhotoCardMock = {
 
 export const photoCardsMock = [photoCardMock, emptyPhotoCardMock];
 
-export const formDataMock = [
-  {
-    currency: 'USDT',
-    date: '2222-02-22',
-    delivery: 'worldwide',
-    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
-    name: 'First',
-    price: '0.86',
-    terms: true,
-  },
-  {
-    currency: 'ETH',
-    date: '2222-02-22',
-    delivery: 'georgia',
-    image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
-    name: 'Second',
-    price: '0.86',
-    terms: true,
-  },
-];
+// export const formDataMock = [
+//   {
+//     currency: 'USDT',
+//     date: '2222-02-22',
+//     delivery: 'worldwide',
+//     image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+//     name: 'First',
+//     price: '0.86',
+//     terms: true,
+//   },
+//   {
+//     currency: 'ETH',
+//     date: '2222-02-22',
+//     delivery: 'georgia',
+//     image: 'http://i.annihil.us/u/prod/marvel/i/mg/3/03/64090641911fc.jpg',
+//     name: 'Second',
+//     price: '0.86',
+//     terms: true,
+//   },
+// ];

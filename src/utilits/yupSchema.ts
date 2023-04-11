@@ -1,8 +1,19 @@
 import * as Yup from 'yup';
 
 export const schema = Yup.object().shape({
-  username: Yup.string().required('Required field!').min(5, 'Minimum 5 words!'),
-  name: Yup.string().required('Required field!').min(5, 'Minimum 5 words!'),
+  username: Yup.string().required('Required field!').min(5, 'Minimum 5 letters!'),
+  name: Yup.string()
+    .required('Required field!')
+    .test('Check name', '2 words of a maximum of 9 characters', (value) => {
+      const arr = value.split(' ').filter((val) => val !== '');
+
+      if (arr.length !== 2) {
+        return false;
+      } else if (arr.some((val) => val.length > 9)) {
+        return false;
+      }
+      return true;
+    }),
   date: Yup.string()
     .required('Required field!')
     .test('Check date', 'Date cannot be in the future', (value) => {

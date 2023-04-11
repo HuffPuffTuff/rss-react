@@ -1,7 +1,7 @@
 import { PhotoData, Result } from './../types/unsplashTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SearchData } from '../types/unsplashTypes';
-import { _photosTransformer } from '../helpers/transforms';
+import { _photosTransformer } from '../utilits/helpers';
 
 const apiKey = 'client_id=JAJNLiC6qI3v8XCOk1DuKZX3TrAP68Htxoc93Y6ACNY';
 
