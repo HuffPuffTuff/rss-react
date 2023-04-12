@@ -4,7 +4,7 @@ import PhotoList from '../../components/photoList/PhotoList';
 
 const MainPage = () => {
   useEffect(() => {
-    document.title = 'React App';
+    document.title = 'React-App Search';
   }, []);
 
   return (

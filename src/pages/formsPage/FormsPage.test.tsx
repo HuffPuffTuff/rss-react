@@ -12,7 +12,7 @@ describe('FormsPage component tests', () => {
   test('Render component', async () => {
     const { getByTestId } = await act(async () => renderWithProviders(<FormsPage />));
 
-    expect(document.title).toEqual('Sell comic form');
+    expect(document.title).toEqual('React-App Form');
     expect(getByTestId('forms-page')).toBe;
   });
 });

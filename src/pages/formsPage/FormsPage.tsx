@@ -5,7 +5,7 @@ import './formsPage.scss';
 
 const FormsPage = () => {
   useEffect(() => {
-    document.title = 'Sell comic form';
+    document.title = 'React-App Form';
   }, []);
 
   return (
