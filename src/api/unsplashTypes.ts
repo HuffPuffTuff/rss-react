@@ -157,13 +157,14 @@ export interface PhotoData {
   likes: number;
   alt: string;
   color: string;
+  date: number;
   urls: {
     small: string;
     regular: string;
   };
   user: {
     username: string;
-    name: string;
+    fullname: string;
     avatar: {
       large: string;
       small: string;

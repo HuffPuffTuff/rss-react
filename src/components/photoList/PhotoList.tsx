@@ -1,35 +1,20 @@
-import React, { useEffect, useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import Spinner from '../spinner/Spinner';
 
 import './photoList.scss';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-import useUnsplashService from '../../services/useUnsplashService';
-import { PhotoData } from 'types/unsplashTypes';
+import { PhotoData } from 'api/unsplashTypes';
 import PhotoCard from '../photoCard/PhotoCard';
 import Modal from '../modal/Modal';
 import PhotoCardModal from '../photoCardModal/PhotoCardModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { useSearchPhotosQuery } from '../../api/apiSlice';
 
-interface IProps {
-  searchValue: string;
-}
-
-const PhotoList = ({ searchValue }: IProps) => {
-  const [photosList, setPhotosList] = useState<PhotoData[]>([]);
+const PhotoList = () => {
+  const searchValue = useSelector(({ search }: RootState) => search.value);
+  const { data: photos = [], isError, isLoading, isFetching } = useSearchPhotosQuery(searchValue);
   const [photo, setPhoto] = useState<PhotoData | null>(null);
-  const { process, getPhotos, searchPhotos } = useUnsplashService();
-
-  useEffect(() => {
-    const loadPhotos = async () => {
-      if (searchValue.length > 0) {
-        setPhotosList(await searchPhotos(searchValue));
-      } else {
-        setPhotosList(await getPhotos());
-      }
-    };
-
-    loadPhotos();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchValue]);
 
   const onPhotoSelected = (photo: PhotoData) => {
     setPhoto(photo);
@@ -43,15 +28,18 @@ const PhotoList = ({ searchValue }: IProps) => {
     }
   };
 
-  if (process === 'loading') {
+  if (isLoading || isFetching) {
     return <Spinner />;
-  } else if (process === 'error') {
+  } else if (isError) {
     return <ErrorMessage />;
   }
 
-  if (photosList.length === 0) {
+  if (photos.length === 0) {
     return (
-      <p style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}>
+      <p
+        data-testid="no-photos"
+        style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}
+      >
         No photos found! Enter another query!
       </p>
     );
@@ -65,7 +53,7 @@ const PhotoList = ({ searchValue }: IProps) => {
     return <ul className="photos__grid">{items}</ul>;
   };
 
-  const elements = renderItems(photosList);
+  const elements = renderItems(photos);
 
   return (
     <>

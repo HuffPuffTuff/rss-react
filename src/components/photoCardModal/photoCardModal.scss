@@ -19,6 +19,7 @@
   }
 
   &__info {
+    position: relative;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -42,11 +43,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-
-      .likes {
-        position: absolute;
-        bottom: 10px;
-      }
     }
 
     .list-item {
@@ -63,6 +59,18 @@
           color: blueviolet;
         }
       }
+    }
+
+    &-footer {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      padding: 0 10px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   }
 }

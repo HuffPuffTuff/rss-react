@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { photoCardMock, emptyPhotoCardMock } from '../../mocks/mockData';
 import PhotoCardModal from './PhotoCardModal';
@@ -8,9 +8,11 @@ const closeModalMock = jest.fn();
 
 describe('PhotoCardModal component tests', () => {
   test('Render component photoModal', () => {
-    render(<PhotoCardModal closeModal={closeModalMock} photo={photoCardMock} />);
+    const { getByTestId } = render(
+      <PhotoCardModal closeModal={closeModalMock} photo={photoCardMock} />
+    );
 
-    const closeModalIcon = screen.getByTestId('closeModalIcon');
+    const closeModalIcon = getByTestId('closeModalIcon');
 
     fireEvent.click(closeModalIcon);
     expect(closeModalMock).toBeCalled;
@@ -21,6 +23,6 @@ describe('PhotoCardModal component tests', () => {
       <PhotoCardModal closeModal={closeModalMock} photo={emptyPhotoCardMock} />
     );
 
-    expect(container.querySelectorAll('.error')).toHaveLength(4);
+    expect(container.querySelectorAll('.empty-field')).toHaveLength(4);
   });
 });

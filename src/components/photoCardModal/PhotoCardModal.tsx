@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoData } from 'types/unsplashTypes';
+import { PhotoData } from 'api/unsplashTypes';
 
 import Likes from '../icons/likes/Likes';
 
@@ -7,7 +7,9 @@ import close from '/close.svg';
 import locationIcon from '/locations.svg';
 import twitterIcon from '/twitter.svg';
 import instagramIcon from '/instagram.svg';
+import avatarIcon from '/avatar.jpg';
 import './photoCardModal.scss';
+import { getRelativeTimeString } from '../../utilits/helpers';
 
 interface IProps {
   photo: PhotoData;
@@ -15,7 +17,7 @@ interface IProps {
 }
 
 const PhotoCardModal = ({ photo, closeModal }: IProps) => {
-  const { user, urls, color, alt, likes } = photo;
+  const { user, urls, color, alt, likes, date } = photo;
   const { avatar, name, bio, location, instagram, twitter } = user;
 
   return (
@@ -28,27 +30,32 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
           alt="close"
           onClick={closeModal}
         />
-        <img className="card__image" src={urls.regular} alt={alt} />
+        <img className="card__image" data-testid="modal-image" src={urls.regular} alt={alt} />
         <div className="card__info">
           <div className="card__info-header">
             <p>{name}</p>
-            <img style={{ border: `2px solid ${color}` }} src={avatar.large} alt="avatar" />
+            <img
+              width={80}
+              style={{ border: `2px solid ${color}` }}
+              src={avatar.large || avatarIcon}
+              alt="avatar"
+            />
           </div>
 
           <ul className="card__info-list">
             <li>
-              <b>Bio:</b> {bio ? bio : <span className="error">{'Not have bio'}</span>}
+              <b>Bio:</b> {bio ? bio : <span className="empty-field">{'Not have bio'}</span>}
             </li>
             <li className="list-item">
               <img width={32} src={locationIcon} alt="lcoation icon" />{' '}
-              {location ? <b>{location}</b> : <b className="error">{'Not have location'}</b>}
+              {location ? <b>{location}</b> : <b className="empty-field">{'Not have location'}</b>}
             </li>
             <li className="list-item">
               <img width={32} src={twitterIcon} alt="twitter Icon" />
               {twitter ? (
                 <a href={`https://twitter.com/${twitter}`}>{<b>{twitter}</b>}</a>
               ) : (
-                <b className="error">{'Not have twitter'}</b>
+                <b className="empty-field">{'Not have twitter'}</b>
               )}
             </li>
             <li className="list-item">
@@ -58,13 +65,14 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
                   <b>{instagram}</b>
                 </a>
               ) : (
-                <b className="error">{'Not have instagram'}</b>
+                <b className="empty-field">{'Not have instagram'}</b>
               )}
             </li>
-            <li className="likes">
-              <Likes likes={likes} />
-            </li>
           </ul>
+          <li className="card__info-footer">
+            <Likes likes={likes} />
+            <p>{getRelativeTimeString(date)}</p>
+          </li>
         </div>
       </div>
     </>

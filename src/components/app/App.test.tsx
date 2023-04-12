@@ -1,8 +1,9 @@
+import 'whatwg-fetch';
 import React from 'react';
-import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
+
+import renderWithProviders from '../../utilits/test/test-utulits';
 import App from './App';
-import { photoCardsMock } from '../../mocks/mockData';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -10,24 +11,9 @@ jest.mock('react-router-dom', () => ({
   NavLink: jest.fn().mockImplementation(({ children }) => children),
 }));
 
-const mockGetPhotos = jest.fn(async () => {
-  return photoCardsMock;
-});
-
-jest.mock('../../services/useUnsplashService', () => {
-  return jest.fn(() => ({
-    getPhotos: mockGetPhotos,
-    searchPhotos: mockGetPhotos,
-  }));
-});
-
 describe('App test', () => {
   test('Render App component', async () => {
-    const queryByTestId = await act(async () => {
-      const { queryByTestId } = render(<App />);
-
-      return queryByTestId;
-    });
+    const { queryByTestId } = await act(async () => renderWithProviders(<App />));
 
     expect(!!queryByTestId('header')).toBe(true);
   });

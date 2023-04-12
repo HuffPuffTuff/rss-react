@@ -11,7 +11,7 @@ jest.mock('react-router-dom', () => ({
 test('Render AppHeader component', () => {
   render(<AppHeader />);
 
-  expect(screen.getAllByText(/React App/i)).toBe;
-  expect(screen.getAllByText(/Main Page/i)).toBe;
+  expect(screen.getAllByText(/Search/i)).toBe;
+  expect(screen.getAllByText(/Form/i)).toBe;
   expect(screen.getAllByText(/About us/i)).toBe;
 });

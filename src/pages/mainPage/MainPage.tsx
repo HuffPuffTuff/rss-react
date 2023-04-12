@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import SearchPanel from '../../components/searchPanel/SearchPanel';
 import PhotoList from '../../components/photoList/PhotoList';
 
 const MainPage = () => {
-  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchValue') || '');
-
   useEffect(() => {
-    document.title = 'React App';
+    document.title = 'React-App Search';
   }, []);
-
-  const onSearch = (text: string) => {
-    setSearchValue(text);
-  };
 
   return (
     <>
-      <SearchPanel onSearch={onSearch} />
-      <PhotoList searchValue={searchValue} />
+      <SearchPanel />
+      <PhotoList />
     </>
   );
 };

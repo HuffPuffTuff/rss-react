@@ -1,37 +1,23 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
-import SearchPanel from './SearchPanel';
+import 'whatwg-fetch';
+import { act, fireEvent } from '@testing-library/react';
 
-const mockSearch = jest.fn();
+import '../../mocks/api/testSetup';
+import renderWithProviders from '../../utilits/test/test-utulits';
+import SearchPanel from './SearchPanel';
 
 describe('SearchPanel tests', () => {
   test('checking for changes in rendering input data', async () => {
-    const { unmount } = render(<SearchPanel onSearch={mockSearch} />);
+    const { getByLabelText } = await act(async () => renderWithProviders(<SearchPanel />));
+
+    const input = getByLabelText('input-search') as HTMLInputElement;
 
     act(() => {
-      const input = screen.getByLabelText('input-search') as HTMLInputElement;
       fireEvent.change(input, { target: { value: 'gamardjoba' } });
+      const form = getByLabelText('search-form');
+
+      fireEvent.submit(form);
       expect(input.value).toBe('gamardjoba');
     });
-
-    act(() => {
-      unmount();
-      const storage = localStorage.getItem('searchValue');
-      expect(storage).toBe('gamardjoba');
-    });
-  });
-
-  test('Test get data from local storage', () => {
-    render(<SearchPanel onSearch={mockSearch} />);
-    const input = screen.getByLabelText('input-search') as HTMLInputElement;
-
-    expect(input.defaultValue).toBe('gamardjoba');
-
-    const form = screen.getByLabelText('search-form');
-
-    fireEvent.submit(form);
-
-    expect(mockSearch).toBeCalled;
   });
 });

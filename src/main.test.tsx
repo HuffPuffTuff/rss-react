@@ -1,19 +1,28 @@
+import 'whatwg-fetch';
 import React from 'react';
-import App from './components/app/App';
-import { render, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { act, screen, render } from '@testing-library/react';
 
-jest.mock('./components/app/App', () => () => {
-  return <div>Hello World!</div>;
-});
+import App from './components/app/App';
+import setupStore from './store';
 
 describe('Application root', () => {
-  it('should render without crashing', () => {
-    render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
-    );
+  it('should render without crashing', async () => {
+    const store = setupStore();
 
-    expect(screen.getByText(/hello world/i)).toBe;
+    await act(async () => {
+      render(
+        <div id="root" data-testid="root">
+          <React.StrictMode>
+            <Provider store={store}>
+              <App />
+            </Provider>
+          </React.StrictMode>
+        </div>
+      );
+    });
+
+    const root = screen.getByTestId('root');
+    expect(root).toBe;
   });
 });

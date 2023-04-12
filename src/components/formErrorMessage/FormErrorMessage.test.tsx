@@ -7,4 +7,8 @@ describe('FormErrorMessage tests', () => {
     const { getByText } = render(<FormErrorMessage message="new-error" />);
     expect(getByText('new-error')).toBe;
   });
+  test('Render null component', () => {
+    const { container } = render(<FormErrorMessage message={undefined} />);
+    expect(container.querySelector('.form__error')).toBe(null);
+  });
 });

@@ -1,55 +1,59 @@
+import 'whatwg-fetch';
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import '../../mocks/api/testSetup';
+import { server } from '../../mocks/api/server';
+import renderWithProviders from '../../utilits/test/test-utulits';
 import PhotoList from './PhotoList';
-import { photoCardsMock } from '../../mocks/mockData';
-
-const mockGetPhotos = jest.fn(async () => {
-  return photoCardsMock;
-});
-
-jest.mock('../../services/useUnsplashService', () => {
-  return jest.fn(() => ({
-    getPhotos: mockGetPhotos,
-    searchPhotos: mockGetPhotos,
-  }));
-});
+import { rest } from 'msw';
 
 describe('PhotoList tests', () => {
-  test('Comics list render without searchValue', async () => {
-    await act(async () => {
-      render(<PhotoList searchValue={''} />);
-    });
-
-    const photos = screen.getAllByTestId('photoCard');
-    expect(photos).toHaveLength(2);
-  });
-
-  test('test modal', async () => {
+  test('Test render list and render modal', async () => {
     const user = userEvent.setup();
 
-    const container = await act(async () => {
-      const { container } = render(<PhotoList searchValue={''} />);
-      return container;
-    });
+    const { container, getByLabelText, getByTestId, findAllByTestId } = await act(() =>
+      renderWithProviders(<PhotoList />)
+    );
 
-    const photos = screen.getAllByTestId('photoCard');
+    expect(screen.getByTestId('spinner')).toBe;
+
+    const photos = await findAllByTestId('photoCard');
+    expect(photos).toHaveLength(2);
+
     await user.click(photos[0]);
+    expect(getByLabelText('modal')).toBe;
 
-    expect(screen.getByLabelText('modal')).toBe;
-
-    await user.click(screen.getByLabelText('modal'));
-
+    await user.click(getByTestId('modal-image'));
+    await user.click(getByTestId('closeModalIcon'));
     expect(container.querySelector('modal')).toBe(null);
   });
 
   test('PhotoList render with searchValue', async () => {
     await act(async () => {
-      render(<PhotoList searchValue={'ad'} />);
+      renderWithProviders(<PhotoList />, { preloadedState: { search: { value: 'test' } } });
     });
 
-    const photos = screen.getAllByTestId('photoCard');
-    expect(photos).toHaveLength(2);
+    await screen.findByTestId('no-photos');
+
+    expect(screen.findByTestId('no-photos')).toBe;
+  });
+
+  test('Error when fetch photo list', async () => {
+    server.use(
+      rest.get('*', (_req, res, ctx) =>
+        res.once(ctx.status(500), ctx.json({ message: 'baby, there was an error' }))
+      )
+    );
+
+    const getByTestId = await act(async () => {
+      const { getByTestId } = renderWithProviders(<PhotoList />);
+      return getByTestId;
+    });
+
+    await screen.findByTestId('error-message');
+
+    expect(getByTestId('error-message')).toBe;
   });
 });
