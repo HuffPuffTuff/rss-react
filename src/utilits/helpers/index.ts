@@ -1,4 +1,4 @@
-import { PhotoData, Result } from '../api/unsplashTypes';
+import { PhotoData, Result } from '../../api/unsplashTypes';
 
 export const _photosTransformer = (value: Result): PhotoData => {
   const { id, urls, likes, user, alt_description, color, created_at } = value;
@@ -16,7 +16,7 @@ export const _photosTransformer = (value: Result): PhotoData => {
     },
     user: {
       username: user.username,
-      name: user.name,
+      fullname: user.name,
       bio: user.bio,
       location: user.location,
       instagram: user.instagram_username,
@@ -47,6 +47,10 @@ export function getRelativeTimeString(date: number): string {
   }
 }
 
-export function capitalizeStr(str: string): string {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+export function capitalizeStr(str: string | undefined): string | null {
+  if (str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
+  return null;
 }

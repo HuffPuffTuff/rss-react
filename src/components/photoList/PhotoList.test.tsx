@@ -3,28 +3,23 @@ import React from 'react';
 import { screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import '../../utilits/testSetup';
+import '../../mocks/api/testSetup';
 import { server } from '../../mocks/api/server';
+import renderWithProviders from '../../utilits/test/test-utulits';
 import PhotoList from './PhotoList';
-import renderWithProviders from '../../utilits/test-utulits';
 import { rest } from 'msw';
 
 describe('PhotoList tests', () => {
   test('Test render list and render modal', async () => {
     const user = userEvent.setup();
 
-    const { container, getAllByTestId, getByLabelText, getByTestId } = await act(async () => {
-      const { container, getAllByTestId, getByLabelText, getByTestId } = renderWithProviders(
-        <PhotoList />
-      );
-      return { container, getAllByTestId, getByLabelText, getByTestId };
-    });
+    const { container, getByLabelText, getByTestId, findAllByTestId } = await act(() =>
+      renderWithProviders(<PhotoList />)
+    );
 
     expect(screen.getByTestId('spinner')).toBe;
 
-    await screen.findAllByTestId('photoCard');
-
-    const photos = getAllByTestId('photoCard');
+    const photos = await findAllByTestId('photoCard');
     expect(photos).toHaveLength(2);
 
     await user.click(photos[0]);

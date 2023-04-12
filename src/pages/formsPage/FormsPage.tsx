@@ -9,7 +9,7 @@ const FormsPage = () => {
   }, []);
 
   return (
-    <div className="forms__page" data-testid="forms-page-test">
+    <div className="forms__page" data-testid="forms-page">
       <Form />
       <CardList />
     </div>

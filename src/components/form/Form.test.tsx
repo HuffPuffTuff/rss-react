@@ -1,66 +1,62 @@
-// import React from 'react';
-// import { render, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
-// import Forms from './form';
+import React from 'react';
+import 'whatwg-fetch';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-// const mockUpdateCards = jest.fn();
+import renderWithProviders from '../../utilits/test/test-utulits';
+import '../../mocks/api/testSetup';
+import Form from './Form';
 
-// const setup = (jsx: JSX.Element) => {
-//   return {
-//     user: userEvent.setup(),
-//     ...render(jsx),
-//   };
-// };
+const setup = (jsx: JSX.Element) => {
+  return {
+    user: userEvent.setup(),
+    ...renderWithProviders(jsx),
+  };
+};
 
-// global.URL.createObjectURL = jest.fn();
+global.URL.createObjectURL = jest.fn();
 
-// describe('Forms component tests', () => {
-//   test('render component', () => {
-//     render(<Forms updateCards={mockUpdateCards} />);
+describe('Forms component tests', () => {
+  test('render component', () => {
+    const { getByRole } = renderWithProviders(<Form />);
 
-//     expect(screen.getByText(/Comic name/i)).toBe;
-//   });
+    const button = getByRole('button', { name: /submit/i });
+    expect(button).toBe;
+  });
 
-//   test('Submit form with errors', async () => {
-//     const { user } = setup(<Forms updateCards={mockUpdateCards} />);
-//     const button = screen.getByRole('button', { name: /submit/i });
+  test('Submit form with errors', async () => {
+    const { user, getByRole } = setup(<Form />);
+    const button = getByRole('button', { name: /submit/i });
 
-//     await user.click(button);
-//     expect(screen.getAllByRole('alert')).toHaveLength(6);
-//   });
+    await user.click(button);
+    expect(screen.getAllByRole('alert')).toHaveLength(5);
+  });
 
-//   test('Submit form', async () => {
-//     const { user } = setup(<Forms updateCards={mockUpdateCards} />);
-//     const button = screen.getByRole('button', { name: /submit/i });
+  test('Submit form', async () => {
+    const { user, getByRole, getByLabelText, getByTestId, container } = setup(<Form />);
+    const button = screen.getByRole('button', { name: /submit/i });
 
-//     const inputName = screen.getByRole('textbox', { name: /name/i }) as HTMLInputElement;
-//     const inputDate = screen.getByRole('date') as HTMLInputElement;
-//     const inputCurrency = screen.getByRole('select', { name: /currency/i }) as HTMLSelectElement;
-//     const inputPrice = screen.getByRole('spinbutton', { name: /price/i }) as HTMLInputElement;
-//     const inputFile = screen.getByLabelText('image-input') as HTMLInputElement;
-//     const inputCheckbox = screen.getByLabelText('checkbox') as HTMLInputElement;
+    const inputUsername = getByRole('textbox', { name: /username/i }) as HTMLInputElement;
+    const inputFullname = getByRole('textbox', { name: /full name/i }) as HTMLInputElement;
+    const inputDate = getByRole('date') as HTMLInputElement;
+    const inputFile = getByLabelText('image-input') as HTMLInputElement;
+    const inputCheckbox = getByLabelText('checkbox') as HTMLInputElement;
 
-//     await user.type(inputName, 'Fedor');
-//     expect(inputName.value).toEqual('Fedor');
+    await user.type(inputUsername, 'qwerty');
+    await user.type(inputFullname, 'qwerty qwerty');
+    await user.type(inputDate, '2022-02-22');
 
-//     await user.type(inputDate, '2024-04-04');
-//     expect(inputDate.value).toEqual('2024-04-04');
+    const image = new File(['(⌐□_□)'], 'image.png', { type: 'image/png' });
+    await user.upload(inputFile, image);
 
-//     await user.selectOptions(inputCurrency, 'USDT');
-//     expect(inputCurrency.value).toEqual('USDT');
+    await user.click(inputCheckbox);
+    await user.click(button);
 
-//     await user.type(inputPrice, '100');
-//     expect(inputPrice.value).toEqual('100');
+    expect(getByLabelText('modal')).toBe;
 
-//     const image = new File(['(⌐□_□)'], 'image.png', { type: 'image/png' });
-//     await user.upload(inputFile, image);
-//     expect(inputFile.value).toBe;
+    await user.click(getByTestId('save-message'));
+    await user.click(getByLabelText('modal'));
 
-//     await user.click(inputCheckbox);
-//     expect(inputCheckbox.checked).toEqual(true);
-
-//     await user.click(button);
-
-//     expect(mockUpdateCards).toBeCalled;
-//   });
-// });
+    expect(container.querySelector('modal')).toBe(null);
+  });
+});

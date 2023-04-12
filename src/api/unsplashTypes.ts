@@ -164,7 +164,7 @@ export interface PhotoData {
   };
   user: {
     username: string;
-    name: string;
+    fullname: string;
     avatar: {
       large: string;
       small: string;

@@ -25,8 +25,8 @@ const Form = () => {
   const [showModal, setShowModal] = useState(false);
 
   const onSubmit = handleSubmit(
-    ({ username, date, location, name, terms, files, privacy, twitter, instagram, bio }) => {
-      if (terms && files && privacy) {
+    ({ username, date, location, fullname, files, privacy, twitter, instagram, bio }) => {
+      if (files && privacy) {
         const imageUrl = URL.createObjectURL(files[0]);
         const dateObj = new Date(date);
 
@@ -42,9 +42,9 @@ const Form = () => {
           },
           user: {
             username,
-            name,
+            fullname,
             bio: bio || null,
-            location: location ? capitalizeStr(location) : null,
+            location: capitalizeStr(location),
             instagram: instagram || null,
             twitter: twitter || null,
             avatar: {
@@ -77,7 +77,7 @@ const Form = () => {
         <div className="form__inner">
           <div className="form__item">
             <label>
-              <input {...register('username')} maxLength={12} />
+              <input type="text" {...register('username')} maxLength={12} />
               Username *
             </label>
             <FormErrorMessage message={errors.username?.message} />
@@ -85,10 +85,10 @@ const Form = () => {
 
           <div className="form__item">
             <label>
-              <input type="text" {...register('name')} maxLength={19} />
+              <input type="text" {...register('fullname')} maxLength={19} />
               Full Name *
             </label>
-            <FormErrorMessage message={errors.name?.message} />
+            <FormErrorMessage message={errors.fullname?.message} />
           </div>
 
           <div className="form__item">
@@ -111,7 +111,6 @@ const Form = () => {
               </select>
               Location
             </label>
-            <FormErrorMessage message={errors.location?.message} />
           </div>
 
           <label>

@@ -2,7 +2,7 @@ import * as Yup from 'yup';
 
 export const schema = Yup.object().shape({
   username: Yup.string().required('Required field!').min(5, 'Minimum 5 letters!'),
-  name: Yup.string()
+  fullname: Yup.string()
     .required('Required field!')
     .test('Check name', '2 words of a maximum of 9 characters', (value) => {
       const arr = value.split(' ').filter((val) => val !== '');
