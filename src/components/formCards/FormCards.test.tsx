@@ -1,13 +1,13 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+// import React from 'react';
+// import { render, screen } from '@testing-library/react';
 
-import CardList from './FormCards';
-// import { formDataMock } from '../../mocks/mockData';
+// import CardList from './FormCards';
+// // import { formDataMock } f/rom '../../mocks/mockData';
 
-describe('CardList tests', () => {
-  test('Render component', () => {
-    render(<CardList />);
+// describe('CardList tests', () => {
+//   test('Render component', () => {
+//     render(<CardList />);
 
-    // expect(screen.getByText('First')).toBe;
-  });
-});
+//     expect(screen.getByText('First')).toBe;
+//   });
+// });

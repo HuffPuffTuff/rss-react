@@ -12,7 +12,7 @@ import './form.scss';
 import { capitalizeStr } from '../../utilits/helpers';
 import Modal from '../modal/Modal';
 
-const Forms = () => {
+const Form = () => {
   const dispatch = useDispatch();
   const {
     register,
@@ -187,4 +187,4 @@ const Forms = () => {
   );
 };
 
-export default Forms;
+export default Form;

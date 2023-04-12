@@ -1,8 +1,11 @@
-export const photoCardMock = {
+import { PhotoData } from '../api/unsplashTypes';
+
+export const photoCardMock: PhotoData = {
   id: 'xyZlawddddds',
   likes: 10,
   alt: 'Title',
   color: '#000000',
+  date: 1681243488854,
   urls: {
     small:
       'https://images.unsplash.com/photo-1679679007793-25fa830507c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MzE2NTV8MXwxfGFsbHw2fHx8fHx8Mnx8MTY4MDYyNzYwNQ&ixlib=rb-4.0.3&q=80&w=400',
@@ -25,11 +28,12 @@ export const photoCardMock = {
   },
 };
 
-export const emptyPhotoCardMock = {
+export const emptyPhotoCardMock: PhotoData = {
   id: 'xyZlawdds',
   likes: 10,
   alt: 'Title',
   color: '#20f150',
+  date: 1681243488854,
   urls: {
     small:
       'https://images.unsplash.com/photo-1679679007793-25fa830507c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw0MzE2NTV8MXwxfGFsbHw2fHx8fHx8Mnx8MTY4MDYyNzYwNQ&ixlib=rb-4.0.3&q=80&w=400',

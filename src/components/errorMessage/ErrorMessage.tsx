@@ -4,6 +4,7 @@ import React from 'react';
 const ErrorMessage = () => {
   return (
     <img
+      data-testid="error-message"
       style={{
         display: 'block',
         width: '250px',

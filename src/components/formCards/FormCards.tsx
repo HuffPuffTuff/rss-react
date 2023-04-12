@@ -1,5 +1,5 @@
 import React, { MouseEvent, useState } from 'react';
-import { PhotoData } from '../../types/unsplashTypes';
+import { PhotoData } from '../../api/unsplashTypes';
 import { RootState } from '../../store';
 
 import './formCards.scss';

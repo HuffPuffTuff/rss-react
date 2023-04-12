@@ -1,4 +1,4 @@
-import { PhotoData, Result } from '../types/unsplashTypes';
+import { PhotoData, Result } from '../api/unsplashTypes';
 
 export const _photosTransformer = (value: Result): PhotoData => {
   const { id, urls, likes, user, alt_description, color, created_at } = value;

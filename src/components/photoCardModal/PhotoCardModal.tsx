@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoData } from 'types/unsplashTypes';
+import { PhotoData } from 'api/unsplashTypes';
 
 import Likes from '../icons/likes/Likes';
 
@@ -30,7 +30,7 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
           alt="close"
           onClick={closeModal}
         />
-        <img className="card__image" src={urls.regular} alt={alt} />
+        <img className="card__image" data-testid="modal-image" src={urls.regular} alt={alt} />
         <div className="card__info">
           <div className="card__info-header">
             <p>{name}</p>

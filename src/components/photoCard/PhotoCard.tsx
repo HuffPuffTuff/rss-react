@@ -1,8 +1,9 @@
 import React from 'react';
-import { PhotoData } from 'types/unsplashTypes';
-import './photoCard.scss';
+
+import { PhotoData } from 'api/unsplashTypes';
 import Likes from '../icons/likes/Likes';
 import avatarIcon from '/avatar.jpg';
+import './photoCard.scss';
 
 interface IProps {
   photo: PhotoData;

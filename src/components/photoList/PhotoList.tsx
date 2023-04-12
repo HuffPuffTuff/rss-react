@@ -3,7 +3,7 @@ import Spinner from '../spinner/Spinner';
 
 import './photoList.scss';
 import ErrorMessage from '../errorMessage/ErrorMessage';
-import { PhotoData } from 'types/unsplashTypes';
+import { PhotoData } from 'api/unsplashTypes';
 import PhotoCard from '../photoCard/PhotoCard';
 import Modal from '../modal/Modal';
 import PhotoCardModal from '../photoCardModal/PhotoCardModal';
@@ -36,7 +36,10 @@ const PhotoList = () => {
 
   if (photos.length === 0) {
     return (
-      <p style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}>
+      <p
+        data-testid="no-photos"
+        style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}
+      >
         No photos found! Enter another query!
       </p>
     );
