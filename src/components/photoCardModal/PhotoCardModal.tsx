@@ -18,7 +18,7 @@ interface IProps {
 
 const PhotoCardModal = ({ photo, closeModal }: IProps) => {
   const { user, urls, color, alt, likes, date } = photo;
-  const { avatar, name, bio, location, instagram, twitter } = user;
+  const { avatar, fullname, bio, location, instagram, twitter } = user;
 
   return (
     <>
@@ -33,7 +33,7 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
         <img className="card__image" data-testid="modal-image" src={urls.regular} alt={alt} />
         <div className="card__info">
           <div className="card__info-header">
-            <p>{name}</p>
+            <p>{fullname}</p>
             <img
               width={80}
               style={{ border: `2px solid ${color}` }}
