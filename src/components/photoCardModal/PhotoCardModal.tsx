@@ -3,11 +3,11 @@ import { PhotoData } from 'api/unsplashTypes';
 
 import Likes from '../icons/likes/Likes';
 
-import close from '/close.svg';
-import locationIcon from '/locations.svg';
-import twitterIcon from '/twitter.svg';
-import instagramIcon from '/instagram.svg';
-import avatarIcon from '/avatar.jpg';
+import close from '/images/close.svg';
+import locationIcon from '/images/locations.svg';
+import twitterIcon from '/images/twitter.svg';
+import instagramIcon from '/images/instagram.svg';
+import avatarIcon from '/images/avatar.jpg';
 import './photoCardModal.scss';
 import { getRelativeTimeString } from '../../utilits/helpers';
 
@@ -18,7 +18,7 @@ interface IProps {
 
 const PhotoCardModal = ({ photo, closeModal }: IProps) => {
   const { user, urls, color, alt, likes, date } = photo;
-  const { avatar, name, bio, location, instagram, twitter } = user;
+  const { avatar, fullname, bio, location, instagram, twitter } = user;
 
   return (
     <>
@@ -33,7 +33,7 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
         <img className="card__image" data-testid="modal-image" src={urls.regular} alt={alt} />
         <div className="card__info">
           <div className="card__info-header">
-            <p>{name}</p>
+            <p>{fullname}</p>
             <img
               width={80}
               style={{ border: `2px solid ${color}` }}
