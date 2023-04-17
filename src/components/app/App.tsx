@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppHeader from '../appHeader/AppHeader';
 import Spinner from '../spinner/Spinner';
-import ROUTES from '../../constants/ROUTES';
+import ROUTES from '../../constants/routes';
 
 const Page404 = lazy(() => import('../../pages/page404/Page404'));
 const MainPage = lazy(() => import('../../pages/mainPage/MainPage'));
@@ -28,4 +28,4 @@ const App = () => {
   );
 };
 
-export default App;
+export { App };

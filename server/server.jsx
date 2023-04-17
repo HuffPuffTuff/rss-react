@@ -1,11 +1,16 @@
 import path from 'path';
-import Express from 'express';
+import fs from 'fs';
+
 import React from 'react';
 import { Provider } from 'react-redux';
+import Express from 'express';
 import compression from 'compression';
+import { renderToString } from 'react-dom/server';
 
 const isProd = process.env.NODE_ENV === 'production';
 const root = `${__dirname}/..`;
+
+import { App } from '../src/components';
 
 const startServer = async () => {
   const app = Express();
@@ -31,10 +36,21 @@ const startServer = async () => {
   }
 
   app.get('/*', async (req, res) => {
-    // const isPage;
+    fs.readFile(path.resolve(__dirname, 'index.html'), 'utf-8', (err, data) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('An error occurred');
+      } else {
+        return res.send(
+          data.replace('<div id="root"></div>', `<div id="root">${renderToString(<App />)}</div>`)
+        );
+      }
+    });
   });
 
   app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}! `);
   });
 };
+
+startServer();

@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "npm run server",
+    "build": "vite build --outDir dist/client",
+    "build:server": "vite build /server/server.jsx",
     "preview": "vite preview",
     "lint": "eslint --ext js,ts,tsx src",
     "prettier": "prettier --write src",
@@ -22,6 +23,7 @@
     "react-router-dom": "^6.9.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "ts-node": "^10.9.1",
     "uuid": "^9.0.0",
     "whatwg-fetch": "^3.6.2",
     "yup": "^1.0.2"
