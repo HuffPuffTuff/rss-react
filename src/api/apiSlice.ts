@@ -3,8 +3,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SearchData } from './unsplashTypes';
 import { _photosTransformer } from '../utilits/helpers';
 
-const apiKey = 'client_id=JAJNLiC6qI3v8XCOk1DuKZX3TrAP68Htxoc93Y6ACNY';
-
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.unsplash.com' }),
@@ -13,9 +11,22 @@ export const apiSlice = createApi({
     searchPhotos: builder.query<PhotoData[], string>({
       query: (searchValue: string) => {
         if (!!searchValue) {
-          return `/search/photos/?query=${searchValue}&per_page=20&${apiKey}`;
+          return {
+            url: `/search/photos/`,
+            params: {
+              query: searchValue,
+              per_page: 20,
+              client_id: import.meta.env.VITE_UNSPLASH_KEY /* <insert token here>*/,
+            },
+          };
         }
-        return `/photos/?per_page=20&${apiKey}`;
+        return {
+          url: `/photos`,
+          params: {
+            per_page: 20,
+            client_id: import.meta.env.VITE_UNSPLASH_KEY,
+          },
+        };
       },
 
       transformResponse: (response: SearchData | Result[]) => {

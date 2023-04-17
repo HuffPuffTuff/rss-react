@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AppHeader from '../appHeader/AppHeader';
 import Spinner from '../spinner/Spinner';
-import './app.scss';
+import ROUTES from '../../constants/ROUTES';
 
 const Page404 = lazy(() => import('../../pages/page404/Page404'));
 const MainPage = lazy(() => import('../../pages/mainPage/MainPage'));
@@ -12,19 +12,18 @@ const FormsPage = lazy(() => import('../../pages/formsPage/FormsPage'));
 const App = () => {
   return (
     <Router>
-      <div className="app">
-        <AppHeader />
-        <main>
-          <Suspense fallback={<Spinner />}>
-            <Routes>
-              <Route path="/" element={<MainPage />} />
-              <Route path="/about-us" element={<AboutUs />} />
-              <Route path="/forms" element={<FormsPage />} />
-              <Route path="*" element={<Page404 />} />
-            </Routes>
-          </Suspense>
-        </main>
-      </div>
+      <AppHeader />
+      <main>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route path={ROUTES.MAIN} element={<MainPage />} />
+            <Route path={ROUTES.ABOUT} element={<AboutUs />} />
+            <Route path={ROUTES.FORM} element={<FormsPage />} />
+            <Route path="*" element={<Page404 />} />
+            <Route path={ROUTES.NOT_FOUND} element={<Page404 />} />
+          </Routes>
+        </Suspense>
+      </main>
     </Router>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import gitHubLogo from '/github.svg';
-import rssLogo from '/rss-logo.svg';
+import gitHubLogo from '/images/github.svg';
+import rssLogo from '/images/rss-logo.svg';
 import './aboutUs.scss';
 
 const AboutUs = () => {
