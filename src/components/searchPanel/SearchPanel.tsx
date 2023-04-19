@@ -1,4 +1,4 @@
-import React, { FormEvent, useRef } from 'react';
+import React, { FormEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './searchPanel.scss';
 
@@ -15,6 +15,13 @@ const SearchPanel = () => {
     e.preventDefault();
     dispatch(searchValueChanged(searchRef.current));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(searchValueChanged(searchRef.current));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <form aria-label="search-form" className="search-panel" onSubmit={handleSubmit}>
