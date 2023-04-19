@@ -3,9 +3,8 @@ import { PhotoData } from '../../api/unsplashTypes';
 import { RootState } from '../../store';
 
 import './formCards.scss';
-import PhotoCard from '../photoCard/PhotoCard';
-import Modal from '../modal/Modal';
-import PhotoCardModal from '../photoCardModal/PhotoCardModal';
+import { PhotoCard, Modal, PhotoCardModal } from '../';
+
 import { useSelector } from 'react-redux';
 
 const FormCards = () => {
@@ -55,4 +54,4 @@ const FormCards = () => {
   );
 };
 
-export default FormCards;
+export { FormCards };

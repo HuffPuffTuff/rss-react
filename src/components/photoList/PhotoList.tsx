@@ -1,12 +1,8 @@
 import React, { useState, MouseEvent } from 'react';
-import Spinner from '../spinner/Spinner';
 
 import './photoList.scss';
-import ErrorMessage from '../errorMessage/ErrorMessage';
+import { ErrorMessage, Spinner, PhotoCard, Modal, PhotoCardModal } from '../';
 import { PhotoData } from 'api/unsplashTypes';
-import PhotoCard from '../photoCard/PhotoCard';
-import Modal from '../modal/Modal';
-import PhotoCardModal from '../photoCardModal/PhotoCardModal';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useSearchPhotosQuery } from '../../api/apiSlice';
@@ -65,4 +61,4 @@ const PhotoList = () => {
   );
 };
 
-export default PhotoList;
+export { PhotoList };

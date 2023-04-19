@@ -6,11 +6,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { cardAdded } from '../formCards/formCardsSlice';
 import { schema, schemaType } from '../../utilits/yupSchema';
-import UploadFileIcon from '../icons/uploadFileIcon/UploadFileIcon';
-import FormErrorMessage from '../formErrorMessage/FormErrorMessage';
+import { UploadFileIcon, FormErrorMessage, Modal } from '../';
+
 import './form.scss';
 import { capitalizeStr } from '../../utilits/helpers';
-import Modal from '../modal/Modal';
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -186,4 +185,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export { Form };

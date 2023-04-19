@@ -1,7 +1,8 @@
-import SearchIcon from '../icons/searchIcon/SearchIcon';
 import React, { FormEvent, useRef } from 'react';
-import './searchPanel.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import './searchPanel.scss';
+
+import { SearchIcon } from '../';
 import { RootState } from '../../store';
 import { searchValueChanged } from './searchPanelSlice';
 
@@ -37,4 +38,4 @@ const SearchPanel = () => {
   );
 };
 
-export default SearchPanel;
+export { SearchPanel };

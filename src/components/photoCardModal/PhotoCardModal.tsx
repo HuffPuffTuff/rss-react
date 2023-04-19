@@ -1,7 +1,7 @@
 import React from 'react';
 import { PhotoData } from 'api/unsplashTypes';
 
-import Likes from '../icons/likes/Likes';
+import { Likes } from '../';
 
 import close from '/images/close.svg';
 import locationIcon from '/images/locations.svg';
@@ -79,4 +79,4 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
   );
 };
 
-export default PhotoCardModal;
+export { PhotoCardModal };

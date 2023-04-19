@@ -12,4 +12,4 @@ const FormErrorMessage = ({ message }: Props) => {
   ) : null;
 };
 
-export default FormErrorMessage;
+export { FormErrorMessage };

@@ -20,4 +20,4 @@ const SearchIcon = (): JSX.Element => {
   );
 };
 
-export default SearchIcon;
+export { SearchIcon };

@@ -1,9 +1,8 @@
-import React, { lazy, useEffect } from 'react';
+import { ErrorMessage } from '../../components';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './page404.scss';
-
-const ErrorMessage = lazy(() => import('../../components/errorMessage/ErrorMessage'));
 
 const Page404 = () => {
   useEffect(() => {
@@ -20,4 +19,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export { Page404 };

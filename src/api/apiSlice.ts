@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SearchData } from './unsplashTypes';
 import { _photosTransformer } from '../utilits/helpers';
 
-export const apiSlice = createApi({
+export const unsplashApi = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({ baseUrl: 'https://api.unsplash.com' }),
   tagTypes: ['Photos'],
@@ -41,4 +41,4 @@ export const apiSlice = createApi({
   }),
 });
 
-export const { useSearchPhotosQuery } = apiSlice;
+export const { useSearchPhotosQuery } = unsplashApi;

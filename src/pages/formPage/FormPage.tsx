@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import Form from '../../components/form/Form';
-import CardList from '../../components/formCards/FormCards';
-import './formsPage.scss';
+import { Form, FormCards } from '../../components';
 
-const FormsPage = () => {
+import './formPage.scss';
+
+const FormPage = () => {
   useEffect(() => {
     document.title = 'React-App Form';
   }, []);
@@ -11,9 +11,9 @@ const FormsPage = () => {
   return (
     <div className="forms__page" data-testid="forms-page">
       <Form />
-      <CardList />
+      <FormCards />
     </div>
   );
 };
 
-export default FormsPage;
+export { FormPage };

@@ -15,4 +15,4 @@ const UploadFileIcon = () => {
   );
 };
 
-export default UploadFileIcon;
+export { UploadFileIcon };

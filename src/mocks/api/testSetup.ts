@@ -1,6 +1,6 @@
 import setupStore from '../../store';
 import { server } from './server';
-import { apiSlice } from '../../api/apiSlice';
+import { unsplashApi } from '../../api/apiSlice';
 
 const store = setupStore({});
 
@@ -11,7 +11,7 @@ beforeAll(() => {
 afterEach(() => {
   server.resetHandlers();
 
-  store.dispatch(apiSlice.util.resetApiState());
+  store.dispatch(unsplashApi.util.resetApiState());
 });
 
 afterAll(() => server.close());

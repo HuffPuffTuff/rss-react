@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
 
-import renderWithProviders from '../../utilits/test/test-utulits';
+import renderWithProviders from './utilits/test/test-utulits';
 import App from './App';
 
 jest.mock('react-router-dom', () => ({

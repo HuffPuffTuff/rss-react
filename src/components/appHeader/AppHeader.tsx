@@ -1,3 +1,4 @@
+import ROUTES from '../../constants/routes';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './appHeader.scss';
@@ -6,22 +7,22 @@ const AppHeader = () => {
   return (
     <header className="app__header" data-testid="header">
       <h1 className="app__title">
-        <Link to="/">React App</Link>
+        <Link to={ROUTES.MAIN}>React App</Link>
       </h1>
       <nav className="app__menu">
         <ul>
           <li>
-            <NavLink end to="/">
+            <NavLink end to={ROUTES.MAIN}>
               Search
             </NavLink>
           </li>
           <li>
-            <NavLink end to="/forms">
+            <NavLink end to={ROUTES.FORM}>
               Form
             </NavLink>
           </li>
           <li>
-            <NavLink end to="/about-us">
+            <NavLink end to={ROUTES.ABOUT}>
               About us
             </NavLink>
           </li>
@@ -31,4 +32,4 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+export { AppHeader };

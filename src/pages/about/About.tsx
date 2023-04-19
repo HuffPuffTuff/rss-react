@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import gitHubLogo from '/images/github.svg';
 import rssLogo from '/images/rss-logo.svg';
-import './aboutUs.scss';
+import './about.scss';
 
-const AboutUs = () => {
+const About = () => {
   useEffect(() => {
     document.title = 'About Us';
   }, []);
@@ -20,4 +20,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export { About };

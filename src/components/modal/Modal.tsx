@@ -15,4 +15,4 @@ const Modal = ({ children, closeModal, show }: IProps) => {
   ) : null;
 };
 
-export default Modal;
+export { Modal };

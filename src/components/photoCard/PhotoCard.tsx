@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PhotoData } from 'api/unsplashTypes';
-import Likes from '../icons/likes/Likes';
+import { Likes } from '../';
 import avatarIcon from '/images/avatar.jpg';
 import './photoCard.scss';
 
@@ -32,4 +32,4 @@ const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
   );
 };
 
-export default PhotoCard;
+export { PhotoCard };

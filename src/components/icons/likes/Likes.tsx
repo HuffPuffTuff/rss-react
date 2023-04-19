@@ -16,4 +16,4 @@ const Likes = ({ likes }: Props) => {
   );
 };
 
-export default Likes;
+export { Likes };

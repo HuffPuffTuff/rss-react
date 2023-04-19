@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import SearchPanel from '../../components/searchPanel/SearchPanel';
-import PhotoList from '../../components/photoList/PhotoList';
+import { SearchPanel, PhotoList } from '../../components';
 
 const MainPage = () => {
   useEffect(() => {
@@ -15,4 +14,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export { MainPage };

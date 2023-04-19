@@ -18,4 +18,4 @@ const ErrorMessage = () => {
   );
 };
 
-export default ErrorMessage;
+export { ErrorMessage };
