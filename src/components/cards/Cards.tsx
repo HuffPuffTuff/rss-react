@@ -1,6 +1,6 @@
 import { Modal, Card, CardModal } from '../';
 import React, { useState, MouseEvent } from 'react';
-import { PhotoData } from '../../redux/api/unsplashTypes';
+import { PhotoData } from '../../types/unsplashTypes';
 
 interface Props {
   cards: PhotoData[];

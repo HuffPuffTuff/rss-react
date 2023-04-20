@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PhotoData } from 'redux/api/unsplashTypes';
+import { PhotoData } from 'types/unsplashTypes';
 import { Likes } from '../';
 import avatarIcon from '/images/avatar.jpg';
 import './card.scss';

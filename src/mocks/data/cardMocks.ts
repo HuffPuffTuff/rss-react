@@ -1,6 +1,6 @@
-import { PhotoData } from '../redux/api/unsplashTypes';
+import { PhotoData } from '../../types/unsplashTypes';
 
-export const photoCardMock: PhotoData = {
+export const cardMock: PhotoData = {
   id: 'xyZlawddddds',
   likes: 10,
   alt: 'Title',
@@ -28,7 +28,7 @@ export const photoCardMock: PhotoData = {
   },
 };
 
-export const emptyPhotoCardMock: PhotoData = {
+export const emptyCardMock: PhotoData = {
   id: 'xyZlawdds',
   likes: 10,
   alt: 'Title',
@@ -44,10 +44,8 @@ export const emptyPhotoCardMock: PhotoData = {
     username: 'qwerty',
     fullname: 'qwerty qwerty',
     avatar: {
-      small:
-        'https://images.unsplash.com/profile-1557251674406-effb9d313841?ixlib=rb-4.0.3&crop=faces&fit=crop&w=32&h=32',
-      large:
-        'https://images.unsplash.com/profile-1557251674406-effb9d313841?ixlib=rb-4.0.3&crop=faces&fit=crop&w=128&h=128',
+      small: '',
+      large: '',
     },
     bio: null,
     location: null,
@@ -56,4 +54,4 @@ export const emptyPhotoCardMock: PhotoData = {
   },
 };
 
-export const photoCardsMock = [photoCardMock, emptyPhotoCardMock];
+export const cardsMock = [cardMock, emptyCardMock];

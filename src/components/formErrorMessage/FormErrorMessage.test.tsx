@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import FormErrorMessage from './FormErrorMessage';
+import { test, expect, describe } from 'vitest';
+
+import { FormErrorMessage } from './FormErrorMessage';
 
 describe('FormErrorMessage tests', () => {
   test('Render component', () => {

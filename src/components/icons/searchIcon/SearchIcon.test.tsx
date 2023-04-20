@@ -1,9 +1,10 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import SearchIcon from './SearchIcon';
+import { render } from '@testing-library/react';
+import { SearchIcon } from './SearchIcon';
+import { test, expect } from 'vitest';
 
 test('Render icon', () => {
-  render(<SearchIcon />);
+  const { getByTestId } = render(<SearchIcon />);
 
-  expect(screen.getByTestId('search-icon')).toBe;
+  expect(getByTestId('search-icon')).toBe;
 });

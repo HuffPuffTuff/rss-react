@@ -8,6 +8,7 @@ const Page404 = () => {
   useEffect(() => {
     document.title = 'Page not found';
   }, []);
+
   return (
     <div className="page-404">
       <ErrorMessage />

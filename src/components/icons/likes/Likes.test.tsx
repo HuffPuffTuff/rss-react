@@ -1,12 +1,13 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { test, expect } from 'vitest';
 
-import Likes from './Likes';
+import { Likes } from './Likes';
 
 test('Likes component render', () => {
   const likes = 10;
 
-  render(<Likes likes={likes} />);
+  const { getByText } = render(<Likes likes={likes} />);
 
-  expect(screen.getByText(10)).toBe;
+  expect(getByText(10)).toBe;
 });

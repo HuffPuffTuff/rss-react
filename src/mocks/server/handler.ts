@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import { basicResponse, emptySearchResponse } from './responseMock';
+import { basicResponse, emptySearchResponse } from '../data/responseMock';
 
 const photosUrl = 'https://api.unsplash.com/photos';
 const searchUrl = 'https://api.unsplash.com/search/photos/';

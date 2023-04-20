@@ -1,12 +1,12 @@
 import 'whatwg-fetch';
 import React from 'react';
 import { act } from '@testing-library/react';
+import { test, expect, describe, vi } from 'vitest';
 
-import '../../mocks/api/testSetup';
 import renderWithProviders from '../../utilits/test/test-utulits';
 import { FormPage } from './FormPage';
 
-global.URL.createObjectURL = jest.fn();
+global.URL.createObjectURL = vi.fn();
 
 describe('FormsPage component tests', () => {
   test('Render component', async () => {

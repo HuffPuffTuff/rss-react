@@ -2,10 +2,11 @@ import React from 'react';
 import 'whatwg-fetch';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { describe, test, expect, vi } from 'vitest';
 
 import renderWithProviders from '../../utilits/test/test-utulits';
-import '../../mocks/api/testSetup';
-import Form from './Form';
+
+import { Form } from './Form';
 
 const setup = (jsx: JSX.Element) => {
   return {
@@ -14,7 +15,7 @@ const setup = (jsx: JSX.Element) => {
   };
 };
 
-global.URL.createObjectURL = jest.fn();
+global.URL.createObjectURL = vi.fn();
 
 describe('Forms component tests', () => {
   test('render component', () => {

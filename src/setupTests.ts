@@ -1,6 +1,6 @@
-import setupStore from '../../redux/setupStore';
-import { server } from './server';
-import { unsplashApi } from '../../redux/api/apiSlice';
+import { setupStore } from './redux/setupStore';
+import { server } from './mocks/server/server';
+import { unsplashApi } from './redux/api/apiSlice';
 
 const store = setupStore({});
 

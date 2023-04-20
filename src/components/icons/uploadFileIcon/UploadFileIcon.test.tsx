@@ -1,9 +1,10 @@
 import React from 'react';
-import UploadFileIcon from './UploadFileIcon';
-import { render, screen } from '@testing-library/react';
+import { UploadFileIcon } from './UploadFileIcon';
+import { render } from '@testing-library/react';
+import { test, expect } from 'vitest';
 
 test('Render icon', () => {
-  render(<UploadFileIcon />);
+  const { getByTestId } = render(<UploadFileIcon />);
 
-  expect(screen.getByTestId('upload-icon')).toBe;
+  expect(getByTestId('upload-icon')).toBe;
 });

@@ -1,10 +1,10 @@
 import React from 'react';
 import 'whatwg-fetch';
 import { act, fireEvent } from '@testing-library/react';
+import { describe, test, expect } from 'vitest';
 
-import '../../mocks/api/testSetup';
 import renderWithProviders from '../../utilits/test/test-utulits';
-import SearchPanel from './SearchPanel';
+import { SearchPanel } from './SearchPanel';
 
 describe('SearchPanel tests', () => {
   test('checking for changes in rendering input data', async () => {

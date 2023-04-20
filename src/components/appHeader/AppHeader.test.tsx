@@ -1,17 +1,18 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { test, vi } from 'vitest';
 
-import AppHeader from './AppHeader';
-
-jest.mock('react-router-dom', () => ({
-  Link: jest.fn().mockImplementation(({ children }) => children),
-  NavLink: jest.fn().mockImplementation(({ children }) => children),
+vi.mock('react-router-dom', () => ({
+  Link: vi.fn().mockImplementation(({ children }) => children),
+  NavLink: vi.fn().mockImplementation(({ children }) => children),
 }));
 
-test('Render AppHeader component', () => {
-  render(<AppHeader />);
+import { AppHeader } from './AppHeader';
 
-  expect(screen.getAllByText(/Search/i)).toBe;
-  expect(screen.getAllByText(/Form/i)).toBe;
-  expect(screen.getAllByText(/About us/i)).toBe;
+test('Render AppHeader component', () => {
+  const { getAllByText } = render(<AppHeader />);
+
+  expect(getAllByText(/Search/i)).toBe;
+  expect(getAllByText(/Form/i)).toBe;
+  expect(getAllByText(/About us/i)).toBe;
 });

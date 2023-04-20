@@ -1,7 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { test, expect, describe } from 'vitest';
 
-import Modal from './Modal';
+import { Modal } from './Modal';
 
 describe('Modal component tests', () => {
   test('Render component', () => {
