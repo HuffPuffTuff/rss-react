@@ -1,8 +1,6 @@
 import React from 'react';
 import heart from '/images/heart.svg';
 
-import './likes.scss';
-
 interface Props {
   likes: number;
 }

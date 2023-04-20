@@ -12,7 +12,7 @@ import './styles/styles.scss';
 hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
-    <Provider store={setupStore(window.__PRELOADED_STATE__)}>
+    <Provider store={setupStore()}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

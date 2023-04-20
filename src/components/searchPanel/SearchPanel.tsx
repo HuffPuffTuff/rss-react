@@ -1,6 +1,5 @@
 import React, { FormEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './searchPanel.scss';
 
 import { SearchIcon } from '../';
 import { RootState } from '../../redux/setupStore';

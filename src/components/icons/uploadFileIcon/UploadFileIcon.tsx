@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './uploadFileIcon.scss';
-
 const UploadFileIcon = () => {
   return (
     <svg

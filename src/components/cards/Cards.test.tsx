@@ -14,9 +14,11 @@ const setup = (jsx: JSX.Element) => {
 };
 
 describe('Cards component test', () => {
+  const styles = { page: 'main-cards' };
+
   test('Render component with data', async () => {
     const { container, getAllByTestId, getByLabelText, user, getByTestId } = setup(
-      <Cards cards={cardsMock} message="not found" />
+      <Cards cards={cardsMock} message="not found" styles={styles} />
     );
     const cards = getAllByTestId('photoCard');
     expect(cards).toHaveLength(2);
@@ -29,7 +31,7 @@ describe('Cards component test', () => {
     expect(container.querySelector('modal')).toBe(null);
   });
   test('Render component with empty data ', async () => {
-    const { getByTestId } = render(<Cards cards={[]} message="not found" />);
+    const { getByTestId } = render(<Cards cards={[]} message="not found" styles={styles} />);
 
     expect(getByTestId('no-photos')).toBe;
   });

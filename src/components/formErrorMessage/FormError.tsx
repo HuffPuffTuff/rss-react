@@ -4,7 +4,7 @@ interface Props {
   message: string | undefined;
 }
 
-const FormErrorMessage = ({ message }: Props) => {
+const FormError = ({ message }: Props) => {
   return message ? (
     <p className="form__error" role="alert">
       {message}
@@ -12,4 +12,4 @@ const FormErrorMessage = ({ message }: Props) => {
   ) : null;
 };
 
-export { FormErrorMessage };
+export { FormError };

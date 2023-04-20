@@ -1,13 +1,17 @@
 import { Modal, Card, CardModal } from '../';
 import React, { useState, MouseEvent } from 'react';
 import { PhotoData } from '../../types/unsplashTypes';
+import classNames from 'classnames';
 
 interface Props {
   cards: PhotoData[];
   message: string;
+  styles: {
+    page: string;
+  };
 }
 
-const Cards = ({ cards, message }: Props) => {
+const Cards = ({ cards, message, styles }: Props) => {
   const [activeCard, setActiveCard] = useState<PhotoData | null>(null);
 
   const onCardSelected = (photo: PhotoData) => {
@@ -38,14 +42,14 @@ const Cards = ({ cards, message }: Props) => {
       return <Card onPhotoSelected={onCardSelected} photo={item} key={item.id} />;
     });
 
-    return <ul className="cards__grid">{items}</ul>;
+    return <ul className={classNames('cards', styles.page)}>{items}</ul>;
   };
 
   const elements = renderItems(cards);
 
   return (
     <>
-      <div className="cards">{elements}</div>
+      {elements}
       <Modal show={!!activeCard} closeModal={closeModal}>
         {activeCard ? <CardModal closeModal={closeModal} photo={activeCard} /> : null}
       </Modal>

@@ -3,20 +3,23 @@ import { useSelector } from 'react-redux';
 
 import { Cards, Form } from '../../components';
 import { RootState } from '../../redux/setupStore';
-import './formPage.scss';
 
 const FormPage = () => {
-  const cards = useSelector((state: RootState) => state.forms.formCards);
+  const { formCards } = useSelector((state: RootState) => state.forms);
   const message = 'No cards found! Submit your first form!';
+
+  const styles = {
+    page: 'form-cards',
+  };
 
   useEffect(() => {
     document.title = 'React-App Form';
   }, []);
 
   return (
-    <div className="forms__page" data-testid="forms-page">
+    <div className="form-page" data-testid="forms-page">
       <Form />
-      <Cards cards={cards} message={message} />
+      <Cards cards={formCards} message={message} styles={styles} />
     </div>
   );
 };

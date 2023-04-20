@@ -1,8 +1,6 @@
-import { ErrorMessage } from '../../components';
+import { ErrorMessage, PageMessage } from '../../components';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import './page404.scss';
 
 const Page404 = () => {
   useEffect(() => {
@@ -10,9 +8,9 @@ const Page404 = () => {
   }, []);
 
   return (
-    <div className="page-404">
+    <div className="page404">
       <ErrorMessage />
-      <p>Page doesn&apos;t exist!</p>
+      <PageMessage message={`Page doesn't exist!`} />
       <Link className="link" to="/">
         Back to main page
       </Link>

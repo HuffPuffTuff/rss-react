@@ -6,9 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { cardAdded } from '../../redux/slices/formPageSlice';
 import { schema, schemaType } from '../../utilits/yupSchema';
-import { UploadFileIcon, FormErrorMessage, Modal } from '../';
+import { UploadFileIcon, FormError, Modal } from '../';
 
-import './form.scss';
 import { capitalizeStr } from '../../utilits/helpers';
 
 const Form = () => {
@@ -79,7 +78,7 @@ const Form = () => {
               <input type="text" {...register('username')} maxLength={12} />
               Username *
             </label>
-            <FormErrorMessage message={errors.username?.message} />
+            <FormError message={errors.username?.message} />
           </div>
 
           <div className="form__item">
@@ -87,7 +86,7 @@ const Form = () => {
               <input type="text" {...register('fullname')} maxLength={19} />
               Full Name *
             </label>
-            <FormErrorMessage message={errors.fullname?.message} />
+            <FormError message={errors.fullname?.message} />
           </div>
 
           <div className="form__item">
@@ -95,7 +94,7 @@ const Form = () => {
               <input type="date" {...register('date')} role="date" />
               Date of creation *
             </label>
-            <FormErrorMessage message={errors.date?.message} />
+            <FormError message={errors.date?.message} />
           </div>
 
           <div className="form__item">
@@ -159,7 +158,7 @@ const Form = () => {
               <span className="upload-file__text">Choose image</span>
             </label>
           </div>
-          <FormErrorMessage message={errors.files?.message} />
+          <FormError message={errors.files?.message} />
 
           <div className="form__item">
             <label>
@@ -167,7 +166,7 @@ const Form = () => {
               Do you agree with the privacy policy?
             </label>
 
-            <FormErrorMessage message={errors.terms?.message} />
+            <FormError message={errors.terms?.message} />
           </div>
         </div>
 

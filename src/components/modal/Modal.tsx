@@ -1,5 +1,4 @@
 import React, { MouseEvent } from 'react';
-import './modal.scss';
 
 interface IProps {
   children: JSX.Element | null;

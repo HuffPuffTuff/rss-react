@@ -1,27 +1,26 @@
 import ROUTES from '../../constants/routes';
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import './appHeader.scss';
 
 const AppHeader = () => {
   return (
-    <header className="app__header" data-testid="header">
-      <h1 className="app__title">
+    <header className="header" data-testid="header">
+      <h1 className="header__logo">
         <Link to={ROUTES.MAIN}>React App</Link>
       </h1>
-      <nav className="app__menu">
-        <ul>
-          <li>
+      <nav>
+        <ul className="header__menu">
+          <li className="header__menu-item">
             <NavLink end to={ROUTES.MAIN}>
               Search
             </NavLink>
           </li>
-          <li>
+          <li className="header__menu-item">
             <NavLink end to={ROUTES.FORM}>
               Form
             </NavLink>
           </li>
-          <li>
+          <li className="header__menu-item">
             <NavLink end to={ROUTES.ABOUT}>
               About us
             </NavLink>

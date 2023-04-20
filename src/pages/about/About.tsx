@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import gitHubLogo from '/images/github.svg';
 import rssLogo from '/images/rss-logo.svg';
-import './about.scss';
 
 const About = () => {
   useEffect(() => {
@@ -9,7 +8,7 @@ const About = () => {
   }, []);
   const style = { height: '200px' };
   return (
-    <div className="about-us" data-testid="about-us">
+    <div className="about" data-testid="about-us">
       <a href="https://rs.school/">
         <img style={style} src={gitHubLogo} alt="github logo" />
       </a>

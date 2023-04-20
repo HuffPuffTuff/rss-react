@@ -9,7 +9,10 @@ const MainPage = () => {
   const searchValue = useSelector(({ search }: RootState) => search.value);
   const { data: photos = [], isError, isLoading, isFetching } = useSearchPhotosQuery(searchValue);
 
-  const message = '';
+  const message = 'Cards not found!';
+  const styles = {
+    page: 'main-cards',
+  };
 
   useEffect(() => {
     document.title = 'React-App Search';
@@ -19,7 +22,11 @@ const MainPage = () => {
     <>
       <SearchPanel />
       {isError && <ErrorMessage />}
-      {isLoading || isFetching ? <Spinner /> : <Cards cards={photos} message={message} />}
+      {isLoading || isFetching ? (
+        <Spinner />
+      ) : (
+        <Cards cards={photos} message={message} styles={styles} />
+      )}
     </>
   );
 };

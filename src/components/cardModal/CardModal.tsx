@@ -8,7 +8,6 @@ import locationIcon from '/images/locations.svg';
 import twitterIcon from '/images/twitter.svg';
 import instagramIcon from '/images/instagram.svg';
 import avatarIcon from '/images/avatar.jpg';
-import './cardModal.scss';
 import { getRelativeTimeString } from '../../utilits/helpers';
 
 interface IProps {
