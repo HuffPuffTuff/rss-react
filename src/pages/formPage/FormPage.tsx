@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
-import { Form, FormCards } from '../../components';
+import { useSelector } from 'react-redux';
 
+import { Cards, Form } from '../../components';
+import { RootState } from '../../redux/setupStore';
 import './formPage.scss';
 
 const FormPage = () => {
+  const cards = useSelector((state: RootState) => state.forms.formCards);
+  const message = 'No cards found! Submit your first form!';
+
   useEffect(() => {
     document.title = 'React-App Form';
   }, []);
@@ -11,7 +16,7 @@ const FormPage = () => {
   return (
     <div className="forms__page" data-testid="forms-page">
       <Form />
-      <FormCards />
+      <Cards cards={cards} message={message} />
     </div>
   );
 };

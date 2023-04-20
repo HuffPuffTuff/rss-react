@@ -1,16 +1,16 @@
 import React from 'react';
 
-import { PhotoData } from 'api/unsplashTypes';
+import { PhotoData } from 'redux/api/unsplashTypes';
 import { Likes } from '../';
 import avatarIcon from '/images/avatar.jpg';
-import './photoCard.scss';
+import './card.scss';
 
 interface IProps {
   photo: PhotoData;
   onPhotoSelected: (photo: PhotoData) => void;
 }
 
-const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
+const Card = ({ photo, onPhotoSelected }: IProps) => {
   const { urls, alt, likes, user } = photo;
   const { avatar, username } = user;
 
@@ -19,17 +19,17 @@ const PhotoCard = ({ photo, onPhotoSelected }: IProps) => {
   };
 
   return (
-    <li data-testid="photoCard" className="photo__item" onClick={handleClick}>
-      <div className="photo__item-header">
+    <li data-testid="photoCard" className="cards__item" onClick={handleClick}>
+      <div className="cards__item-header">
         <Likes likes={likes} />
-        <div className="photo__item-user">
+        <div className="cards__item-user">
           <span>{username}</span>
           <img width={32} src={avatar.small || avatarIcon} alt="avatar" />
         </div>
       </div>
-      <img src={urls.small} className="photo__item-img" alt={alt}></img>
+      <img src={urls.small} className="cards__item-img" alt={alt}></img>
     </li>
   );
 };
 
-export { PhotoCard };
+export { Card };

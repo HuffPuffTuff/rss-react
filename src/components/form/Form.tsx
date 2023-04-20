@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { v4 as uuidv4 } from 'uuid';
 
-import { cardAdded } from '../formCards/formCardsSlice';
+import { cardAdded } from '../../redux/slices/formPageSlice';
 import { schema, schemaType } from '../../utilits/yupSchema';
 import { UploadFileIcon, FormErrorMessage, Modal } from '../';
 

@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import './searchPanel.scss';
 
 import { SearchIcon } from '../';
-import { RootState } from '../../store';
-import { searchValueChanged } from './searchPanelSlice';
+import { RootState } from '../../redux/setupStore';
+import { searchValueChanged } from '../../redux/slices/searchPanelSlice';
 
 const SearchPanel = () => {
   const searchValue = useSelector(({ search }: RootState) => search.value);

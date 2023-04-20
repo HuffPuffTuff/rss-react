@@ -1,9 +1,9 @@
 import React, { MouseEvent, useState } from 'react';
-import { PhotoData } from '../../api/unsplashTypes';
-import { RootState } from '../../store';
+import { PhotoData } from '../../redux/api/unsplashTypes';
+import { RootState } from '../../redux/setupStore';
 
 import './formCards.scss';
-import { PhotoCard, Modal, PhotoCardModal } from '../';
+import { Card, Modal, CardModal } from '../';
 
 import { useSelector } from 'react-redux';
 
@@ -33,7 +33,7 @@ const FormCards = () => {
 
   const renderCards = (arr: PhotoData[]): JSX.Element => {
     const items = arr.map((item) => {
-      return <PhotoCard onPhotoSelected={onPhotoSelected} photo={item} key={item.id} />;
+      return <Card onPhotoSelected={onPhotoSelected} photo={item} key={item.id} />;
     });
 
     return <ul className="form-cards__grid">{items}</ul>;
@@ -48,7 +48,7 @@ const FormCards = () => {
         {elements}
       </div>
       <Modal show={!!photo} closeModal={closeModal}>
-        {photo ? <PhotoCardModal closeModal={closeModal} photo={photo} /> : null}
+        {photo ? <CardModal closeModal={closeModal} photo={photo} /> : null}
       </Modal>
     </>
   );

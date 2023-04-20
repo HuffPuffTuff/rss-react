@@ -3,7 +3,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 
-import { AppStore, setupStore } from './store';
+import { AppStore, setupStore } from './redux/setupStore';
 import App from './App';
 import './styles/styles.scss';
 

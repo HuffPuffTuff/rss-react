@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react';
-import { SearchPanel, PhotoList } from '../../components';
+import { useSelector } from 'react-redux';
+
+import { useSearchPhotosQuery } from '../../redux/api/apiSlice';
+import { RootState } from '../../redux/setupStore';
+import { SearchPanel, Cards, ErrorMessage, Spinner } from '../../components';
 
 const MainPage = () => {
+  const searchValue = useSelector(({ search }: RootState) => search.value);
+  const { data: photos = [], isError, isLoading, isFetching } = useSearchPhotosQuery(searchValue);
+
+  const message = '';
+
   useEffect(() => {
     document.title = 'React-App Search';
   }, []);
@@ -9,7 +18,8 @@ const MainPage = () => {
   return (
     <>
       <SearchPanel />
-      <PhotoList />
+      {isError && <ErrorMessage />}
+      {isLoading || isFetching ? <Spinner /> : <Cards cards={photos} message={message} />}
     </>
   );
 };

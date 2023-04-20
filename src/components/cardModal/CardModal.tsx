@@ -1,14 +1,14 @@
 import React from 'react';
-import { PhotoData } from 'api/unsplashTypes';
+import { PhotoData } from 'redux/api/unsplashTypes';
 
-import { Likes } from '../';
+import { Likes } from '..';
 
 import close from '/images/close.svg';
 import locationIcon from '/images/locations.svg';
 import twitterIcon from '/images/twitter.svg';
 import instagramIcon from '/images/instagram.svg';
 import avatarIcon from '/images/avatar.jpg';
-import './photoCardModal.scss';
+import './cardModal.scss';
 import { getRelativeTimeString } from '../../utilits/helpers';
 
 interface IProps {
@@ -16,7 +16,7 @@ interface IProps {
   closeModal: (e: React.MouseEvent) => void;
 }
 
-const PhotoCardModal = ({ photo, closeModal }: IProps) => {
+const CardModal = ({ photo, closeModal }: IProps) => {
   const { user, urls, color, alt, likes, date } = photo;
   const { avatar, fullname, bio, location, instagram, twitter } = user;
 
@@ -79,4 +79,4 @@ const PhotoCardModal = ({ photo, closeModal }: IProps) => {
   );
 };
 
-export { PhotoCardModal };
+export { CardModal };

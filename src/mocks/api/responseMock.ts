@@ -1,4 +1,4 @@
-import { Result, SearchData } from '../../api/unsplashTypes';
+import { Result, SearchData } from '../../redux/api/unsplashTypes';
 
 export const emptySearchResponse: SearchData = { total: 0, total_pages: 0, results: [] };
 

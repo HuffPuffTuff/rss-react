@@ -1,5 +1,5 @@
-import { AppStore } from '../store';
-import { unsplashApi } from '../api/apiSlice';
+import { AppStore } from '../redux/setupStore';
+import { unsplashApi } from '../redux/api/apiSlice';
 
 const apiRequest = async (store: AppStore) => {
   store.dispatch(unsplashApi.endpoints.searchPhotos.initiate(''));

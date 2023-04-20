@@ -1,7 +1,9 @@
 import { PhotoData, Result } from './unsplashTypes';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { SearchData } from './unsplashTypes';
-import { _photosTransformer } from '../utilits/helpers';
+import { _photosTransformer } from '../../utilits/helpers';
+
+const apiKey = import.meta.env.VITE_UNSPLASH_KEY; /* <insert your token here>*/
 
 export const unsplashApi = createApi({
   reducerPath: 'api',
@@ -16,7 +18,7 @@ export const unsplashApi = createApi({
             params: {
               query: searchValue,
               per_page: 20,
-              client_id: import.meta.env.VITE_UNSPLASH_KEY /* <insert token here>*/,
+              client_id: apiKey,
             },
           };
         }
@@ -24,11 +26,10 @@ export const unsplashApi = createApi({
           url: `/photos`,
           params: {
             per_page: 20,
-            client_id: import.meta.env.VITE_UNSPLASH_KEY,
+            client_id: apiKey,
           },
         };
       },
-
       transformResponse: (response: SearchData | Result[]) => {
         if (Array.isArray(response)) {
           return response.map(_photosTransformer);

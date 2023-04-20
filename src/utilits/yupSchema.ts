@@ -7,9 +7,7 @@ export const schema = Yup.object().shape({
     .test('Check name', '2 words of a maximum of 9 characters', (value) => {
       const arr = value.split(' ').filter((val) => val !== '');
 
-      if (arr.length !== 2) {
-        return false;
-      } else if (arr.some((val) => val.length > 9)) {
+      if (arr.length !== 2 || arr.some((val) => val.length > 9)) {
         return false;
       }
       return true;

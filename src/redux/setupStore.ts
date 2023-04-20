@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit';
 
-import search from '../components/searchPanel/searchPanelSlice';
-import { unsplashApi } from '../api/apiSlice';
-import forms from '../components/formCards/formCardsSlice';
+import { unsplashApi } from './api/apiSlice';
+import search from './slices/searchPanelSlice';
+import forms from './slices/formPageSlice';
 
 const rootReducer = combineReducers({
   search,

@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
-import serialize from 'serialize-javascript';
+// import serialize from 'serialize-javascript';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const port = 5173;
@@ -26,8 +26,8 @@ async function createServer() {
 
       const parts = template.split('<!--ssr-outlet-->');
 
-      const { setupStore } = await vite.ssrLoadModule('/src/store/index.ts');
-      const { apiRequest } = await vite.ssrLoadModule('/src/utilits/apiRequest.ts');
+      // const { setupStore } = await vite.ssrLoadModule('/src/redux/setupStore.ts');
+      // const { apiRequest } = await vite.ssrLoadModule('/src/utilits/apiRequest.ts');
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
 
       // const store = setupStore();

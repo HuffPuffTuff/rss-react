@@ -1,11 +1,11 @@
 import React, { useState, MouseEvent } from 'react';
 
 import './photoList.scss';
-import { ErrorMessage, Spinner, PhotoCard, Modal, PhotoCardModal } from '../';
-import { PhotoData } from 'api/unsplashTypes';
+import { ErrorMessage, Spinner, Card, Modal, CardModal } from '../';
+import { PhotoData } from 'redux/api/unsplashTypes';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { useSearchPhotosQuery } from '../../api/apiSlice';
+import { RootState } from '../../redux/setupStore';
+import { useSearchPhotosQuery } from '../../redux/api/apiSlice';
 
 const PhotoList = () => {
   const searchValue = useSelector(({ search }: RootState) => search.value);
@@ -43,7 +43,7 @@ const PhotoList = () => {
 
   const renderItems = (arr: PhotoData[]): JSX.Element => {
     const items = arr.map((item) => {
-      return <PhotoCard onPhotoSelected={onPhotoSelected} photo={item} key={item.id} />;
+      return <Card onPhotoSelected={onPhotoSelected} photo={item} key={item.id} />;
     });
 
     return <ul className="photos__grid">{items}</ul>;
@@ -55,7 +55,7 @@ const PhotoList = () => {
     <>
       <div className="photos__list">{elements}</div>
       <Modal show={!!photo} closeModal={closeModal}>
-        {photo ? <PhotoCardModal closeModal={closeModal} photo={photo} /> : null}
+        {photo ? <CardModal closeModal={closeModal} photo={photo} /> : null}
       </Modal>
     </>
   );

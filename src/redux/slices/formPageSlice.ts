@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { PhotoData } from '../../api/unsplashTypes';
+import { PhotoData } from '../api/unsplashTypes';
 
 const initialState: { formCards: PhotoData[] } = {
   formCards: [],

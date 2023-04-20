@@ -1,4 +1,4 @@
-import { PhotoData } from '../api/unsplashTypes';
+import { PhotoData } from '../redux/api/unsplashTypes';
 
 export const photoCardMock: PhotoData = {
   id: 'xyZlawddddds',
