@@ -7,12 +7,12 @@ import App from './App';
 import { setupStore } from './redux/setupStore';
 import './styles/styles.scss';
 
-// console.log(window.__PRELOADED_STATE__);
+console.log(window.__PRELOADED_STATE__);
 
 hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
-    <Provider store={setupStore()}>
+    <Provider store={setupStore(window.__PRELOADED_STATE__)}>
       <BrowserRouter>
         <App />
       </BrowserRouter>

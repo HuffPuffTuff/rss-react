@@ -22,7 +22,7 @@ const AppHeader = () => {
           </li>
           <li className="header__menu-item">
             <NavLink end to={ROUTES.ABOUT}>
-              About us
+              About
             </NavLink>
           </li>
         </ul>

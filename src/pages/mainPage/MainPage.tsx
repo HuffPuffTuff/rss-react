@@ -22,7 +22,7 @@ const MainPage = () => {
     <>
       <SearchPanel />
       {isError && <ErrorMessage />}
-      {isLoading || isFetching ? (
+      {isFetching || isLoading ? (
         <Spinner />
       ) : (
         <Cards cards={photos} message={message} styles={styles} />
