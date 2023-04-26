@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 import { setupStore } from './redux/setupStore';
-import './styles/styles.scss';
 
 console.log(window.__PRELOADED_STATE__);
 

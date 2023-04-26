@@ -6,7 +6,6 @@ import serialize from 'serialize-javascript';
 
 import { setupStore } from './redux/setupStore';
 import App from './App';
-import './styles/styles.scss';
 import { apiRequest } from './utilits/apiRequest';
 
 export const render = async (url: string, opts?: object) => {

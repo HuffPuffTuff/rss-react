@@ -5,7 +5,7 @@ import express from 'express';
 import { createServer as createViteServer } from 'vite';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const port = 5173;
+const { port = 5173 } = process.env;
 
 async function createServer() {
   const app = express();
@@ -57,4 +57,4 @@ async function createServer() {
 }
 
 createServer();
-console.log(`Server is running on http://localhost:${5173}/`);
+console.log(`Server is running on http://localhost:${port}/`);
