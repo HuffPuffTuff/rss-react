@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { act } from 'react-dom/test-utils';
+import { render } from '@testing-library/react';
 import { test, expect, vi } from 'vitest';
 
 import { Page404 } from './Page404';
@@ -10,11 +9,9 @@ vi.mock('react-router-dom', () => ({
   NavLink: vi.fn().mockImplementation(({ children }) => children),
 }));
 
-test('Render Page404 component', async () => {
-  await act(async () => {
-    render(<Page404 />);
-  });
+test('Render Page404 component', () => {
+  const { getAllByText } = render(<Page404 />);
 
-  expect(screen.getAllByText(/Page doesn't exist/i)).toBe;
+  expect(getAllByText(/Page doesn't exist/i)).toBe;
   expect(document.title).toEqual('Page not found');
 });

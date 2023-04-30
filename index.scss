@@ -92,35 +92,17 @@ body {
     }
   }
 
-  .input-container {
-    @apply w-full relative rounded-lg overflow-hidden;
+  .input-search {
+    @apply rounded-lg py-4 px-8 block text-xl w-full font-semibold border-none;
+    color: #a9b8c9;
+    -webkit-appearance: none;
+    transition: all 240ms ease-out;
+    cursor: pointer;
 
-    &:before,
-    &:after {
-      @apply absolute block w-full top-0 left-0 h-full;
-      content: '';
-    }
-
-    &:before {
-      box-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.7);
-    }
-
-    &:after {
-      box-shadow: inset 1px 1px 3px #c5d4e3, inset 2px 2px 6px #c5d4e3;
-      cursor: pointer;
-    }
-
-    input {
-      @apply py-4 px-8 block text-xl w-full font-semibold border-none;
-      color: #a9b8c9;
-      -webkit-appearance: none;
-      transition: all 240ms ease-out;
-
-      &:focus {
-        outline: none;
-        color: #6d7f8f;
-        background-color: lighten(#e3edf7, 3%);
-      }
+    &:focus {
+      outline: none;
+      color: #6d7f8f;
+      background-color: lighten(#e3edf7, 50%);
     }
   }
 }
@@ -180,6 +162,7 @@ body {
 // ---CardModal
 
 .card {
+  height: 298px;
   &__modal {
     @apply relative rounded-lg w-800 grid grid-cols-card-modal bg-sky shadow-xl;
 
@@ -298,4 +281,8 @@ body {
   .upload-file__label .upload-file__icon path {
     transition: 0.25s ease;
   }
+}
+
+.forms__page-message {
+  color: whitesmoke;
 }

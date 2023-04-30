@@ -30,14 +30,14 @@ const SearchPanel = () => {
           <div className="search-panel__icon">
             <SearchIcon />
           </div>
-          <div className="input-container">
-            <input
-              id="input-search"
-              aria-label="input-search"
-              defaultValue={searchRef.current}
-              onChange={({ target }) => (searchRef.current = target.value.toLowerCase())}
-            />
-          </div>
+
+          <input
+            className="input-search"
+            id="input-search"
+            aria-label="input-search"
+            defaultValue={searchRef.current}
+            onChange={({ target }) => (searchRef.current = target.value.toLowerCase())}
+          />
         </div>
       </div>
     </form>

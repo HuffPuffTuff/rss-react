@@ -1,15 +1,15 @@
 import React from 'react';
 
 interface Props {
-  message: string | undefined;
+  message: string;
 }
 
 const PageMessage = ({ message }: Props) => {
-  return message ? (
+  return (
     <p className="page-message" role="message" data-testid="no-photos">
       {message}
     </p>
-  ) : null;
+  );
 };
 
 export { PageMessage };

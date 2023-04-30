@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import { test, vi } from 'vitest';
+import { test, vi, expect } from 'vitest';
 
 vi.mock('react-router-dom', () => ({
   Link: vi.fn().mockImplementation(({ children }) => children),
@@ -14,5 +14,5 @@ test('Render AppHeader component', () => {
 
   expect(getAllByText(/Search/i)).toBe;
   expect(getAllByText(/Form/i)).toBe;
-  expect(getAllByText(/About us/i)).toBe;
+  expect(getAllByText(/About/i)).toBe;
 });

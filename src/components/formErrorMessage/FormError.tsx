@@ -5,11 +5,11 @@ interface Props {
 }
 
 const FormError = ({ message }: Props) => {
-  return message ? (
+  return (
     <p className="form__error" role="alert">
       {message}
     </p>
-  ) : null;
+  );
 };
 
 export { FormError };

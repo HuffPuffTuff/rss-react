@@ -1,4 +1,4 @@
-import { Modal, Card, CardModal } from '../';
+import { Modal, Card, CardModal, PageMessage } from '../';
 import React, { useState, MouseEvent } from 'react';
 import { PhotoData } from '../../types/unsplashTypes';
 import classNames from 'classnames';
@@ -27,14 +27,7 @@ const Cards = ({ cards, message, styles }: Props) => {
   };
 
   if (cards.length === 0) {
-    return (
-      <p
-        data-testid="no-photos"
-        style={{ textAlign: 'center', marginTop: '30px', fontSize: '30px' }}
-      >
-        {message}
-      </p>
-    );
+    return <PageMessage message={message} />;
   }
 
   const renderItems = (arr: PhotoData[]): JSX.Element => {
@@ -50,9 +43,11 @@ const Cards = ({ cards, message, styles }: Props) => {
   return (
     <>
       {elements}
-      <Modal show={!!activeCard} closeModal={closeModal}>
-        {activeCard ? <CardModal closeModal={closeModal} photo={activeCard} /> : null}
-      </Modal>
+      {activeCard && (
+        <Modal closeModal={closeModal}>
+          {activeCard ? <CardModal closeModal={closeModal} photo={activeCard} /> : null}
+        </Modal>
+      )}
     </>
   );
 };

@@ -78,7 +78,7 @@ const Form = () => {
               <input type="text" {...register('username')} maxLength={12} />
               Username *
             </label>
-            <FormError message={errors.username?.message} />
+            {errors.username?.message && <FormError message={errors.username?.message} />}
           </div>
 
           <div className="form__item">
@@ -86,7 +86,7 @@ const Form = () => {
               <input type="text" {...register('fullname')} maxLength={19} />
               Full Name *
             </label>
-            <FormError message={errors.fullname?.message} />
+            {errors.fullname?.message && <FormError message={errors.fullname?.message} />}
           </div>
 
           <div className="form__item">
@@ -94,7 +94,8 @@ const Form = () => {
               <input type="date" {...register('date')} role="date" />
               Date of creation *
             </label>
-            <FormError message={errors.date?.message} />
+
+            {errors.date?.message && <FormError message={errors.date?.message} />}
           </div>
 
           <div className="form__item">
@@ -144,7 +145,7 @@ const Form = () => {
             </label>
           </div>
 
-          <div className="upload-file__wrapper">
+          <div>
             <input
               id="upload-file__input_1"
               className="upload-file__input"
@@ -158,28 +159,30 @@ const Form = () => {
               <span className="upload-file__text">Choose image</span>
             </label>
           </div>
-          <FormError message={errors.files?.message} />
+
+          {errors.files?.message && <FormError message={errors.files?.message} />}
 
           <div className="form__item">
             <label>
               <input type="checkbox" {...register('terms')} aria-label="checkbox" />
               Do you agree with the privacy policy?
             </label>
-
-            <FormError message={errors.terms?.message} />
+            {errors.terms?.message && <FormError message={errors.terms?.message} />}
           </div>
         </div>
 
-        <button name="submit" type="submit">
+        <button data-testid="form-btn" name="submit" type="submit">
           Submit
         </button>
       </form>
 
-      <Modal show={showModal} closeModal={closeModal}>
-        <p data-testid="save-message" className="forms__page-message">
-          Your data has been saved!
-        </p>
-      </Modal>
+      {showModal && (
+        <Modal closeModal={closeModal}>
+          <p data-testid="save-message" className="forms__page-message">
+            Your data has been saved!
+          </p>
+        </Modal>
+      )}
     </>
   );
 };
